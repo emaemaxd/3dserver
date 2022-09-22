@@ -2,10 +2,7 @@ package org.threeDPortfolioGallery.workloads;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Exhibit extends PanacheEntity {
@@ -20,4 +17,10 @@ public class Exhibit extends PanacheEntity {
 
     // TODO relationship to position, theme, exhibition
 
+    @ManyToOne
+    private Theme theme;
+
+    @OneToOne
+    @JoinColumn(name = "id")
+    private Position position;
 }

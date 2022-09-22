@@ -2,10 +2,9 @@ package org.threeDPortfolioGallery.workloads;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.lang.reflect.Type;
+import java.util.List;
 
 @Entity
 public class Theme extends PanacheEntity {
@@ -18,6 +17,10 @@ public class Theme extends PanacheEntity {
 
     private String model_path;
 
-    // TODO relation exhibit, exhibition
+    // TODO relation exhibit
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+    private List<Exhibit> exhibits;
 
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+    private List<Exhibition> exhibitions;
 }

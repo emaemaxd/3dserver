@@ -16,4 +16,6 @@ public class Category extends PanacheEntity {
 
     // TODO relationship to exhibition n:m
 
+
+
 }
