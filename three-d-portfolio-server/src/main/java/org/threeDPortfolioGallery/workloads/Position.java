@@ -7,17 +7,17 @@ import javax.persistence.*;
 @Entity
 public class Position extends PanacheEntity {
 
-    private Long x;
+    public Long x;
 
-    private Long y;
+    public Long y;
 
-    private boolean is_wall;
+    public boolean is_wall;
 
     // relationships to room
 
 
 
     @OneToOne(mappedBy = "position", cascade = CascadeType.ALL)
-    private Exhibit exhibit;
+    public Exhibit exhibit;
 
 }

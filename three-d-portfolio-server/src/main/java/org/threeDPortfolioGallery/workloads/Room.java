@@ -10,11 +10,11 @@ import javax.persistence.Id;
 @Entity
 public class Room extends PanacheEntity {
 
-    private String name;
+    public String name;
 
-    private int positions_amount;
+    public int positions_amount;
 
-    private String room_url;
+    public String room_url;
 
     // TODO relationship to position, exhibition
 

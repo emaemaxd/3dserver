@@ -7,20 +7,22 @@ import javax.persistence.*;
 @Entity
 public class Exhibit extends PanacheEntity {
 
-    private String url;
+    public String url;
 
-    private String data_type;
+    public String data_type;
 
-    private String title;
+    public String title;
 
-    private String description;
+    public String description;
 
     // TODO relationship to position, theme, exhibition
 
     @ManyToOne
-    private Theme theme;
+    public Exhibition exhibition;
+
+    @ManyToOne
+    public Theme theme;
 
     @OneToOne
-    @JoinColumn(name = "id")
-    private Position position;
+    public Position position;
 }

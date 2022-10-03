@@ -9,18 +9,18 @@ import java.util.List;
 @Entity
 public class Theme extends PanacheEntity {
 
-    private String mat_object;
+    public String mat_object;
 
-    private String mat_inside;
+    public String mat_inside;
 
-    private  int light_intensity;
+    public  int light_intensity;
 
-    private String model_path;
+    public String model_path;
 
-    // TODO relation exhibit
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
-    private List<Exhibit> exhibits;
+    // relations
+    @OneToMany(mappedBy = "theme", cascade = CascadeType.ALL)
+    public List<Exhibit> exhibits;
 
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
-    private List<Exhibition> exhibitions;
+    @OneToMany(mappedBy = "theme", cascade = CascadeType.ALL)
+    public List<Exhibition> exhibitions;
 }

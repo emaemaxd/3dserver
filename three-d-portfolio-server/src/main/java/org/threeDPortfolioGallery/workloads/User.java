@@ -10,13 +10,13 @@ import java.util.List;
 @Table(name="users")        // causes exception if not here because "User" (in Postgres) is reserved
 public class User extends PanacheEntity {
 
-    private String user_name;
+    public String user_name;
 
-    private String email;
+    public String email;
 
-    private String iconUrl;
+    public String iconUrl;
 
     // relationship exhibition
     @OneToMany
-    private List<Exhibition> exhibitions;
+    public List<Exhibition> exhibitions;
 }

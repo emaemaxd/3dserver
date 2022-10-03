@@ -10,9 +10,9 @@ import javax.persistence.Id;
 @Entity
 public class Category extends PanacheEntity {
 
-    private String title;
+    public String title;
 
-    private String color;
+    public String color;
 
     // TODO relationship to exhibition n:m
 

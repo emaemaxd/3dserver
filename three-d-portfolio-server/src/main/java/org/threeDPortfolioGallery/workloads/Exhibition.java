@@ -3,19 +3,23 @@ package org.threeDPortfolioGallery.workloads;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Exhibition extends PanacheEntity {
 
-    private String thumbnail_url;
+    public String thumbnail_url;
 
-    private String title;
+    public String title;
 
     // TODO relationship to room, theme, exhibit
 
-    @ManyToOne
-    private Theme theme;
+    @OneToMany(mappedBy = "exhibition")
+    public List<Exhibit> exhibits;
 
     @ManyToOne
-    private User user;
+    public Theme theme;
+
+    @ManyToOne
+    public User user;
 }
