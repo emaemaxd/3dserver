@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="users")        // causes exception if not here because "User" (in Postgres) is reserved
+@Table(name="Users")        // causes exception if not here because "User" (in Postgres) is reserved
 public class User extends PanacheEntity {
 
     public String user_name;
@@ -17,6 +17,6 @@ public class User extends PanacheEntity {
     public String iconUrl;
 
     // relationship exhibition
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     public List<Exhibition> exhibitions;
 }

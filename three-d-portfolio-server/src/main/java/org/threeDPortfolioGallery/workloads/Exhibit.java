@@ -1,6 +1,8 @@
 package org.threeDPortfolioGallery.workloads;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -15,12 +17,14 @@ public class Exhibit extends PanacheEntity {
 
     public String description;
 
-    // TODO relationship to position, theme, exhibition
+    // relationships
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     public Exhibition exhibition;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     public Theme theme;
 
     @OneToOne

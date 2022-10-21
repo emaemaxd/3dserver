@@ -13,7 +13,7 @@ public class Theme extends PanacheEntity {
 
     public String mat_inside;
 
-    public  int light_intensity;
+    public  float light_intensity;
 
     public String model_path;
 

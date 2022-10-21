@@ -1,6 +1,8 @@
 package org.threeDPortfolioGallery.workloads;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,7 +14,7 @@ public class Exhibition extends PanacheEntity {
 
     public String title;
 
-    // TODO relationship to room, theme, exhibit
+    // relationship
 
     @OneToMany(mappedBy = "exhibition")
     public List<Exhibit> exhibits;
@@ -20,6 +22,13 @@ public class Exhibition extends PanacheEntity {
     @ManyToOne
     public Theme theme;
 
-    @ManyToOne
+    // TODO: check if okay like that
+    @ManyToOne(cascade = CascadeType.ALL )
     public User user;
+
+    @OneToMany(mappedBy = "exhibition")
+    public List<Room> rooms;
+
+    @ManyToMany(mappedBy = "exhibitions")
+    List<Category> categories;
 }

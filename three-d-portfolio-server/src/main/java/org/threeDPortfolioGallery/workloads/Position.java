@@ -13,9 +13,10 @@ public class Position extends PanacheEntity {
 
     public boolean is_wall;
 
-    // relationships to room
+    // relationship
 
-
+    @ManyToOne
+    public Room room;
 
     @OneToOne(mappedBy = "position", cascade = CascadeType.ALL)
     public Exhibit exhibit;
