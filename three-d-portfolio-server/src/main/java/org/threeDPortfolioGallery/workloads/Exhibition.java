@@ -1,5 +1,6 @@
 package org.threeDPortfolioGallery.workloads;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -22,7 +23,8 @@ public class Exhibition extends PanacheEntity {
     @ManyToOne
     public Theme theme;
 
-    // TODO: check if okay like that
+    @JsonIgnore
+    // TODO: check if okay like that, Cascade types
     @ManyToOne(cascade = CascadeType.ALL )
     public User user;
 

@@ -1,6 +1,7 @@
 package org.threeDPortfolioGallery.workloads;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import javax.persistence.*;
@@ -16,7 +17,10 @@ public class User extends PanacheEntity {
 
     public String iconUrl;
 
+    public String password;
+
     // relationship exhibition
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     public List<Exhibition> exhibitions;
 }
