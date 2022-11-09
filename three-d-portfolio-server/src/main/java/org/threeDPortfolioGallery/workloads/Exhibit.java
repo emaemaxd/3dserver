@@ -1,5 +1,6 @@
 package org.threeDPortfolioGallery.workloads;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -19,6 +20,7 @@ public class Exhibit extends PanacheEntity {
 
     // relationships
 
+    @JsonIgnore
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     public Exhibition exhibition;
