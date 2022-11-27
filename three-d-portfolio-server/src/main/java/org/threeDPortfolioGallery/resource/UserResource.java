@@ -58,8 +58,9 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/login")
-    public Response postCustomer(UserLoginDTO loginDTO) {
+    public Response login(UserLoginDTO loginDTO) {
         loginDTO.setPassword(this.hashPassword(loginDTO.getPassword()));
-        return ((this.userRepo.isUser(loginDTO))? Response.ok("{'token':'Test'}") : Response.status(204)).build();
+        System.out.printf("login : \n%s\n%s", loginDTO.getEmailOrUsername(), loginDTO.getPassword());
+        return ((this.userRepo.isUser(loginDTO))? Response.ok("{'token':'Test'}") : Response.status(401)).build();
     }
 }
