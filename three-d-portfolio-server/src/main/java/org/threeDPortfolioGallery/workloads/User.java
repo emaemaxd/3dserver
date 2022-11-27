@@ -24,7 +24,6 @@ public class User extends PanacheEntity {
     @JsonIgnore
     public List<Exhibition> exhibitions;
 
-
     public static User create(String user_name, String email, String iconUrl, String password, List<Exhibition> exhibitions) {
         User user = new User();
         user.user_name = user_name;
