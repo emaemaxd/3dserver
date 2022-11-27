@@ -43,8 +43,9 @@ public class UserResource {
     public Response postCustomer(User new_user, @Context UriInfo uriInfo) {
         // TODO hash password
         new_user.password = "hi";
-        this.userRepo.persist(new_user);
-        URI uri = uriInfo.getAbsolutePathBuilder().path(Long.toString(new_user.id)).build();
+        User new_new_user = User.create(new_user.user_name, new_user.email, new_user.iconUrl, new_user.password,  new_user.exhibitions);
+        this.userRepo.persist(new_new_user);
+        URI uri = uriInfo.getAbsolutePathBuilder().path(Long.toString(new_new_user.id)).build();
         return Response.created(uri).build();
     }
 }

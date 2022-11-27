@@ -23,4 +23,15 @@ public class User extends PanacheEntity {
     @OneToMany(mappedBy = "user")
     @JsonIgnore
     public List<Exhibition> exhibitions;
+
+
+    public static User create(String user_name, String email, String iconUrl, String password, List<Exhibition> exhibitions) {
+        User user = new User();
+        user.user_name = user_name;
+        user.email = email;
+        user.iconUrl = iconUrl;
+        user.password = password;
+        user.exhibitions = exhibitions;
+        return user;
+    }
 }
