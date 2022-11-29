@@ -2,6 +2,7 @@ package org.threeDPortfolioGallery.resource;
 
 import org.threeDPortfolioGallery.repos.UserRepo;
 import org.threeDPortfolioGallery.workloads.User;
+import org.threeDPortfolioGallery.workloads.dto.UserLoginDTO;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -29,7 +30,6 @@ public class UserResource {
     public User getUser(@PathParam("user_id") long id) {
         return userRepo.findById(id);
     }
-
     /**
      *
      * @param new_user JSON object
@@ -41,10 +41,26 @@ public class UserResource {
     @Consumes("application/json")
     @Produces("application/json")
     public Response postCustomer(User new_user, @Context UriInfo uriInfo) {
-        // TODO hash password
-        new_user.password = "hi";
-        this.userRepo.persist(new_user);
-        URI uri = uriInfo.getAbsolutePathBuilder().path(Long.toString(new_user.id)).build();
+        new_user.password = hashPassword(new_user.password);
+        User new_new_user = User.create(new_user.user_name, new_user.email, new_user.iconUrl, new_user.password,  new_user.exhibitions);
+        this.userRepo.persist(new_new_user);
+        URI uri = uriInfo.getAbsolutePathBuilder().path(Long.toString(new_new_user.id)).build();
         return Response.created(uri).build();
+    }
+
+    private String hashPassword(String password){
+        // TODO hash password
+        return password.concat("hi");
+    }
+
+    @POST
+    @Transactional
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/login")
+    public Response login(UserLoginDTO loginDTO) {
+        loginDTO.setPassword(this.hashPassword(loginDTO.getPassword()));
+        System.out.printf("login : \n%s\n%s", loginDTO.getEmailOrUsername(), loginDTO.getPassword());
+        return ((this.userRepo.isUser(loginDTO))? Response.ok("{'token':'Test'}") : Response.status(401)).build();
     }
 }
