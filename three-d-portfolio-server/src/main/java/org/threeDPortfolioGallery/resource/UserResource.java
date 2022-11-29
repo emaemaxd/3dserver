@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 
-@Path("/api/user")
+@Path("/api/users")
 public class UserResource {
 
     @Inject
