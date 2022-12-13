@@ -37,4 +37,16 @@ public class ExhibitionResource {
             return Response.ok().entity(exhibitionList).build();
         }
     }
+
+    @GET
+    @Path("/search/{searchTerm}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getExhibitionsBySearchTerm(@PathParam("searchTerm") String searchTerm){
+        List<Exhibition> exhibitionList = exhibitionRepo.listAllBySearchTerm(searchTerm);
+        if(exhibitionList.isEmpty()){
+            return Response.noContent().build();
+        } else {
+            return Response.ok().entity(exhibitionList).build();
+        }
+    }
 }
