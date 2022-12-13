@@ -12,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+// TODO: return all user names
 @Path("api/exhibitions")
 public class ExhibitionResource {
 
@@ -22,7 +23,7 @@ public class ExhibitionResource {
     @GET
     @Path("/{userid}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Exhibition> getExhibitionsOfUser(@PathParam("userid") long id){
+    public List<Exhibition> getExhibitionsByUser(@PathParam("userid") long id){
         return exhibitionRepo.getAllExhibitionsForUser(id);
     }
 
@@ -43,6 +44,18 @@ public class ExhibitionResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getExhibitionsBySearchTerm(@PathParam("searchTerm") String searchTerm){
         List<Exhibition> exhibitionList = exhibitionRepo.listAllBySearchTerm(searchTerm);
+        if(exhibitionList.isEmpty()){
+            return Response.noContent().build();
+        } else {
+            return Response.ok().entity(exhibitionList).build();
+        }
+    }
+
+    @GET
+    @Path("/latestFive")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getLastFiveExhibitions(){
+        List<Exhibition> exhibitionList = exhibitionRepo.getLatestFive();
         if(exhibitionList.isEmpty()){
             return Response.noContent().build();
         } else {

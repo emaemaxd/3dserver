@@ -21,13 +21,4 @@ public class Category extends PanacheEntity {
                     inverseJoinColumns = @JoinColumn(name = "exhibition_id")
             )
     List<Exhibition> exhibitions;
-    /*
-
-    @ManyToMany
-    @JoinTable(
-            joinColumns = @JoinColumn(name = "student_id"),
-            inverseJoinColumns = @JoinColumn(name = "course_id"))
-    List<Exhibition> likedCourses;
-*/
-
 }

@@ -19,4 +19,10 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
         q.setParameter("term", "%"+term+"%");
         return q.getResultList();
     }
+
+    public List<Exhibition> getLatestFive() {
+        var q = getEntityManager().createQuery("select e from Exhibition e order by e.id desc", Exhibition.class);
+        q.setMaxResults(5);
+        return q.getResultList();
+    }
 }
