@@ -22,7 +22,15 @@ public class ExhibitionResource {
     @Path("/{userid}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Exhibition> getExhibitionsOfUser(@PathParam("userid") long id){
-
         return exhibitionRepo.getAllExhibitionsForUser(id);
     }
+
+    @GET
+    @Path("/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Exhibition> getAllExhibitions(){
+
+        return exhibitionRepo.listAll();
+    }
+
 }
