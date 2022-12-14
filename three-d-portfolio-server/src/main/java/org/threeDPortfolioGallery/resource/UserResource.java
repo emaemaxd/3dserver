@@ -84,8 +84,7 @@ public class UserResource {
         String token;
         // first hash password
         loginDTO.setPassword(this.hashPassword(loginDTO.getPassword()));
-        //System.out.printf("login : \n%s\n%s", loginDTO.getEmailOrUsername(), loginDTO.getPassword());
-        
+
         // then find user
         // return ((this.userRepo.isUser(loginDTO))? Response.ok("{'token':'Test'}") : Response.status(401)).build();
         var count = userRepo.find("(user_name=?1 or email=?2) and password=?3", loginDTO.getEmailOrUsername(), loginDTO.getEmailOrUsername(), loginDTO.getPassword()).count();

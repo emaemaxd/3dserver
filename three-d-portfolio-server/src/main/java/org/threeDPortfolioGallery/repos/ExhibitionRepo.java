@@ -20,8 +20,8 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
      */
     public List<Exhibition> listAllBySearchTerm(String term) {
         var q = getEntityManager().createQuery("select e from Exhibition e " +
-                "where e.user.user_name like :term or e.title like :term ", Exhibition.class);
-        q.setParameter("term", "%"+term+"%");
+                "where lower(e.user.user_name) like :term or lower(e.title) like :term ", Exhibition.class);
+        q.setParameter("term", "%"+term.toLowerCase()+"%");
         return q.getResultList();
     }
 
