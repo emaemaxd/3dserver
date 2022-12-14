@@ -13,6 +13,11 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
         return list("user.id", userid);
     }
 
+    /**
+     *
+     * @param term keyword to check for
+     * @return list of found exhibitions
+     */
     public List<Exhibition> listAllBySearchTerm(String term) {
         var q = getEntityManager().createQuery("select e from Exhibition e " +
                 "where e.user.user_name like :term or e.title like :term ", Exhibition.class);
@@ -20,6 +25,10 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
         return q.getResultList();
     }
 
+    /**
+     *
+     * @return list of maximum of 5 found exhibitions
+     */
     public List<Exhibition> getLatestFive() {
         var q = getEntityManager().createQuery("select e from Exhibition e order by e.id desc", Exhibition.class);
         q.setMaxResults(5);

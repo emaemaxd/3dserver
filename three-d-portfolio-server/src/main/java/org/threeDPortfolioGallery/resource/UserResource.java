@@ -1,9 +1,11 @@
 package org.threeDPortfolioGallery.resource;
 
+import org.threeDPortfolioGallery.JwtService;
 import org.threeDPortfolioGallery.repos.UserRepo;
 import org.threeDPortfolioGallery.workloads.User;
 import org.threeDPortfolioGallery.workloads.dto.UserLoginDTO;
 
+import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
@@ -12,12 +14,21 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.Arrays;
+import java.util.Base64;
 
 @Path("/api/users")
 public class UserResource {
 
     @Inject
     UserRepo userRepo;
+
+    @Inject
+    JwtService jwtService;
 
     /**
      * GET a User by their id
@@ -27,9 +38,15 @@ public class UserResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{user_id}")
-    public User getUser(@PathParam("user_id") long id) {
-        return userRepo.findById(id);
+    public Response getUser(@PathParam("user_id") long id) {
+            User user = userRepo.findById(id);
+            if (user== null){
+                return Response.noContent().build();
+            }else {
+                return Response.ok().entity(user).build();
+            }
     }
+
     /**
      *
      * @param new_user JSON object
@@ -40,27 +57,42 @@ public class UserResource {
     @Transactional
     @Consumes("application/json")
     @Produces("application/json")
+    @Path("/new")
     public Response postCustomer(User new_user, @Context UriInfo uriInfo) {
         new_user.password = hashPassword(new_user.password);
-        User new_new_user = User.create(new_user.user_name, new_user.email, new_user.iconUrl, new_user.password,  new_user.exhibitions);
-        this.userRepo.persist(new_new_user);
-        URI uri = uriInfo.getAbsolutePathBuilder().path(Long.toString(new_new_user.id)).build();
+        User user = User.create(new_user.user_name, new_user.email, new_user.iconUrl, new_user.password,  new_user.exhibitions);
+        this.userRepo.persist(user);
+        URI uri = uriInfo.getAbsolutePathBuilder().path(Long.toString(user.id)).build();
         return Response.created(uri).build();
     }
 
     private String hashPassword(String password){
-        // TODO hash password
-        return password.concat("hi");
+        // TODO ask if thats enough
+        password = password + "yoyoyo";
+        Base64.Encoder encoder = Base64.getEncoder();
+        return encoder.encodeToString(password.getBytes());
+        // return password.concat("hi");
     }
 
+    @PermitAll
     @POST
     @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     @Path("/login")
-    public Response login(UserLoginDTO loginDTO) {
+    public Response login(UserLoginDTO loginDTO){
+        String token;
+        // first hash password
         loginDTO.setPassword(this.hashPassword(loginDTO.getPassword()));
-        System.out.printf("login : \n%s\n%s", loginDTO.getEmailOrUsername(), loginDTO.getPassword());
-        return ((this.userRepo.isUser(loginDTO))? Response.ok("{'token':'Test'}") : Response.status(401)).build();
+        //System.out.printf("login : \n%s\n%s", loginDTO.getEmailOrUsername(), loginDTO.getPassword());
+        
+        // then find user
+        // return ((this.userRepo.isUser(loginDTO))? Response.ok("{'token':'Test'}") : Response.status(401)).build();
+        var count = userRepo.find("(user_name=?1 or email=?2) and password=?3", loginDTO.getEmailOrUsername(), loginDTO.getEmailOrUsername(), loginDTO.getPassword()).count();
+        if (count == 1) {
+            return Response.ok(jwtService.generateJwt()).build();
+        }else {
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
     }
 }

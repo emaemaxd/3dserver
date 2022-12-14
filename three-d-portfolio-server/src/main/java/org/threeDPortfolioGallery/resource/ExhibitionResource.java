@@ -3,6 +3,8 @@ package org.threeDPortfolioGallery.resource;
 import org.threeDPortfolioGallery.repos.ExhibitionRepo;
 import org.threeDPortfolioGallery.workloads.Exhibition;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -21,6 +23,7 @@ public class ExhibitionResource {
 
     // get exhibitions of one user
     @GET
+    @RolesAllowed({"admin"})
     @Path("/{userid}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Exhibition> getExhibitionsByUser(@PathParam("userid") long id){
@@ -52,6 +55,7 @@ public class ExhibitionResource {
     }
 
     @GET
+    @PermitAll
     @Path("/latestFive")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getLastFiveExhibitions(){
