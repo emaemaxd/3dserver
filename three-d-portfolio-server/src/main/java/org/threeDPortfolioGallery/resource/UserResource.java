@@ -68,7 +68,7 @@ public class UserResource {
 
     private String hashPassword(String password){
         // TODO ask if thats enough
-        password = password + "yoyoyo";
+        password = password + "yobyoyo";
         Base64.Encoder encoder = Base64.getEncoder();
         return encoder.encodeToString(password.getBytes());
         // return password.concat("hi");

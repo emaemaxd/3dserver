@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="three-d-portfolio-server" target="11" />
+      <module name="three-d-portfolio-server" target="18" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

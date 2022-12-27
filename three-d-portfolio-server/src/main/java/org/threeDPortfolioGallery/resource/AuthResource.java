@@ -19,6 +19,7 @@ public class AuthResource {
     @Inject
     JwtService jwtService;
 
+    // maybe muss das geändert werden?
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public Response getJwt(){
