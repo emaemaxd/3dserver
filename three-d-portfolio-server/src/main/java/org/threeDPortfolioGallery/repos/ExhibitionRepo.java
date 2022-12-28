@@ -34,4 +34,8 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
         q.setMaxResults(5);
         return q.getResultList();
     }
+
+    public List<Exhibition> getTextExhibition() {
+        return null;
+    }
 }

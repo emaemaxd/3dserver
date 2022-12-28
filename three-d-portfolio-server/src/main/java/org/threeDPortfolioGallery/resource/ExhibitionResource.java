@@ -21,7 +21,15 @@ public class ExhibitionResource {
     @Inject
     ExhibitionRepo exhibitionRepo;
 
+    @GET
+    @Path("/test")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Exhibition> getExahibiton(){
+        return exhibitionRepo.getTextExhibition();
+    }
+
     // get exhibitions of one user
+    // TODO change return type to Response
     @GET
     @RolesAllowed({"admin"})
     @Path("/{userid}")
