@@ -1,7 +1,7 @@
 package org.threeDPortfolioGallery.resource;
 
+import org.threeDPortfolioGallery.records.ExhibitionWithUserRecord;
 import org.threeDPortfolioGallery.repos.ExhibitionRepo;
-import org.threeDPortfolioGallery.workloads.Exhibition;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
@@ -13,36 +13,47 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.Set;
 
-// TODO: return all user names
+/**
+ *  Alle Schnittstellen für die Entity Exhibition
+ *
+ * @author Ema Halilovic
+ */
 @Path("api/exhibitions")
 public class ExhibitionResource {
 
     @Inject
     ExhibitionRepo exhibitionRepo;
 
-    @GET
-    @Path("/test")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Exhibition> getExahibiton(){
-        return exhibitionRepo.getTextExhibition();
-    }
-
-    // get exhibitions of one user
-    // TODO change return type to Response
+    /**
+     * REST Schnittstelle für alle Exhibitions für die angegebene Id eines Users
+     * @param id gesuchter User
+     * @return alle gefundenen Exhibitions für
+     */
     @GET
     @RolesAllowed({"admin"})
     @Path("/{userid}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Exhibition> getExhibitionsByUser(@PathParam("userid") long id){
-        return exhibitionRepo.getAllExhibitionsForUser(id);
+    public Response getExhibitionsByUser(@PathParam("userid") long id){
+        List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getAllExhibitionsForUser(id);
+        if(exhibitionList.isEmpty()){
+            return Response.noContent().build();
+        } else {
+            return Response.ok().entity(exhibitionList).build();
+        }
     }
 
+    /**
+     * REST Schnittstelle, um alle Exhibitions zurückgeliefert zu bekommen
+     * @return Response 200 und alle Exhibitions
+     *         oder Response 204, falls keine Exhibitions gefunden wurden
+     */
     @GET
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllExhibitions(){
-        List<Exhibition> exhibitionList = exhibitionRepo.listAll();
+        Set<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.listAllExhibitions();
         if(exhibitionList.isEmpty()){
             return Response.noContent().build();
         } else {
@@ -50,11 +61,17 @@ public class ExhibitionResource {
         }
     }
 
+    /**
+     * REST Schnittstelle, die nach einem Begriff im Titel oder im Username der Exhibition sucht
+     * @param searchTerm gesuchter Begriff
+     * @return Response 200 und alle Exhibitions, welche dem gesuchten Begriff entsprechen
+     *         oder 204, falls keine Exhibitions gefunden wurden
+     */
     @GET
     @Path("/search/{searchTerm}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getExhibitionsBySearchTerm(@PathParam("searchTerm") String searchTerm){
-        List<Exhibition> exhibitionList = exhibitionRepo.listAllBySearchTerm(searchTerm);
+        List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.listAllBySearchTerm(searchTerm);
         if(exhibitionList.isEmpty()){
             return Response.noContent().build();
         } else {
@@ -62,12 +79,17 @@ public class ExhibitionResource {
         }
     }
 
+    /**
+     * Zeigt die letzten 5 hinzugefügten Exhibitions
+     * @return  Response 200 und 5 Exhibitions
+     *                   oder 204, falls keine Exhibitions gefunden wurden
+     */
     @GET
     @PermitAll
     @Path("/latestFive")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getLastFiveExhibitions(){
-        List<Exhibition> exhibitionList = exhibitionRepo.getLatestFive();
+        List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getLatestFive();
         if(exhibitionList.isEmpty()){
             return Response.noContent().build();
         } else {
