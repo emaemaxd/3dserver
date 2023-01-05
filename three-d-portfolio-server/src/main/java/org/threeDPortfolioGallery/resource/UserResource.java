@@ -14,11 +14,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.util.Arrays;
 import java.util.Base64;
 
 @Path("/api/users")
@@ -60,7 +55,7 @@ public class UserResource {
     @Path("/new")
     public Response postCustomer(User new_user, @Context UriInfo uriInfo) {
         new_user.password = hashPassword(new_user.password);
-        User user = User.create(new_user.user_name, new_user.email, new_user.iconUrl, new_user.password,  new_user.exhibitions);
+        User user = User.create(new_user.user_name, new_user.email, new_user.icon_url, new_user.password,  new_user.exhibitions);
         this.userRepo.persist(user);
         URI uri = uriInfo.getAbsolutePathBuilder().path(Long.toString(user.id)).build();
         return Response.created(uri).build();

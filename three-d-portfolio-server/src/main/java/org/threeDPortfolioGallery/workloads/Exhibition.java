@@ -7,6 +7,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Exhibition extends PanacheEntity {
@@ -24,13 +25,17 @@ public class Exhibition extends PanacheEntity {
     public Theme theme;
 
     @JsonIgnore
-    // TODO: check if okay like that, Cascade types
     @ManyToOne(cascade = CascadeType.ALL )
     public User user;
 
     @OneToMany(mappedBy = "exhibition")
     public List<Room> rooms;
 
-    @ManyToMany(mappedBy = "exhibitions")
-    List<Category> categories;
+    @ManyToMany(cascade = CascadeType.ALL )
+    @JoinTable(
+            name = "exhibitions_categories",
+            joinColumns = @JoinColumn(name = "exhibition_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    public Set<Category> categories;
 }

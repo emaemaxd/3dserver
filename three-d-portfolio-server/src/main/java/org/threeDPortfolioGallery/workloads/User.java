@@ -15,7 +15,7 @@ public class User extends PanacheEntity {
 
     public String email;
 
-    public String iconUrl;
+    public String icon_url;
 
     public String password;
 
@@ -28,7 +28,7 @@ public class User extends PanacheEntity {
         User user = new User();
         user.user_name = user_name;
         user.email = email;
-        user.iconUrl = iconUrl;
+        user.icon_url = iconUrl;
         user.password = password;
         user.exhibitions = exhibitions;
         return user;
