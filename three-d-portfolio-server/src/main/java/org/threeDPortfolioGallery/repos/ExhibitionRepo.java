@@ -66,6 +66,12 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
     }
 
     public List<ExhibitionWithUserRecord> getByCategoryId(Long id) {
-        return null;
+        String sql = "select new org.threeDPortfolioGallery.records.ExhibitionWithUserRecord(e, u.user_name, u.icon_url) from Exhibition e join e.user u left join e.categories c where c.id in :categoryid";
+        TypedQuery<ExhibitionWithUserRecord> q = getEntityManager()
+                .createQuery(sql
+                , ExhibitionWithUserRecord.class
+        );
+        q.setParameter("categoryid", id);
+        return q.getResultList();
     }
 }

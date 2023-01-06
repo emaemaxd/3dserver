@@ -93,7 +93,7 @@ public class ExhibitionResource {
     public Response getExhibitionByCategory(@PathParam("categoryid") Long id){
         List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getByCategoryId(id);
 
-        return null;
+        return checkIfEmpty(exhibitionList);
     }
 
     /**
