@@ -15,6 +15,7 @@ public class CategoryResource {
     CategoryRepo categoryRepo;
 
     @GET
+    @Path("/all")
     public Response getAllCategories(){
         List<Category> categories = categoryRepo.listAll();
         if (categories.isEmpty()){

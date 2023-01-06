@@ -65,6 +65,11 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
         return q.getResultStream().collect(Collectors.toSet());
     }
 
+    /**
+     *
+     * @param id category id
+     * @return List<ExhibitionWithUserRecord>
+     */
     public List<ExhibitionWithUserRecord> getByCategoryId(Long id) {
         String sql = "select new org.threeDPortfolioGallery.records.ExhibitionWithUserRecord(e, u.user_name, u.icon_url) from Exhibition e join e.user u left join e.categories c where c.id in :categoryid";
         TypedQuery<ExhibitionWithUserRecord> q = getEntityManager()
