@@ -15,14 +15,8 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 public class ExhibitionRepo implements PanacheRepository<Exhibition> {
 
-    public List<ExhibitionWithUserRecord> getAllExhibitionsForUser(long userid){
-        String sql = "select new org.threeDPortfolioGallery.records.ExhibitionWithUserRecord(e, u.user_name, u.icon_url) from Exhibition e join e.user u left join e.categories c";
-
-        TypedQuery<ExhibitionWithUserRecord> q = getEntityManager()
-                .createQuery(sql
-                        , ExhibitionWithUserRecord.class);
-
-        return q.getResultList();
+    public List<Exhibition> getAllExhibitionsForUser(long userid){
+        return list("user.id", userid);
     }
 
     /**
@@ -69,5 +63,9 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
                         , ExhibitionWithUserRecord.class);
 
         return q.getResultStream().collect(Collectors.toSet());
+    }
+
+    public List<ExhibitionWithUserRecord> getByCategoryId(Long id) {
+        return null;
     }
 }

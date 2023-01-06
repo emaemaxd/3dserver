@@ -2,6 +2,7 @@ package org.threeDPortfolioGallery.resource;
 
 import org.threeDPortfolioGallery.records.ExhibitionWithUserRecord;
 import org.threeDPortfolioGallery.repos.ExhibitionRepo;
+import org.threeDPortfolioGallery.workloads.Exhibition;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
@@ -21,6 +22,7 @@ import java.util.Set;
  * @author Ema Halilovic
  */
 @Path("api/exhibitions")
+@Produces(MediaType.APPLICATION_JSON)
 public class ExhibitionResource {
 
     @Inject
@@ -33,15 +35,10 @@ public class ExhibitionResource {
      */
     @GET
     @RolesAllowed({"admin"})
-    @Path("/{userid}")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/getByUserId/{userid}")
     public Response getExhibitionsByUser(@PathParam("userid") long id){
-        List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getAllExhibitionsForUser(id);
-        if(exhibitionList.isEmpty()){
-            return Response.noContent().build();
-        } else {
-            return Response.ok().entity(exhibitionList).build();
-        }
+        List<Exhibition> exhibitionList = exhibitionRepo.getAllExhibitionsForUser(id);
+        return checkIfEmpty(exhibitionList);
     }
 
     /**
@@ -51,13 +48,12 @@ public class ExhibitionResource {
      */
     @GET
     @Path("/all")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response getAllExhibitions(){
-        Set<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.listAllExhibitions();
-        if(exhibitionList.isEmpty()){
+        Set<ExhibitionWithUserRecord> exhibitionSet = exhibitionRepo.listAllExhibitions();
+        if(exhibitionSet.isEmpty()){
             return Response.noContent().build();
         } else {
-            return Response.ok().entity(exhibitionList).build();
+            return Response.ok().entity(exhibitionSet).build();
         }
     }
 
@@ -69,14 +65,9 @@ public class ExhibitionResource {
      */
     @GET
     @Path("/search/{searchTerm}")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response getExhibitionsBySearchTerm(@PathParam("searchTerm") String searchTerm){
         List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.listAllBySearchTerm(searchTerm);
-        if(exhibitionList.isEmpty()){
-            return Response.noContent().build();
-        } else {
-            return Response.ok().entity(exhibitionList).build();
-        }
+        return checkIfEmpty(exhibitionList);
     }
 
     /**
@@ -87,13 +78,35 @@ public class ExhibitionResource {
     @GET
     @PermitAll
     @Path("/latestFive")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response getLastFiveExhibitions(){
         List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getLatestFive();
-        if(exhibitionList.isEmpty()){
+        return checkIfEmpty(exhibitionList);
+    }
+
+    /**
+     * Gibt alle Exhibitions zu gesuchten Category Id zurück
+     * @return  Response 200 + Exhibition der Category oder
+     *          Response 204
+     */
+    @GET
+    @Path("/getByCategoryId/{categoryid}")
+    public Response getExhibitionByCategory(@PathParam("categoryid") Long id){
+        List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getByCategoryId(id);
+
+        return null;
+    }
+
+    /**
+     *
+     * @param list
+     * @return  Response 200 und alle gefundenen Exhibitions
+     *                   oder 204, falls keine Exhibitions gefunden wurden
+     */
+    public Response checkIfEmpty(List list){
+        if(list.isEmpty()){
             return Response.noContent().build();
         } else {
-            return Response.ok().entity(exhibitionList).build();
+            return Response.ok().entity(list).build();
         }
     }
 }
