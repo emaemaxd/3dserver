@@ -15,12 +15,15 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 public class ExhibitionRepo implements PanacheRepository<Exhibition> {
 
-    public List<Exhibition> getAllExhibitionsForUser(long userid){
+    public Exhibition getById(long id) {
+        return findById(id);
+    }
+
+    public List<Exhibition> getAllExhibitionsForUser(long userid) {
         return list("user.id", userid);
     }
 
     /**
-     *
      * @param term keyword to check for
      * @return list of found exhibitions
      */
@@ -32,13 +35,14 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
         TypedQuery<ExhibitionWithUserRecord> q = getEntityManager()
                 .createQuery(sql
                         , ExhibitionWithUserRecord.class);
-        q.setParameter("term", "%"+term.toLowerCase()+"%");
+        q.setParameter("term", "%" + term.toLowerCase() + "%");
 
         return q.getResultList();
     }
 
     /**
      * Looks for 5 last added exhibitions
+     *
      * @return list of 5 exhibitions
      */
     public List<ExhibitionWithUserRecord> getLatestFive() {
@@ -52,7 +56,6 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
     }
 
     /**
-     *
      * @return alle Exhibitions in der DB
      */
     public Set<ExhibitionWithUserRecord> listAllExhibitions() {
@@ -66,7 +69,6 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
     }
 
     /**
-     *
      * @param id category id
      * @return List<ExhibitionWithUserRecord>
      */
@@ -74,9 +76,15 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
         String sql = "select new org.threeDPortfolioGallery.records.ExhibitionWithUserRecord(e, u.user_name, u.icon_url) from Exhibition e join e.user u left join e.categories c where c.id in :categoryid";
         TypedQuery<ExhibitionWithUserRecord> q = getEntityManager()
                 .createQuery(sql
-                , ExhibitionWithUserRecord.class
-        );
+                        , ExhibitionWithUserRecord.class
+                );
         q.setParameter("categoryid", id);
         return q.getResultList();
+    }
+
+    public Long addExhibition(Exhibition newExhibition) {
+        getEntityManager().persist(newExhibition);
+        getEntityManager().flush();
+        return newExhibition.id ;
     }
 }

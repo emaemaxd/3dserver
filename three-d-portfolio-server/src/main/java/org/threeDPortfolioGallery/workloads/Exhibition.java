@@ -16,8 +16,7 @@ public class Exhibition extends PanacheEntity {
 
     public String title;
 
-    // relationship
-
+    // relationships <3
     @OneToMany(mappedBy = "exhibition")
     public List<Exhibit> exhibits;
 

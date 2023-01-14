@@ -1,18 +1,25 @@
 package org.threeDPortfolioGallery.resource;
 
 import org.threeDPortfolioGallery.records.ExhibitionWithUserRecord;
+import org.threeDPortfolioGallery.repos.CategoryRepo;
+import org.threeDPortfolioGallery.repos.ExhibitRepo;
 import org.threeDPortfolioGallery.repos.ExhibitionRepo;
+import org.threeDPortfolioGallery.repos.UserRepo;
+import org.threeDPortfolioGallery.workloads.Category;
 import org.threeDPortfolioGallery.workloads.Exhibition;
+import org.threeDPortfolioGallery.workloads.User;
+import org.threeDPortfolioGallery.workloads.dto.AddExhibitDTO;
+import org.threeDPortfolioGallery.workloads.dto.AddExhibitionDTO;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.transaction.Transactional;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -27,6 +34,25 @@ public class ExhibitionResource {
 
     @Inject
     ExhibitionRepo exhibitionRepo;
+    @Inject
+    UserRepo userRepo;
+
+    @Inject
+    CategoryRepo categoryRepo;
+
+    @Inject
+    ExhibitRepo exhibitRepo;
+
+    @GET
+    @Path("/{exhibitionid}")
+    public Response getExhibitionById(@PathParam("exhibitionid") long id){
+        Exhibition exhibition = exhibitionRepo.getById(id);
+        if (exhibition == null) {
+            return Response.noContent().build();
+        }else {
+            return Response.ok().entity(exhibition).build();
+        }
+    }
 
     /**
      * REST Schnittstelle für alle Exhibitions für die angegebene Id eines Users
@@ -94,6 +120,49 @@ public class ExhibitionResource {
         List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getByCategoryId(id);
 
         return checkIfEmpty(exhibitionList);
+    }
+
+    @POST
+    @Transactional
+    @Path("/new")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response postNewExhibition(AddExhibitionDTO newExhibition){
+        Exhibition exhibition = new Exhibition();
+        User user = userRepo.findById(newExhibition.getUser_id());
+        Set<Category> categories = new HashSet<>();
+        for (Long i: newExhibition.getCategory_ids()) {
+            Category temp = categoryRepo.findById(i);
+            if(temp == null){
+                return Response.status(406).build();
+            } else {
+                categories.add(temp);
+            }
+        }
+        if (user == null){
+            return Response.status(406).build();
+        }
+        for(AddExhibitDTO i: newExhibition.getExhibits()){
+            if(i == null){
+                break;
+            }
+        }
+        // exhibitRepo.postExhibits(newExhibition.getExhibits());
+        exhibition.user = user;
+        exhibition.categories = categories;
+
+        /*{
+            "id": -3,
+            "thumbnail_url": "https://w",
+            "title": "Nudeln mhh",
+            "exhibits": [],
+            "theme": null,
+            "rooms": [],
+          }*/
+        // user getten und neuem exhibition entity anhängen
+        // Long id = exhibitionRepo.addExhibition(newExhibition);
+        // TODO new ExhibitDTO for persisting cuz now not working weil es ist ein array mit den selbsen values insetead of objekt
+        exhibitionRepo.persist(exhibition);
+        return Response.ok().build();
     }
 
     /**
