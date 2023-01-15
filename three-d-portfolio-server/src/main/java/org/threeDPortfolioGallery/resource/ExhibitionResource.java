@@ -6,6 +6,7 @@ import org.threeDPortfolioGallery.repos.ExhibitRepo;
 import org.threeDPortfolioGallery.repos.ExhibitionRepo;
 import org.threeDPortfolioGallery.repos.UserRepo;
 import org.threeDPortfolioGallery.workloads.Category;
+import org.threeDPortfolioGallery.workloads.Exhibit;
 import org.threeDPortfolioGallery.workloads.Exhibition;
 import org.threeDPortfolioGallery.workloads.User;
 import org.threeDPortfolioGallery.workloads.dto.AddExhibitDTO;
@@ -128,6 +129,7 @@ public class ExhibitionResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response postNewExhibition(AddExhibitionDTO newExhibition){
         Exhibition exhibition = new Exhibition();
+        List<Exhibit> newExhibitList = new LinkedList<>();
         User user = userRepo.findById(newExhibition.getUser_id());
         Set<Category> categories = new HashSet<>();
         for (Long i: newExhibition.getCategory_ids()) {
@@ -141,26 +143,28 @@ public class ExhibitionResource {
         if (user == null){
             return Response.status(406).build();
         }
+        // exhibits
         for(AddExhibitDTO i: newExhibition.getExhibits()){
-            if(i == null){
-                break;
+            if(i != null){
+                Exhibit newExhibit = new Exhibit(i.getUrl(), i.getData_type(), i.getTitle(), i.getDescription());
+                newExhibitList.add(newExhibit);
+                // TODO change this
+                // newExhibit.exhibition = exhibition;
+                // exhibitRepo.persist(newExhibit);
             }
         }
-        // exhibitRepo.postExhibits(newExhibition.getExhibits());
+        //exhibitRepo.postExhibits(newExhibitList);
+
         exhibition.user = user;
         exhibition.categories = categories;
+        exhibition.thumbnail_url = newExhibition.getThumbnail_url();
+        exhibition.title = newExhibition.getTitle();
 
-        /*{
-            "id": -3,
-            "thumbnail_url": "https://w",
-            "title": "Nudeln mhh",
-            "exhibits": [],
-            "theme": null,
-            "rooms": [],
-          }*/
-        // user getten und neuem exhibition entity anhängen
-        // Long id = exhibitionRepo.addExhibition(newExhibition);
-        // TODO new ExhibitDTO for persisting cuz now not working weil es ist ein array mit den selbsen values insetead of objekt
+        if((long) newExhibitList.size() > 0){
+            exhibitRepo.postExhibits(newExhibitList, exhibition);
+        } else {
+            return Response.status(406).entity("cannot post exhibition without exhibits").build();
+        }
         exhibitionRepo.persist(exhibition);
         return Response.ok().build();
     }

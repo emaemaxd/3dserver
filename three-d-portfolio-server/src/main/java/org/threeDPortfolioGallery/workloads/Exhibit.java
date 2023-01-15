@@ -31,4 +31,14 @@ public class Exhibit extends PanacheEntity {
 
     @OneToOne
     public Position position;
+
+    public Exhibit(String url, String data_type, String title, String description) {
+        this.url = url;
+        this.data_type = data_type;
+        this.title = title;
+        this.description = description;
+    }
+
+    public Exhibit() {
+    }
 }
