@@ -11,13 +11,13 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Path("api/themes")
+@Produces(MediaType.APPLICATION_JSON)
 public class ThemeResource {
 
     @Inject
     ThemeRepo themeRepo;
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
     public List<Theme> getAll(){
         return themeRepo.listAll();
     }

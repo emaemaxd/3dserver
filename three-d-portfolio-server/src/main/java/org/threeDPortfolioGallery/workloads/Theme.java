@@ -1,5 +1,6 @@
 package org.threeDPortfolioGallery.workloads;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import io.smallrye.common.constraint.NotNull;
 
@@ -25,6 +26,7 @@ public class Theme extends PanacheEntity {
 
     // relations
     @OneToMany(mappedBy = "theme", cascade = CascadeType.ALL)
+    @JsonIgnore
     public List<Exhibit> exhibits;
 
     @OneToMany(mappedBy = "theme", cascade = CascadeType.ALL)
