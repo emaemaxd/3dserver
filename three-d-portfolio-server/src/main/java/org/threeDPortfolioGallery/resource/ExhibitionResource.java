@@ -148,12 +148,8 @@ public class ExhibitionResource {
     @GET
     @Path("/all")
     public Response getAllExhibitions(){
-        List<Exhibition> exhibitionSet = exhibitionRepo.findAll().stream().toList();
-        if(exhibitionSet.isEmpty()){
-            return Response.noContent().build();
-        } else {
-            return Response.ok().entity(exhibitionSet).build();
-        }
+        List<Exhibition> exhibitionList = exhibitionRepo.findAll().stream().toList();
+        return checkIfEmpty(exhibitionList);
     }
 
     /**
@@ -165,7 +161,7 @@ public class ExhibitionResource {
     @GET
     @Path("/search/{searchTerm}")
     public Response getExhibitionsBySearchTerm(@PathParam("searchTerm") String searchTerm){
-        List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.listAllBySearchTerm(searchTerm);
+        List<Exhibition> exhibitionList = exhibitionRepo.listAllBySearchTerm(searchTerm);
         return checkIfEmpty(exhibitionList);
     }
 
@@ -178,7 +174,7 @@ public class ExhibitionResource {
     @PermitAll
     @Path("/latestFive")
     public Response getLastFiveExhibitions(){
-        List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getLatestFive();
+        List<Exhibition> exhibitionList = exhibitionRepo.getLatestFive();
         return checkIfEmpty(exhibitionList);
     }
 
@@ -190,7 +186,7 @@ public class ExhibitionResource {
     @GET
     @Path("/getByCategoryId/{categoryId}")
     public Response getExhibitionByCategory(@PathParam("categoryId") Long id){
-        List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getByCategoryId(id);
+        List<Exhibition> exhibitionList = exhibitionRepo.getByCategoryId(id);
         return checkIfEmpty(exhibitionList);
     }
 
