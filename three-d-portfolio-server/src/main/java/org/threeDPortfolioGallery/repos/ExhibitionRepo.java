@@ -28,14 +28,14 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
      * @param term keyword to check for
      * @return list of found exhibitions
      */
-    public List<Exhibition> listAllBySearchTerm(String term) {
-        String sql = "select e from Exhibition e " +
-               // "join e.user u left join e.categories c " +
+    public List<ExhibitionWithUserRecord> listAllBySearchTerm(String term) {
+        String sql = "select new org.threeDPortfolioGallery.records.ExhibitionWithUserRecord(e, u.user_name, u.icon_url) from Exhibition e " +
+                "join e.user u left join e.categories c " +
                 "where lower(e.user.user_name) like :term or lower(e.title) like :term order by e.id desc";
 
-        TypedQuery<Exhibition> q = getEntityManager()
+        TypedQuery<ExhibitionWithUserRecord> q = getEntityManager()
                 .createQuery(sql
-                        , Exhibition.class);
+                        , ExhibitionWithUserRecord.class);
         q.setParameter("term", "%" + term.toLowerCase() + "%");
 
         return q.getResultList();
@@ -46,12 +46,13 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
      *
      * @return list of 5 exhibitions
      */
-    public List<Exhibition> getLatestFive() {
-        String sql = "select e from Exhibition e order by e.id desc";
+    public List<ExhibitionWithUserRecord> getLatestFive() {
+        String sql = "select new org.threeDPortfolioGallery.records.ExhibitionWithUserRecord(e, u.user_name, u.icon_url) from Exhibition e " +
+                "join e.user u left join e.categories order by e.id desc";
 
-        TypedQuery<Exhibition> q = getEntityManager()
+        TypedQuery<ExhibitionWithUserRecord> q = getEntityManager()
                 .createQuery(sql
-                        , Exhibition.class);
+                        , ExhibitionWithUserRecord.class);
         q.setMaxResults(5);
         return q.getResultList();
     }
@@ -73,11 +74,12 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
      * @param id category id
      * @return List<ExhibitionWithUserRecord>
      */
-    public List<Exhibition> getByCategoryId(Long id) {
-        String sql = "select e from Exhibition e join e.user u left join e.categories c where c.id in :categoryid";
-        TypedQuery<Exhibition> q = getEntityManager()
+    public List<ExhibitionWithUserRecord> getByCategoryId(Long id) {
+        String sql = "select new org.threeDPortfolioGallery.records.ExhibitionWithUserRecord(e, u.user_name, u.icon_url) " +
+                "from Exhibition e join e.user u left join e.categories c where c.id in :categoryid";
+        TypedQuery<ExhibitionWithUserRecord> q = getEntityManager()
                 .createQuery(sql
-                        , Exhibition.class
+                        , ExhibitionWithUserRecord.class
                 );
         q.setParameter("categoryid", id);
         return q.getResultList();
