@@ -50,7 +50,6 @@ public class ExhibitionResource {
     @Inject
     ExhibitRepo exhibitRepo;
 
-    // TODO change this dass in exhibit und so
     @POST
     @Path("/upload")
     @Consumes("multipart/form-data")
@@ -148,8 +147,12 @@ public class ExhibitionResource {
     @GET
     @Path("/all")
     public Response getAllExhibitions(){
-        List<Exhibition> exhibitionList = exhibitionRepo.findAll().stream().toList();
-        return checkIfEmpty(exhibitionList);
+        Set<ExhibitionWithUserRecord> exhibitionSet = exhibitionRepo.listAllExhibitionsWithUserField();
+        if(exhibitionSet.isEmpty()){
+            return Response.noContent().build();
+        } else {
+            return Response.ok().entity(exhibitionSet).build();
+        }
     }
 
     /**
@@ -161,7 +164,7 @@ public class ExhibitionResource {
     @GET
     @Path("/search/{searchTerm}")
     public Response getExhibitionsBySearchTerm(@PathParam("searchTerm") String searchTerm){
-        List<Exhibition> exhibitionList = exhibitionRepo.listAllBySearchTerm(searchTerm);
+        List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.listAllBySearchTerm(searchTerm);
         return checkIfEmpty(exhibitionList);
     }
 
@@ -174,7 +177,7 @@ public class ExhibitionResource {
     @PermitAll
     @Path("/latestFive")
     public Response getLastFiveExhibitions(){
-        List<Exhibition> exhibitionList = exhibitionRepo.getLatestFive();
+        List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getLatestFive();
         return checkIfEmpty(exhibitionList);
     }
 
@@ -186,7 +189,7 @@ public class ExhibitionResource {
     @GET
     @Path("/getByCategoryId/{categoryId}")
     public Response getExhibitionByCategory(@PathParam("categoryId") Long id){
-        List<Exhibition> exhibitionList = exhibitionRepo.getByCategoryId(id);
+        List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getByCategoryId(id);
         return checkIfEmpty(exhibitionList);
     }
 
