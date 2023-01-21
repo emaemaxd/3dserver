@@ -1,5 +1,8 @@
 package org.threeDPortfolioGallery.resource;
 
+import org.apache.commons.io.IOUtils;
+import org.jboss.resteasy.plugins.providers.multipart.InputPart;
+import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 import org.threeDPortfolioGallery.records.ExhibitionWithUserRecord;
 import org.threeDPortfolioGallery.repos.CategoryRepo;
 import org.threeDPortfolioGallery.repos.ExhibitRepo;
@@ -18,11 +21,14 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.AllPermission;
+import java.util.*;
 
 /**
  *  Alle Schnittstellen für die Entity Exhibition
@@ -43,6 +49,72 @@ public class ExhibitionResource {
 
     @Inject
     ExhibitRepo exhibitRepo;
+
+    // TODO change this dass in exhibit und so
+    @POST
+    @Path("/upload")
+    @Consumes("multipart/form-data")
+    @Transactional
+    public Response uploadFile(MultipartFormDataInput input) {
+        String fileName = "";
+        String postURL;
+        Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
+        List<InputPart> inputParts = uploadForm.get("uploadedFile");
+        if(inputParts != null) {
+            for (InputPart inputPart : inputParts) {
+                try {
+                    MultivaluedMap<String, String> header = inputPart.getHeaders();
+                    fileName = getFileName(header);
+                    InputStream inputStream = inputPart.getBody(InputStream.class, null);
+                    System.out.println(fileName);
+                    postURL = "http://localhost:8080/picture/get/" + fileName;
+                    System.out.println(postURL);
+                    Exhibit ex = new Exhibit(postURL, "png", "test", "desc");
+                    // PictureEntity picture = new PictureEntity(postURL, "");
+                    exhibitRepo.persist(ex);
+
+                    byte[] bytes = IOUtils.toByteArray(inputStream);
+                    fileName = "src/main/resources/files/" + fileName;
+                    System.out.println(fileName + " . Filename");
+
+                    writeFile(bytes, fileName);
+                    System.out.println("Done");
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }        return Response.status(200).entity("{\"message\":\"uploadFile is called, Uploaded file name : " + fileName + "\"}").build();
+
+        } else {
+            return Response.status(401).entity("something went wrong").build();
+        }
+    }
+
+    private String getFileName(MultivaluedMap<String, String> header) {
+
+        String[] contentDisposition = header.getFirst("Content-Disposition").split(";");
+
+        for (String filename : contentDisposition) {
+            if ((filename.trim().startsWith("filename"))) {
+                String[] name = filename.split("=");
+                String finalFileName = name[1].trim().replaceAll("\"", "");
+                return finalFileName;
+            }
+        }
+        return "unknown";
+    }
+    private void writeFile(byte[] content, String filename) throws IOException {
+        File file = new File(filename);
+
+        if (!file.exists()) {
+            file.createNewFile();
+            System.out.println("success");
+        }
+        FileOutputStream fos = new FileOutputStream(file);
+        fos.write(content);
+        fos.flush();
+        fos.close();
+    }
 
     @GET
     @Path("/{exhibitionid}")
@@ -76,7 +148,7 @@ public class ExhibitionResource {
     @GET
     @Path("/all")
     public Response getAllExhibitions(){
-        Set<ExhibitionWithUserRecord> exhibitionSet = exhibitionRepo.listAllExhibitions();
+        List<Exhibition> exhibitionSet = exhibitionRepo.findAll().stream().toList();
         if(exhibitionSet.isEmpty()){
             return Response.noContent().build();
         } else {
@@ -116,10 +188,18 @@ public class ExhibitionResource {
      *          Response 204
      */
     @GET
-    @Path("/getByCategoryId/{categoryid}")
-    public Response getExhibitionByCategory(@PathParam("categoryid") Long id){
+    @Path("/getByCategoryId/{categoryId}")
+    public Response getExhibitionByCategory(@PathParam("categoryId") Long id){
         List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getByCategoryId(id);
+        return checkIfEmpty(exhibitionList);
+    }
 
+    @GET
+    @Path("/getByCategoryIds/{categoryIds}")
+    public Response getExhibitionsByCategories(@PathParam("categoryIds") String categoryIds){
+        String[] ids = categoryIds.split(",");
+        System.out.println(Arrays.toString(ids));
+        List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getByCategoryIds(ids);
         return checkIfEmpty(exhibitionList);
     }
 
@@ -148,18 +228,15 @@ public class ExhibitionResource {
             if(i != null){
                 Exhibit newExhibit = new Exhibit(i.getUrl(), i.getData_type(), i.getTitle(), i.getDescription());
                 newExhibitList.add(newExhibit);
-                // TODO change this
-                // newExhibit.exhibition = exhibition;
-                // exhibitRepo.persist(newExhibit);
             }
         }
-        //exhibitRepo.postExhibits(newExhibitList);
 
         exhibition.user = user;
         exhibition.categories = categories;
         exhibition.thumbnail_url = newExhibition.getThumbnail_url();
         exhibition.title = newExhibition.getTitle();
 
+        // hier werden die exhibits zuerst eingeschrieben bevor sie
         if((long) newExhibitList.size() > 0){
             exhibitRepo.postExhibits(newExhibitList, exhibition);
         } else {

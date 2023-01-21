@@ -7,6 +7,7 @@ import org.threeDPortfolioGallery.workloads.Exhibition;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.TypedQuery;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -73,7 +74,8 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
      * @return List<ExhibitionWithUserRecord>
      */
     public List<ExhibitionWithUserRecord> getByCategoryId(Long id) {
-        String sql = "select new org.threeDPortfolioGallery.records.ExhibitionWithUserRecord(e, u.user_name, u.icon_url) from Exhibition e join e.user u left join e.categories c where c.id in :categoryid";
+        String sql = "select new org.threeDPortfolioGallery.records.ExhibitionWithUserRecord(e, u.user_name, u.icon_url) " +
+                "from Exhibition e join e.user u left join e.categories c where c.id in :categoryid";
         TypedQuery<ExhibitionWithUserRecord> q = getEntityManager()
                 .createQuery(sql
                         , ExhibitionWithUserRecord.class
@@ -81,6 +83,25 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
         q.setParameter("categoryid", id);
         return q.getResultList();
     }
+
+    // TODO
+    public List<ExhibitionWithUserRecord> getByCategoryIds(String[] ids) {
+        List<ExhibitionWithUserRecord> exhibitions = new LinkedList<>();
+        for(int i = 0; i< ids.length; i++){
+            System.out.println(ids[i]);
+            String sql = "select new org.threeDPortfolioGallery.records.ExhibitionWithUserRecord(e, u.user_name, u.icon_url) " +
+                    "from Exhibition e join e.user u left join e.categories c where c.id in :categoryid";
+            TypedQuery<ExhibitionWithUserRecord> q = getEntityManager()
+                    .createQuery(sql
+                            , ExhibitionWithUserRecord.class
+                    );
+             q.setParameter("categoryid", Long.parseLong(ids[i]));
+
+             exhibitions.addAll(q.getResultList());
+        }
+        return exhibitions;
+    }
+
 
     public Long addExhibition(Exhibition newExhibition) {
         getEntityManager().persist(newExhibition);
