@@ -197,8 +197,11 @@ public class ExhibitionResource {
     @Path("/getByCategoryIds/{categoryIds}")
     public Response getExhibitionsByCategories(@PathParam("categoryIds") String categoryIds){
         String[] ids = categoryIds.split(",");
-        System.out.println(Arrays.toString(ids));
-        List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getByCategoryIds(ids);
+        List<Long> longIds = new LinkedList<>();
+        for (String id : ids) {
+            longIds.add(Long.parseLong(id));
+        }
+        List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getByCategoryIds(longIds);
         return checkIfEmpty(exhibitionList);
     }
 

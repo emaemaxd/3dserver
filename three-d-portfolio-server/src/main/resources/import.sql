@@ -13,8 +13,8 @@ insert into exhibit(id, title) values (-1, 'Picasso Foto');
 insert into exhibit(id, title, url, exhibition_id) values (-2, 'Geburt.', 'https://www.agrarheute.com/sites/agrarheute.com/files/styles/ah_bildergalerie_standalone_5x4/public/thumbnails/image/ei-kueken.jpg?itok=IGZdghSz', -2);
 insert into exhibit(id, title, url, exhibition_id) values (-3, 'Freunde.', 'https://img.fotocommunity.com/hahn-im-korb-bielefelder-kennhuehner-huehnerschar-mit-kraehendem-hahn-19460011-fd7e-4c9f-961e-aeba8b21b00a.jpg?width=1000', -2);
 
-insert into category(id, category_title, color) values (-1, 'Umwelt', '#8ABD91');
-insert into category(id, category_title, color) values (-2, 'Tiere', '#C27A36');
+insert into category(id, category_title, color) values (-1, 'Umwelt', '#AE734E');
+insert into category(id, category_title, color) values (-2, 'Tiere', '#C6A1CF');
 
 insert into exhibitions_categories(category_id, exhibition_id) values (-1,-2);
 insert into exhibitions_categories(category_id, exhibition_id) values (-2,-2);
