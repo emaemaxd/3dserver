@@ -1,4 +1,7 @@
 package org.threeDPortfolioGallery.repos;
 
-public class RoomRepo {
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
+import org.threeDPortfolioGallery.workloads.Room;
+
+public class RoomRepo implements PanacheRepository<Room> {
 }
