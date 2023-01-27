@@ -7,10 +7,7 @@ import org.threeDPortfolioGallery.workloads.Exhibition;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.TypedQuery;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
@@ -85,22 +82,36 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
         return q.getResultList();
     }
 
-    // TODO
-    public List<ExhibitionWithUserRecord> getByCategoryIds(String[] ids) {
-        List<ExhibitionWithUserRecord> exhibitions = new LinkedList<>();
-        for(int i = 0; i< ids.length; i++){
-            System.out.println(ids[i]);
-            String sql = "select new org.threeDPortfolioGallery.records.ExhibitionWithUserRecord(e, u.user_name, u.icon_url) " +
-                    "from Exhibition e join e.user u left join e.categories c where c.id in :categoryid";
-            TypedQuery<ExhibitionWithUserRecord> q = getEntityManager()
-                    .createQuery(sql
-                            , ExhibitionWithUserRecord.class
-                    );
-             q.setParameter("categoryid", Long.parseLong(ids[i]));
+    /**
+     * alle exhibitions zu mehreren ids
+     * @param ids
+     * @return
+     */
+    public List<ExhibitionWithUserRecord> getByCategoryIds(List<Long> ids) {
+        String sql = "select new org.threeDPortfolioGallery.records.ExhibitionWithUserRecord(e, u.user_name, u.icon_url) " +
+                "from Exhibition e join e.user u left join e.categories c where c.id in :categoryid";
+        TypedQuery<ExhibitionWithUserRecord> q = getEntityManager()
+                .createQuery(sql
+                        , ExhibitionWithUserRecord.class
+                );
+        q.setParameter("categoryid", ids.get(0));
 
-             exhibitions.addAll(q.getResultList());
+        List<ExhibitionWithUserRecord> exhibitions = q.getResultList();
+        List<Long> catIds = new LinkedList<>();
+
+        var ret = new LinkedList<ExhibitionWithUserRecord>();
+        for (var exhibition: exhibitions ) {
+            if(exhibition.exhibition().categories != null){
+                catIds.clear();
+                for (var cat: exhibition.exhibition().categories) {
+                    catIds.add(cat.id);
+                }
+                if(new HashSet<>(catIds).containsAll(ids)){ // statt catIds.containsAll(ids) wegen performance?
+                    ret.add(exhibition);
+                }
+            }
         }
-        return exhibitions;
+        return ret;
     }
 
 

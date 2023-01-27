@@ -1,6 +1,7 @@
 package org.threeDPortfolioGallery.resource;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.tika.Tika;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 import org.threeDPortfolioGallery.records.ExhibitionWithUserRecord;
@@ -23,11 +24,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.AllPermission;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -38,6 +35,8 @@ import java.util.*;
 @Path("api/exhibitions")
 @Produces(MediaType.APPLICATION_JSON)
 public class ExhibitionResource {
+
+    int fileCount = 0;
 
     @Inject
     ExhibitionRepo exhibitionRepo;
@@ -50,27 +49,54 @@ public class ExhibitionResource {
     @Inject
     ExhibitRepo exhibitRepo;
 
+    /**
+     *
+     * @param fileName
+     * @return
+     * @throws FileNotFoundException
+     */
+    @GET
+    @Path("/get/{fileName}")
+    // @Produces({"image/png"})
+    public Response downloadFile(@PathParam("fileName") String fileName) throws FileNotFoundException {
+/*      File file = new File("src/main/resources/files/" + fileName);
+        if (!file.exists()) {
+            throw new RuntimeException("File not found: src/main/resources/files/" + fileName);
+        }
+        Response.ResponseBuilder res = Response.ok((Object) file);
+        res.header("Content-Disposition", "inline;filename=" + fileName);
+        return res.build();
+ */
+        Tika tika = new Tika();
+        InputStream fileStream = new FileInputStream("src/main/resources/files/" + fileName);
+        if (fileStream == null) {
+            throw new RuntimeException("File not found: " + "src/main/resources/files/" + fileName);
+        }
+        String mimeType = tika.detect(fileName);
+        return Response.ok(fileStream, mimeType)
+                .header("Content-Disposition", "attachment; filename=" + fileName)
+                .build();
+        // src/main/resources/files/file0BodyPaint_Pinguin.c4d
+    }
+
     @POST
     @Path("/upload")
     @Consumes("multipart/form-data")
     @Transactional
     public Response uploadFile(MultipartFormDataInput input) {
         String fileName = "";
-        String postURL;
         Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
         List<InputPart> inputParts = uploadForm.get("uploadedFile");
         if(inputParts != null) {
             for (InputPart inputPart : inputParts) {
                 try {
                     MultivaluedMap<String, String> header = inputPart.getHeaders();
-                    fileName = getFileName(header);
+                    fileName = "file" + fileCount + getFileName(header);
                     InputStream inputStream = inputPart.getBody(InputStream.class, null);
                     System.out.println(fileName);
-                    postURL = "http://localhost:8080/picture/get/" + fileName;
-                    System.out.println(postURL);
-                    Exhibit ex = new Exhibit(postURL, "png", "test", "desc");
+                    // Exhibit ex = new Exhibit(postURL, "png", "test", "desc");
                     // PictureEntity picture = new PictureEntity(postURL, "");
-                    exhibitRepo.persist(ex);
+                    // exhibitRepo.persist(ex);
 
                     byte[] bytes = IOUtils.toByteArray(inputStream);
                     fileName = "src/main/resources/files/" + fileName;
@@ -78,12 +104,12 @@ public class ExhibitionResource {
 
                     writeFile(bytes, fileName);
                     System.out.println("Done");
-
+                    fileCount++;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }        return Response.status(200).entity("{\"message\":\"uploadFile is called, Uploaded file name : " + fileName + "\"}").build();
-
+            }
+            return Response.status(200).entity("{\"message\":\"uploadFile is called, Uploaded file name : " + fileName + "\"}").build();
         } else {
             return Response.status(401).entity("something went wrong").build();
         }
@@ -96,8 +122,7 @@ public class ExhibitionResource {
         for (String filename : contentDisposition) {
             if ((filename.trim().startsWith("filename"))) {
                 String[] name = filename.split("=");
-                String finalFileName = name[1].trim().replaceAll("\"", "");
-                return finalFileName;
+                return name[1].trim().replaceAll("\"", "");
             }
         }
         return "unknown";
@@ -197,8 +222,11 @@ public class ExhibitionResource {
     @Path("/getByCategoryIds/{categoryIds}")
     public Response getExhibitionsByCategories(@PathParam("categoryIds") String categoryIds){
         String[] ids = categoryIds.split(",");
-        System.out.println(Arrays.toString(ids));
-        List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getByCategoryIds(ids);
+        List<Long> longIds = new LinkedList<>();
+        for (String id : ids) {
+            longIds.add(Long.parseLong(id));
+        }
+        List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getByCategoryIds(longIds);
         return checkIfEmpty(exhibitionList);
     }
 
