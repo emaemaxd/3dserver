@@ -13,6 +13,8 @@ public class AddExhibitionDTO {
 
     // Theme theme;
 
+    Long room_id;
+
     Long user_id;
     Long[] category_ids;
 

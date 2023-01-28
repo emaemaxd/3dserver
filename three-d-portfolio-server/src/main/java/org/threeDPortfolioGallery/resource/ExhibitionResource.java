@@ -5,14 +5,8 @@ import org.apache.tika.Tika;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 import org.threeDPortfolioGallery.records.ExhibitionWithUserRecord;
-import org.threeDPortfolioGallery.repos.CategoryRepo;
-import org.threeDPortfolioGallery.repos.ExhibitRepo;
-import org.threeDPortfolioGallery.repos.ExhibitionRepo;
-import org.threeDPortfolioGallery.repos.UserRepo;
-import org.threeDPortfolioGallery.workloads.Category;
-import org.threeDPortfolioGallery.workloads.Exhibit;
-import org.threeDPortfolioGallery.workloads.Exhibition;
-import org.threeDPortfolioGallery.workloads.User;
+import org.threeDPortfolioGallery.repos.*;
+import org.threeDPortfolioGallery.workloads.*;
 import org.threeDPortfolioGallery.workloads.dto.AddExhibitDTO;
 import org.threeDPortfolioGallery.workloads.dto.AddExhibitionDTO;
 
@@ -26,6 +20,8 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import java.io.*;
 import java.util.*;
+
+import static org.threeDPortfolioGallery.repos.GeneralRepo.FILE_PATH;
 
 /**
  *  Alle Schnittstellen für die Entity Exhibition
@@ -45,6 +41,8 @@ public class ExhibitionResource {
 
     @Inject
     CategoryRepo categoryRepo;
+    @Inject
+    RoomRepo roomRepo;
 
     @Inject
     ExhibitRepo exhibitRepo;
@@ -52,23 +50,15 @@ public class ExhibitionResource {
     /**
      *
      * @param fileName
-     * @return
-     * @throws FileNotFoundException
+     * @return Response codes für FE
      */
     @GET
     @Path("/download/{fileName}")
     // @Produces({"image/png"})
     public Response downloadFile(@PathParam("fileName") String fileName) throws FileNotFoundException {
-/*      File file = new File("src/main/resources/files/" + fileName);
-        if (!file.exists()) {
-            throw new RuntimeException("File not found: src/main/resources/files/" + fileName);
-        }
-        Response.ResponseBuilder res = Response.ok((Object) file);
-        res.header("Content-Disposition", "inline;filename=" + fileName);
-        return res.build();
- */     File file = new File("src/main/resources/files/" +fileName);
+        File file = new File(FILE_PATH + "exhibits/" + fileName);
         Tika tika = new Tika();
-        InputStream fileStream = new FileInputStream("src/main/resources/files/" + fileName);
+        InputStream fileStream = new FileInputStream(FILE_PATH + "exhibits/" + fileName);
         if (!file.exists()) {
             return Response.noContent().entity("file not found").build();
         }
@@ -76,7 +66,7 @@ public class ExhibitionResource {
         return Response.ok(fileStream, mimeType)
                 .header("Content-Disposition", "attachment; filename=" + fileName)
                 .build();
-        // src/main/resources/files/file0BodyPaint_Pinguin.c4d
+        // => src/main/resources/files/file0BodyPaint_Pinguin.c4d
     }
 
     @POST
@@ -100,7 +90,7 @@ public class ExhibitionResource {
                     // exhibitRepo.persist(ex);
 
                     byte[] bytes = IOUtils.toByteArray(inputStream);
-                    fileName = "src/main/resources/files/" + fileName;
+                    fileName = FILE_PATH + "exhibits/" + fileName;
                     System.out.println(fileName + " . Filename");
 
                     writeFile(bytes, fileName);
@@ -116,11 +106,10 @@ public class ExhibitionResource {
     }
 
     private String getFileName(MultivaluedMap<String, String> header) {
-
         String[] contentDisposition = header.getFirst("Content-Disposition").split(";");
 
         for (String filename : contentDisposition) {
-            System.out.println(filename); // => name="uploadedFile" filename="WhatsApp Image 2022-05-04 at 10.20.19.jpeg"
+            // System.out.println(filename);  => name="uploadedFile" filename="WhatsApp Image 2022-05-04 at 10.20.19.jpeg"
             if ((filename.trim().startsWith("filename"))) {
                 String[] name = filename.split("="); // => [ filename, "WhatsApp Image 2022-05-04 at 10.20.19.jpeg"]
                 String nameToReturn = name[1].trim().replaceAll("\"", "");
@@ -131,10 +120,8 @@ public class ExhibitionResource {
     }
     private void writeFile(byte[] content, String filename) throws IOException {
         File file = new File(filename);
-
         if (!file.exists()) {
             file.createNewFile();
-            System.out.println("success");
         }
         FileOutputStream fos = new FileOutputStream(file);
         fos.write(content);
@@ -163,7 +150,7 @@ public class ExhibitionResource {
     @Path("/getByUserId/{userid}")
     public Response getExhibitionsByUser(@PathParam("userid") long id){
         List<Exhibition> exhibitionList = exhibitionRepo.getAllExhibitionsForUser(id);
-        return checkIfEmpty(exhibitionList);
+        return GeneralRepo.checkIfEmpty(exhibitionList);
     }
 
     /**
@@ -192,7 +179,7 @@ public class ExhibitionResource {
     @Path("/search/{searchTerm}")
     public Response getExhibitionsBySearchTerm(@PathParam("searchTerm") String searchTerm){
         List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.listAllBySearchTerm(searchTerm);
-        return checkIfEmpty(exhibitionList);
+        return GeneralRepo.checkIfEmpty(exhibitionList);
     }
 
     /**
@@ -205,7 +192,7 @@ public class ExhibitionResource {
     @Path("/latestFive")
     public Response getLastFiveExhibitions(){
         List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getLatestFive();
-        return checkIfEmpty(exhibitionList);
+        return GeneralRepo.checkIfEmpty(exhibitionList);
     }
 
     /**
@@ -217,7 +204,7 @@ public class ExhibitionResource {
     @Path("/getByCategoryId/{categoryId}")
     public Response getExhibitionByCategory(@PathParam("categoryId") Long id){
         List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getByCategoryId(id);
-        return checkIfEmpty(exhibitionList);
+        return GeneralRepo.checkIfEmpty(exhibitionList);
     }
 
     @GET
@@ -229,9 +216,10 @@ public class ExhibitionResource {
             longIds.add(Long.parseLong(id));
         }
         List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getByCategoryIds(longIds);
-        return checkIfEmpty(exhibitionList);
+        return GeneralRepo.checkIfEmpty(exhibitionList);
     }
 
+    // TODO fix code duplication
     @POST
     @Transactional
     @Path("/new")
@@ -240,6 +228,13 @@ public class ExhibitionResource {
         Exhibition exhibition = new Exhibition();
         List<Exhibit> newExhibitList = new LinkedList<>();
         User user = userRepo.findById(newExhibition.getUser_id());
+        if (user == null){
+            return Response.status(406).build();
+        }
+        Room room = roomRepo.findById(newExhibition.getRoom_id());
+        if(room == null){
+            return Response.status(406).build();
+        }
         Set<Category> categories = new HashSet<>();
         for (Long i: newExhibition.getCategory_ids()) {
             Category temp = categoryRepo.findById(i);
@@ -249,9 +244,7 @@ public class ExhibitionResource {
                 categories.add(temp);
             }
         }
-        if (user == null){
-            return Response.status(406).build();
-        }
+
         // exhibits
         for(AddExhibitDTO i: newExhibition.getExhibits()){
             if(i != null){
@@ -261,11 +254,12 @@ public class ExhibitionResource {
         }
 
         exhibition.user = user;
+        exhibition.room = room;
         exhibition.categories = categories;
         exhibition.thumbnail_url = newExhibition.getThumbnail_url();
         exhibition.title = newExhibition.getTitle();
 
-        // hier werden die exhibits zuerst eingeschrieben bevor sie
+        // hier werden die exhibits zuerst eingeschrieben bevor sie hinzugefügt werden
         if((long) newExhibitList.size() > 0){
             exhibitRepo.postExhibits(newExhibitList, exhibition);
         } else {
@@ -273,19 +267,5 @@ public class ExhibitionResource {
         }
         exhibitionRepo.persist(exhibition);
         return Response.ok().build();
-    }
-
-    /**
-     *
-     * @param list
-     * @return  Response 200 und alle gefundenen Exhibitions
-     *                   oder 204, falls keine Exhibitions gefunden wurden
-     */
-    public Response checkIfEmpty(List list){
-        if(list.isEmpty()){
-            return Response.noContent().build();
-        } else {
-            return Response.ok().entity(list).build();
-        }
     }
 }

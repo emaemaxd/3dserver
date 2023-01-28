@@ -39,7 +39,7 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
     }
 
     /**
-     * Looks for 5 last added exhibitions
+     * Gibt die 5 zuletzt hinzugefügten Exhibitions zurück
      *
      * @return list of 5 exhibitions
      */
@@ -83,9 +83,9 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
     }
 
     /**
-     * alle exhibitions zu mehreren ids
-     * @param ids
-     * @return
+     * alle exhibitions zu mehreren Category ids
+     * @param ids Eine Liste von Category Ids
+     * @return Alle gefundenen Exhibitions
      */
     public List<ExhibitionWithUserRecord> getByCategoryIds(List<Long> ids) {
         String sql = "select new org.threeDPortfolioGallery.records.ExhibitionWithUserRecord(e, u.user_name, u.icon_url) " +
@@ -106,7 +106,7 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
                 for (var cat: exhibition.exhibition().categories) {
                     catIds.add(cat.id);
                 }
-                if(new HashSet<>(catIds).containsAll(ids)){ // statt catIds.containsAll(ids) wegen performance?
+                if(new HashSet<>(catIds).containsAll(ids)){ // statt catIds.containsAll(ids) wegen performance, ye
                     ret.add(exhibition);
                 }
             }

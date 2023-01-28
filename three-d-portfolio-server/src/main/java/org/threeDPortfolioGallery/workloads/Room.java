@@ -16,8 +16,8 @@ public class Room extends PanacheEntity {
 
     // relationship
 
-    @ManyToOne
-    public Exhibition exhibition;
+    @OneToMany(mappedBy = "room")
+    public List<Exhibition> exhibition;
 
     @OneToMany(mappedBy = "room")
     public List<Position> positions;

@@ -29,8 +29,8 @@ public class Exhibition extends PanacheEntity {
     @ManyToOne(cascade = CascadeType.ALL )
     public User user;
 
-    @OneToMany(mappedBy = "exhibition")
-    public List<Room> rooms;
+    @ManyToOne
+    public Room room;
 
     @ManyToMany(cascade = CascadeType.ALL )
     @JoinTable(
