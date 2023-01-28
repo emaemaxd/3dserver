@@ -7,12 +7,21 @@ import java.util.*;
 
 @Singleton
 public class JwtService {
+    public String generateJwt(Long id){
+        return Jwt.issuer("user-jwt")
+                .claim("user-id", id)
+                .subject("user-jwt")
+                .groups(Set.of("user", "admin"))
+                .expiresAt(
+                        System.currentTimeMillis() + 3600000
+                ).sign();
+    }
     public String generateJwt(){
         return Jwt.issuer("user-jwt")
                 .subject("user-jwt")
                 .groups(Set.of("user", "admin"))
                 .expiresAt(
-                        System.currentTimeMillis() + 3600
+                        System.currentTimeMillis() + 3600000
                 ).sign();
     }
 }

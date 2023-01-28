@@ -35,7 +35,7 @@ public class UserResource {
     @Path("/{user_id}")
     public Response getUser(@PathParam("user_id") long id) {
             User user = userRepo.findById(id);
-            if (user== null){
+            if (user == null){
                 return Response.noContent().build();
             }else {
                 return Response.ok().entity(user).build();
@@ -53,7 +53,7 @@ public class UserResource {
     @Consumes("application/json")
     @Produces("application/json")
     @Path("/new")
-    public Response postCustomer(User new_user, @Context UriInfo uriInfo) {
+    public Response postUser(User new_user, @Context UriInfo uriInfo) {
         new_user.password = hashPassword(new_user.password);
         User user = User.create(new_user.user_name, new_user.email, new_user.icon_url, new_user.password,  new_user.exhibitions);
         this.userRepo.persist(user);
@@ -82,9 +82,9 @@ public class UserResource {
 
         // then find user
         // return ((this.userRepo.isUser(loginDTO))? Response.ok("{'token':'Test'}") : Response.status(401)).build();
-        var count = userRepo.find("(user_name=?1 or email=?2) and password=?3", loginDTO.getEmailOrUsername(), loginDTO.getEmailOrUsername(), loginDTO.getPassword()).count();
-        if (count == 1) {
-            return Response.ok(jwtService.generateJwt()).build();
+        User user = userRepo.find("(user_name=?1 or email=?2) and password=?3", loginDTO.getEmailOrUsername(), loginDTO.getEmailOrUsername(), loginDTO.getPassword()).singleResult();
+        if (user != null) {
+            return Response.ok(jwtService.generateJwt(user.id)).build();
         }else {
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }
