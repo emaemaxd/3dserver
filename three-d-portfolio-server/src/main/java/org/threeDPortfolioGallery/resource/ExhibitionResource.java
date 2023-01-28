@@ -56,9 +56,9 @@ public class ExhibitionResource {
     @Path("/download/{fileName}")
     // @Produces({"image/png"})
     public Response downloadFile(@PathParam("fileName") String fileName) throws FileNotFoundException {
-        File file = new File(FILE_PATH + "exhibits/" + fileName);
+        File file = new File(FILE_PATH + fileName);
         Tika tika = new Tika();
-        InputStream fileStream = new FileInputStream(FILE_PATH + "exhibits/" + fileName);
+        InputStream fileStream = new FileInputStream(FILE_PATH + fileName);
         if (!file.exists()) {
             return Response.noContent().entity("file not found").build();
         }
@@ -67,6 +67,17 @@ public class ExhibitionResource {
                 .header("Content-Disposition", "attachment; filename=" + fileName)
                 .build();
         // => src/main/resources/files/file0BodyPaint_Pinguin.c4d
+    }
+
+    @GET
+    @Path("/downloadImageFile/{fileName}")
+    @Produces({"image/png"})
+    public Response downloadImageFile(@PathParam("fileName") String fileName) {
+        File file = new File(FILE_PATH + fileName);
+        if (!file.exists()) {
+            return Response.noContent().entity("file not found").build();
+        }
+        return Response.ok(file).header("Content-Disposition", "inline;filename=" + fileName).build();
     }
 
     @POST

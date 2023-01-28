@@ -7,7 +7,7 @@ insert into theme(id, name, model_path, light_intensity, is_exhibit) values (-2,
 
 insert into exhibition(id, title, user_id, thumbnail_url, description) values (-1, 'Fotos von Künstlern', -1, 'http://3.bp.blogspot.com/-5rLnT_OE6yo/T4078obu5yI/AAAAAAAAAPo/Z-5Xo9lGpnQ/s1600/Marilyn-Monroe-Pop-Art.jpg', 'ich liebe diese künstler so sehr, deren kunst ist erstaundlich');
 insert into exhibition(id, title, user_id, thumbnail_url, description) values (-2, 'Fotos von meinem Huhn', -1, 'https://www.huehner-haltung.de/img/rhodelaender-huhn-768x768.jpg', 'Hühner sind die besten Haustiere');
-insert into exhibition(id, title, user_id, thumbnail_url, description) values (-3, 'Nudeln mhh', -2, 'file2spaghetti-mhhh.jpg', 'mhhhhhhhhh pasta');
+insert into exhibition(id, title, user_id, thumbnail_url, description) values (-3, 'Nudeln mhh', -2, 'src/main/resources/files/file2spaghetti-mhhh.jpg', 'mhhhhhhhhh pasta');
 insert into exhibition(id, title, user_id, thumbnail_url, description) values (-4, 'Pingu', -2, 'https://wallsdesk.com/wp-content/uploads/2017/01/Penguin-for-desktop.jpg', 'pengpeng');
 
 insert into exhibit(id, title) values (-1, 'Picasso Foto');
