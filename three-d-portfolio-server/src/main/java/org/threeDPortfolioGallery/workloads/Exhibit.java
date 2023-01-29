@@ -14,7 +14,7 @@ public class Exhibit extends PanacheEntity {
     public String title;
     public String description;
     public int scale;
-    @Column(length = 2)
+    @Column(length = 1)
     public String alignment;
 
     // relationships

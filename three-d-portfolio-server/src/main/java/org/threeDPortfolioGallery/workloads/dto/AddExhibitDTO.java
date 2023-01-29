@@ -8,4 +8,9 @@ public class AddExhibitDTO {
     String description;
     String title;
     String url;
+    int scale;
+    String alignment;
+
+    Long theme_id;
+    Long position_id;
 }

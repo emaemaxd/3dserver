@@ -40,6 +40,12 @@ public class ExhibitionResource {
     UserRepo userRepo;
 
     @Inject
+    ThemeRepo themeRepo;
+
+    @Inject
+    PositionRepo positionRepo;
+
+    @Inject
     CategoryRepo categoryRepo;
     @Inject
     RoomRepo roomRepo;
@@ -239,13 +245,11 @@ public class ExhibitionResource {
         Exhibition exhibition = new Exhibition();
         List<Exhibit> newExhibitList = new LinkedList<>();
         User user = userRepo.findById(newExhibition.getUser_id());
-        if (user == null){
-            return Response.status(406).build();
-        }
         Room room = roomRepo.findById(newExhibition.getRoom_id());
-        if(room == null){
+        if (user == null || room == null){
             return Response.status(406).build();
         }
+
         Set<Category> categories = new HashSet<>();
         for (Long i: newExhibition.getCategory_ids()) {
             Category temp = categoryRepo.findById(i);
@@ -259,8 +263,16 @@ public class ExhibitionResource {
         // exhibits
         for(AddExhibitDTO i: newExhibition.getExhibits()){
             if(i != null){
-                Exhibit newExhibit = new Exhibit(i.getUrl(), i.getData_type(), i.getTitle(), i.getDescription());
-                newExhibitList.add(newExhibit);
+                Theme theme = themeRepo.findById(i.getTheme_id());
+                Position position = positionRepo.findById(i.getPosition_id());
+                if ((theme == null) || (i.getAlignment().length() > 1) || (position == null)){        // weil alignment nur Länge von 1 hat
+                    return Response.status(406).build();
+                } else {
+                    Exhibit newExhibit = new Exhibit(i.getUrl(), i.getData_type(), i.getTitle(), i.getDescription());
+                    newExhibit.theme = theme;
+                    newExhibit.position = position;
+                    newExhibitList.add(newExhibit);
+                }
             }
         }
 

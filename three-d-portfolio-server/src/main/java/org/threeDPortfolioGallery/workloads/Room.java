@@ -10,7 +10,10 @@ public class Room extends PanacheEntity {
 
     public String name;
 
+    public String room_wall_url;
+
     public String wall_mat_url;
+    public String room_floor_url;
 
     public String floor_mat_url;
 
