@@ -1,5 +1,6 @@
 package org.threeDPortfolioGallery.workloads;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import javax.persistence.*;
@@ -14,9 +15,11 @@ public class Position extends PanacheEntity {
     public Double rotation;     // can not be null if double
 
     // relationship
+    @JsonIgnore
     @ManyToOne
     public Room room;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "position", cascade = CascadeType.ALL)
     public Exhibit exhibit;
 }

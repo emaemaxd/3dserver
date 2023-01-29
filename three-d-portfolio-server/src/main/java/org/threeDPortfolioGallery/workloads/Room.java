@@ -1,5 +1,6 @@
 package org.threeDPortfolioGallery.workloads;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import javax.persistence.*;
@@ -18,9 +19,11 @@ public class Room extends PanacheEntity {
     public String floor_mat_url;
 
     // relationship <3
+    @JsonIgnore
     @OneToMany(mappedBy = "room")
     public List<Exhibition> exhibition;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "room")
     public List<Position> positions;
 }

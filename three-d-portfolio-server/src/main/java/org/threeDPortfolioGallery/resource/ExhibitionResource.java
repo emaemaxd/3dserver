@@ -265,10 +265,10 @@ public class ExhibitionResource {
             if(i != null){
                 Theme theme = themeRepo.findById(i.getTheme_id());
                 Position position = positionRepo.findById(i.getPosition_id());
-                if ((theme == null) || (i.getAlignment().length() > 1) || (position == null)){        // weil alignment nur Länge von 1 hat
+                if ((theme == null) || (i.getAlignment().length() != 1) || (position == null)){        // weil alignment nur Länge von 1 hat
                     return Response.status(406).build();
                 } else {
-                    Exhibit newExhibit = new Exhibit(i.getUrl(), i.getData_type(), i.getTitle(), i.getDescription());
+                    Exhibit newExhibit = new Exhibit(i.getUrl(), i.getData_type(), i.getTitle(), i.getDescription(), i.getScale(), i.getAlignment());
                     newExhibit.theme = theme;
                     newExhibit.position = position;
                     newExhibitList.add(newExhibit);
@@ -280,6 +280,7 @@ public class ExhibitionResource {
         exhibition.room = room;
         exhibition.categories = categories;
         exhibition.thumbnail_url = newExhibition.getThumbnail_url();
+        exhibition.description = newExhibition.getDescription();
         exhibition.title = newExhibition.getTitle();
 
         // hier werden die exhibits zuerst eingeschrieben bevor sie hinzugefügt werden

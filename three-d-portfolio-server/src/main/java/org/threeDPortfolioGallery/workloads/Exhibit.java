@@ -17,25 +17,28 @@ public class Exhibit extends PanacheEntity {
     @Column(length = 1)
     public String alignment;
 
-    // relationships
-
+    // relationships <3
     @JsonIgnore
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     public Exhibition exhibition;
 
+    @JsonIgnore
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     public Theme theme;
 
+    @JsonIgnore
     @OneToOne
     public Position position;
 
-    public Exhibit(String url, String data_type, String title, String description) {
+    public Exhibit(String url, String data_type, String title, String description, int scale, String alignment) {
         this.url = url;
         this.data_type = data_type;
         this.title = title;
         this.description = description;
+        this.scale = scale;
+        this.alignment = alignment;
     }
 
     public Exhibit() {

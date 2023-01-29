@@ -10,6 +10,7 @@ import java.util.List;
 public class AddExhibitionDTO {
     String thumbnail_url;
     String title;
+    String description;
 
     // Theme theme;
 

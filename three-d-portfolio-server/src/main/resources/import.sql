@@ -34,7 +34,7 @@ insert into exhibitions_categories(category_id, exhibition_id) values (-3,-3);
 insert into room(id, name, room_floor_url, room_wall_url, wall_mat_url, floor_mat_url)
     values (-1, 'Cross', 'floor2.gltf', 'wall2.gltf', 'src/nopath', 'src/nopath');  /* src/main/resources/files/rooms/ */
 
-insert into position(id, rotation, x, y, is_wall) values (-1, null, 1.0, 2.0, false);
+insert into position(id, rotation, x, y, is_wall, room_id) values (-1, null, 1.0, 2.0, false, -1);
 
 /* special test cases
 

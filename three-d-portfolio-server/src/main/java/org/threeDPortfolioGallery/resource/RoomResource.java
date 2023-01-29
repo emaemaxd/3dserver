@@ -1,5 +1,6 @@
 package org.threeDPortfolioGallery.resource;
 
+import org.threeDPortfolioGallery.records.RoomWithPositionsRecord;
 import org.threeDPortfolioGallery.repos.GeneralRepo;
 import org.threeDPortfolioGallery.repos.RoomRepo;
 import org.threeDPortfolioGallery.workloads.Room;
@@ -27,6 +28,15 @@ public class RoomResource {
     @Path("/all")
     public Response getAllRooms(){
         List<Room> rooms = roomRepo.listAll();
+        return checkIfEmpty(rooms);
+    }
+
+    // TODO ask Aistleitner oder Haslinger
+    
+    @GET
+    @Path("/allRoomPositions")
+    public Response getAllRoomsRecords(){
+        List<RoomWithPositionsRecord> rooms = roomRepo.getAllRoomsWithPositions();
         return checkIfEmpty(rooms);
     }
 }
