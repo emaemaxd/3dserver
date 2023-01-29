@@ -22,9 +22,6 @@ public class Exhibition extends PanacheEntity {
     @OneToMany(mappedBy = "exhibition")
     public List<Exhibit> exhibits;
 
-    @ManyToOne
-    public Theme theme;
-
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL )
     public User user;

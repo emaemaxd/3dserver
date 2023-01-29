@@ -9,14 +9,13 @@ import javax.persistence.*;
 
 @Entity
 public class Exhibit extends PanacheEntity {
-
     public String url;
-
     public String data_type;
-
     public String title;
-
     public String description;
+    public int scale;
+    @Column(length = 2)
+    public String alignment;
 
     // relationships
 

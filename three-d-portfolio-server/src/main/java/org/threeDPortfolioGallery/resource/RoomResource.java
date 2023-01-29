@@ -12,6 +12,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+import static org.threeDPortfolioGallery.repos.GeneralRepo.checkIfEmpty;
+
 @Path("/api/room")
 @Produces(MediaType.APPLICATION_JSON)
 public class RoomResource {
@@ -22,9 +24,9 @@ public class RoomResource {
     RoomRepo roomRepo;
 
     @GET
+    @Path("/all")
     public Response getAllRooms(){
         List<Room> rooms = roomRepo.listAll();
-        return gr.checkIfEmpty(rooms);
+        return checkIfEmpty(rooms);
     }
-
 }
