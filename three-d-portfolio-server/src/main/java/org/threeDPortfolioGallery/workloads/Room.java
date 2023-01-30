@@ -16,14 +16,16 @@ public class Room extends PanacheEntity {
     public String wall_mat_url;
     public String room_floor_url;
 
-    public String floor_mat_url;
+    public String floorMatUrl;
+
+    public int floorRepeatTexture;
 
     // relationship <3
     @JsonIgnore
     @OneToMany(mappedBy = "room")
     public List<Exhibition> exhibition;
 
-    @JsonIgnore
+    // @JsonIgnore
     @OneToMany(mappedBy = "room")
     public List<Position> positions;
 }

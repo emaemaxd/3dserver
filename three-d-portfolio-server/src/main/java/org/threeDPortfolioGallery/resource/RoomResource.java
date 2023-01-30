@@ -4,6 +4,7 @@ import org.threeDPortfolioGallery.records.RoomWithPositionsRecord;
 import org.threeDPortfolioGallery.repos.GeneralRepo;
 import org.threeDPortfolioGallery.repos.RoomRepo;
 import org.threeDPortfolioGallery.workloads.Room;
+import org.threeDPortfolioGallery.workloads.dto.ReturnDTO;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -36,7 +37,7 @@ public class RoomResource {
     @GET
     @Path("/allRoomPositions")
     public Response getAllRoomsRecords(){
-        List<RoomWithPositionsRecord> rooms = roomRepo.getAllRoomsWithPositions();
+        List rooms = roomRepo.getAllRoomsWithPositions();
         return checkIfEmpty(rooms);
     }
 }
