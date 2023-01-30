@@ -32,7 +32,7 @@ public class RoomResource {
     }
 
     // TODO ask Aistleitner oder Haslinger
-    
+
     @GET
     @Path("/allRoomPositions")
     public Response getAllRoomsRecords(){
