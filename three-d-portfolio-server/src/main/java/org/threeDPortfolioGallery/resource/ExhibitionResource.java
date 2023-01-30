@@ -81,6 +81,9 @@ public class ExhibitionResource {
         InputStream fileStream = new FileInputStream("src/main/resources/files/" + fileName);
         if (fileStream == null) {
             throw new RuntimeException("File not found: " + "src/main/resources/files/" + fileName);
+<<<<<<< HEAD
+>>>>>>> parent of 7bf1cd9 (changes to download/file)
+=======
 >>>>>>> parent of 7bf1cd9 (changes to download/file)
         }
         String mimeType = tika.detect(fileName);
@@ -142,7 +145,10 @@ public class ExhibitionResource {
 
         for (String filename : contentDisposition) {
 <<<<<<< HEAD
+<<<<<<< HEAD
             // System.out.println(filename);  => name="uploadedFile" filename="WhatsApp Image 2022-05-04 at 10.20.19.jpeg"
+=======
+>>>>>>> parent of 7bf1cd9 (changes to download/file)
 =======
 >>>>>>> parent of 7bf1cd9 (changes to download/file)
             if ((filename.trim().startsWith("filename"))) {
