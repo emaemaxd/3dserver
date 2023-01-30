@@ -1,5 +1,6 @@
 package org.threeDPortfolioGallery.repos;
 
+<<<<<<< HEAD
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import org.threeDPortfolioGallery.records.RoomWithPositionsRecord;
 import org.threeDPortfolioGallery.workloads.Room;
@@ -15,4 +16,7 @@ public class RoomRepo implements PanacheRepository<Room> {
         var q = getEntityManager().createQuery(sql, RoomWithPositionsRecord.class);
         return q.getResultList();
     }
+=======
+public class RoomRepo {
+>>>>>>> parent of 7bf1cd9 (changes to download/file)
 }

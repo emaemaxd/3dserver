@@ -59,14 +59,29 @@ public class ExhibitionResource {
      * @return Response codes für FE
      */
     @GET
-    @Path("/download/{fileName}")
+    @Path("/get/{fileName}")
     // @Produces({"image/png"})
     public Response downloadFile(@PathParam("fileName") String fileName) throws FileNotFoundException {
+<<<<<<< HEAD
         File file = new File(FILE_PATH + fileName);
         Tika tika = new Tika();
         InputStream fileStream = new FileInputStream(FILE_PATH + fileName);
         if (!file.exists()) {
             return Response.noContent().entity("file not found").build();
+=======
+/*      File file = new File("src/main/resources/files/" + fileName);
+        if (!file.exists()) {
+            throw new RuntimeException("File not found: src/main/resources/files/" + fileName);
+        }
+        Response.ResponseBuilder res = Response.ok((Object) file);
+        res.header("Content-Disposition", "inline;filename=" + fileName);
+        return res.build();
+ */
+        Tika tika = new Tika();
+        InputStream fileStream = new FileInputStream("src/main/resources/files/" + fileName);
+        if (fileStream == null) {
+            throw new RuntimeException("File not found: " + "src/main/resources/files/" + fileName);
+>>>>>>> parent of 7bf1cd9 (changes to download/file)
         }
         String mimeType = tika.detect(fileName);
         return Response.ok(fileStream, mimeType)
@@ -89,7 +104,6 @@ public class ExhibitionResource {
     @POST
     @Path("/upload")
     @Consumes("multipart/form-data")
-    @Produces(MediaType.TEXT_PLAIN)
     @Transactional
     public Response uploadFile(MultipartFormDataInput input) {
         String fileName = "";
@@ -111,12 +125,13 @@ public class ExhibitionResource {
                     System.out.println(fileName + " . Filename");
 
                     writeFile(bytes, fileName);
+                    System.out.println("Done");
                     fileCount++;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-            return Response.status(200).entity(fileName).build();
+            return Response.status(200).entity("{\"message\":\"uploadFile is called, Uploaded file name : " + fileName + "\"}").build();
         } else {
             return Response.status(401).entity("something went wrong").build();
         }
@@ -126,11 +141,13 @@ public class ExhibitionResource {
         String[] contentDisposition = header.getFirst("Content-Disposition").split(";");
 
         for (String filename : contentDisposition) {
+<<<<<<< HEAD
             // System.out.println(filename);  => name="uploadedFile" filename="WhatsApp Image 2022-05-04 at 10.20.19.jpeg"
+=======
+>>>>>>> parent of 7bf1cd9 (changes to download/file)
             if ((filename.trim().startsWith("filename"))) {
-                String[] name = filename.split("="); // => [ filename, "WhatsApp Image 2022-05-04 at 10.20.19.jpeg"]
-                String nameToReturn = name[1].trim().replaceAll("\"", "");
-                return nameToReturn.replaceAll(" ","");
+                String[] name = filename.split("=");
+                return name[1].trim().replaceAll("\"", "");
             }
         }
         return "unknown";
