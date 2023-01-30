@@ -62,13 +62,11 @@ public class ExhibitionResource {
     @Path("/get/{fileName}")
     // @Produces({"image/png"})
     public Response downloadFile(@PathParam("fileName") String fileName) throws FileNotFoundException {
-<<<<<<< HEAD
         File file = new File(FILE_PATH + fileName);
         Tika tika = new Tika();
         InputStream fileStream = new FileInputStream(FILE_PATH + fileName);
         if (!file.exists()) {
             return Response.noContent().entity("file not found").build();
-=======
 /*      File file = new File("src/main/resources/files/" + fileName);
         if (!file.exists()) {
             throw new RuntimeException("File not found: src/main/resources/files/" + fileName);
@@ -77,20 +75,12 @@ public class ExhibitionResource {
         res.header("Content-Disposition", "inline;filename=" + fileName);
         return res.build();
  */
-        Tika tika = new Tika();
-        InputStream fileStream = new FileInputStream("src/main/resources/files/" + fileName);
-        if (fileStream == null) {
-            throw new RuntimeException("File not found: " + "src/main/resources/files/" + fileName);
-<<<<<<< HEAD
->>>>>>> parent of 7bf1cd9 (changes to download/file)
-=======
->>>>>>> parent of 7bf1cd9 (changes to download/file)
+            String mimeType = tika.detect(fileName);
+            return Response.ok(fileStream, mimeType)
+                    .header("Content-Disposition", "attachment; filename=" + fileName)
+                    .build();
+            // => src/main/resources/files/file0BodyPaint_Pinguin.c4d
         }
-        String mimeType = tika.detect(fileName);
-        return Response.ok(fileStream, mimeType)
-                .header("Content-Disposition", "attachment; filename=" + fileName)
-                .build();
-        // => src/main/resources/files/file0BodyPaint_Pinguin.c4d
     }
 
     @GET
@@ -144,13 +134,6 @@ public class ExhibitionResource {
         String[] contentDisposition = header.getFirst("Content-Disposition").split(";");
 
         for (String filename : contentDisposition) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-            // System.out.println(filename);  => name="uploadedFile" filename="WhatsApp Image 2022-05-04 at 10.20.19.jpeg"
-=======
->>>>>>> parent of 7bf1cd9 (changes to download/file)
-=======
->>>>>>> parent of 7bf1cd9 (changes to download/file)
             if ((filename.trim().startsWith("filename"))) {
                 String[] name = filename.split("=");
                 return name[1].trim().replaceAll("\"", "");
