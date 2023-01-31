@@ -26,7 +26,7 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
      * @return list of found exhibitions
      */
     public List<ExhibitionWithUserRecord> listAllBySearchTerm(String term) {
-        String sql = "select new org.threeDPortfolioGallery.records.ExhibitionWithUserRecord(e, u.user_name, u.icon_url) from Exhibition e " +
+        String sql = "select DISTINCT new org.threeDPortfolioGallery.records.ExhibitionWithUserRecord(e, u.user_name, u.icon_url) from Exhibition e " +
                 "join e.user u left join e.categories c " +
                 "where lower(e.user.user_name) like :term or lower(e.title) like :term order by e.id desc";
 

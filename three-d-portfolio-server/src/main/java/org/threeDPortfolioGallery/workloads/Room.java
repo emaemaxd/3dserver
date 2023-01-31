@@ -20,7 +20,7 @@ public class Room extends PanacheEntity {
 
     public int floorRepeatTexture;
 
-    // relationship <3
+    // relationships <3
     @JsonIgnore
     @OneToMany(mappedBy = "room")
     public List<Exhibition> exhibition;

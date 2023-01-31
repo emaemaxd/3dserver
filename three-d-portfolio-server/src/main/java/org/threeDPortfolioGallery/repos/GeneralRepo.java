@@ -8,21 +8,14 @@ import java.util.List;
 public class GeneralRepo {
 
     public static final String FILE_PATH = "src/main/resources/files/";
+
     /**
      *
-     * @param list Any List
+     * @param obj Any Object
      * @return  Response 200 und alle gefundenen Exhibitions
      *                   oder 204, falls keine Exhibitions gefunden wurden
      */
-    public static Response checkIfEmpty(List list){
-        if(list.isEmpty()){
-            return Response.noContent().build();
-        } else {
-            return Response.ok().entity(list).build();
-        }
-    }
-
-    public static Response checkIfEmpty(Object obj){
+    public Response checkIfEmpty(Object obj){
         if(obj == null){
             return Response.noContent().build();
         } else {

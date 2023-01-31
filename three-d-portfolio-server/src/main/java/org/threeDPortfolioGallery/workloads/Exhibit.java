@@ -28,7 +28,6 @@ public class Exhibit extends PanacheEntity {
     @OnDelete(action = OnDeleteAction.CASCADE)
     public Theme theme;
 
-    @JsonIgnore
     @OneToOne
     public Position position;
 

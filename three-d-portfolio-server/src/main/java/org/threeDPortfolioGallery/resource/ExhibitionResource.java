@@ -35,6 +35,9 @@ public class ExhibitionResource {
     int fileCount = 0;
 
     @Inject
+    GeneralRepo gr;
+
+    @Inject
     ExhibitionRepo exhibitionRepo;
     @Inject
     UserRepo userRepo;
@@ -105,7 +108,6 @@ public class ExhibitionResource {
                     // Exhibit ex = new Exhibit(postURL, "png", "test", "desc");
                     // PictureEntity picture = new PictureEntity(postURL, "");
                     // exhibitRepo.persist(ex);
-
                     byte[] bytes = IOUtils.toByteArray(inputStream);
                     fileName = FILE_PATH + "exhibits/" + fileName;
                     System.out.println(fileName + " . Filename");
@@ -166,8 +168,7 @@ public class ExhibitionResource {
     @RolesAllowed({"admin"})
     @Path("/getByUserId/{userid}")
     public Response getExhibitionsByUser(@PathParam("userid") long id){
-        List<Exhibition> exhibitionList = exhibitionRepo.getAllExhibitionsForUser(id);
-        return GeneralRepo.checkIfEmpty(exhibitionList);
+        return gr.checkIfEmpty(exhibitionRepo.getAllExhibitionsForUser(id));
     }
 
     /**
@@ -196,7 +197,7 @@ public class ExhibitionResource {
     @Path("/search/{searchTerm}")
     public Response getExhibitionsBySearchTerm(@PathParam("searchTerm") String searchTerm){
         List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.listAllBySearchTerm(searchTerm);
-        return GeneralRepo.checkIfEmpty(exhibitionList);
+        return gr.checkIfEmpty(exhibitionList);
     }
 
     /**
@@ -209,7 +210,7 @@ public class ExhibitionResource {
     @Path("/latestFive")
     public Response getLastFiveExhibitions(){
         List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getLatestFive();
-        return GeneralRepo.checkIfEmpty(exhibitionList);
+        return gr.checkIfEmpty(exhibitionList);
     }
 
     /**
@@ -221,7 +222,7 @@ public class ExhibitionResource {
     @Path("/getByCategoryId/{categoryId}")
     public Response getExhibitionByCategory(@PathParam("categoryId") Long id){
         List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getByCategoryId(id);
-        return GeneralRepo.checkIfEmpty(exhibitionList);
+        return gr.checkIfEmpty(exhibitionList);
     }
 
     @GET
@@ -233,7 +234,7 @@ public class ExhibitionResource {
             longIds.add(Long.parseLong(id));
         }
         List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getByCategoryIds(longIds);
-        return GeneralRepo.checkIfEmpty(exhibitionList);
+        return gr.checkIfEmpty(exhibitionList);
     }
 
     // TODO fix code duplication
