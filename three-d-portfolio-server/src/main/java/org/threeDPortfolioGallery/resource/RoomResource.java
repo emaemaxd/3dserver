@@ -38,5 +38,4 @@ public class RoomResource {
     public Response getAllRoomsRecords(){
         return gr.checkIfEmpty(roomRepo.getAllRoomsWithPositions());
     }
-
 }
