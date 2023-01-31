@@ -67,7 +67,7 @@ public class ExhibitionResource {
     public Response downloadFile(@PathParam("fileName") String fileName) throws FileNotFoundException {
         File file = new File(FILE_PATH + "exhibits/" + fileName);
         Tika tika = new Tika();
-        InputStream fileStream = new FileInputStream(FILE_PATH + fileName);
+        InputStream fileStream = new FileInputStream(FILE_PATH + "exhibits/" + fileName);
         if (!file.exists()) {
             return Response.noContent().entity("file not found").build();
         }
