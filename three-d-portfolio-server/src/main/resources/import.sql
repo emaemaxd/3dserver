@@ -8,7 +8,7 @@ insert into theme(id, name, thumbnail_url, container_url, container_mat_url, lig
     values (-2, 'Happy Holiday', '~/test.c4d', '~/test.c4d', '~/test.c4d', 0.0 );
 
 insert into room(id, name, room_floor_url, room_wall_url, wall_mat_url, floor_mat_url, floorRepeatTexture)
-values (-1, 'Cross', 'floor2.gltf', 'wall2.gltf', 'src/nopath', 'src/nopath', 1);  /* src/main/resources/files/rooms/ */
+    values (-1, 'Cross', 'floor2.gltf', 'wall2.gltf', 'src/nopath', 'src/nopath', 1);  /* src/main/resources/files/rooms/ */
 
 insert into position(id, rotation, x, y, is_wall, room_id) values (-1, null, 1.0, 2.0, false, -1);
 insert into position(id, rotation, x, y, is_wall, room_id) values (-2, null, 2.0, 3.0, false, -1);

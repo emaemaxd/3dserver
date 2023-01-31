@@ -22,6 +22,14 @@ public class GeneralRepo {
         }
     }
 
+    public static Response checkIfEmpty(Object obj){
+        if(obj == null){
+            return Response.noContent().build();
+        } else {
+            return Response.ok().entity(obj).build();
+        }
+    }
+
     public static String getFilePath() {
         return FILE_PATH;
     }

@@ -16,7 +16,7 @@ public class Room extends PanacheEntity {
     public String wall_mat_url;
     public String room_floor_url;
 
-    public String floorMatUrl;
+    public String floor_mat_url;
 
     public int floorRepeatTexture;
 
