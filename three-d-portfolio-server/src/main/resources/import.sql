@@ -10,8 +10,8 @@ insert into theme(id, name, thumbnail_url, container_url, container_mat_url, lig
 insert into room(id, name, room_floor_url, room_wall_url, wall_mat_url, floor_mat_url, floorRepeatTexture)
     values (-1, 'Cross', 'floor2.gltf', 'wall2.gltf', 'src/nopath', 'src/nopath', 1);  /* src/main/resources/files/rooms/ */
 
-insert into position(id, rotation, x, y, is_wall, room_id) values (-1, null, 1.0, 2.0, false, -1);
-insert into position(id, rotation, x, y, is_wall, room_id) values (-2, null, 2.0, 3.0, false, -1);
+insert into position(id, rotation, x, y, is_wall, room_id) values (-1, null, 100, 200, false, -1);
+insert into position(id, rotation, x, y, is_wall, room_id) values (-2, 40, 200, 300, true, -1);
 
 insert into exhibition(id, title, user_id, thumbnail_url, description, room_id)
     values (-1, 'Fotos von Künstlern', -1, 'https://1.bp.blogspot.com/-sXSoVW0bAQ8/V_515OFKUgI/AAAAAAAAwIQ/fnfeepcuTxoY84BD7U2fsDpCrHSraYmyACLcB/s1600/newsweek-cover-crop.jpg', 'ich liebe diese künstler so sehr, deren kunst ist erstaundlich', -1);
