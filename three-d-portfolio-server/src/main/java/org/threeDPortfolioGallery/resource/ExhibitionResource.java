@@ -109,16 +109,16 @@ public class ExhibitionResource {
                     // PictureEntity picture = new PictureEntity(postURL, "");
                     // exhibitRepo.persist(ex);
                     byte[] bytes = IOUtils.toByteArray(inputStream);
-                    fileName = FILE_PATH + "upload/" + fileName;
-                    System.out.println(fileName + " . Filename");
+                    var fileName2 = FILE_PATH + "upload/" + fileName;
+                    System.out.println(fileName2 + " . Filename");
 
-                    writeFile(bytes, fileName);
+                    writeFile(bytes, fileName2);
                     fileCount++;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-            return Response.status(200).entity(fileName).build();
+            return Response.status(200).entity("upload/" + fileName).build();
         } else {
             return Response.status(401).entity("something went wrong").build();
         }

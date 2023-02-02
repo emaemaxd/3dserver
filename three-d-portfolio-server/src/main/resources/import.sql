@@ -26,14 +26,12 @@ insert into exhibition(id, title, user_id, thumbnail_url, description, room_id)
     values (-4, 'Favourite Shots in CP2077', -2, 'thumbnails/ExampleThumbnailCyberpunk.jpg', 'Just some pictures i took while exploring Night City!', 1);
 
 insert into exhibit(id, title, scale, alignment) values (-1, 'Picasso Foto', 0, 'c');
-/*
 insert into exhibit(id, title, scale, alignment, url, exhibition_id)
     values (-2, 'Geburt.', 0, 'c', 'https://www.agrarheute.com/sites/agrarheute.com/files/styles/ah_bildergalerie_standalone_5x4/public/thumbnails/image/ei-kueken.jpg?itok=IGZdghSz', -2);
 insert into exhibit(id, title, scale, alignment, url, exhibition_id)
     values (-3, 'Freunde.', 0, 'c', 'https://img.fotocommunity.com/hahn-im-korb-bielefelder-kennhuehner-huehnerschar-mit-kraehendem-hahn-19460011-fd7e-4c9f-961e-aeba8b21b00a.jpg?width=1000', -2);
  insert into exhibit(id, title, scale, alignment, url, exhibition_id)
 
- */
     values (-4, 'Stand', 0, 'c', 'example-exhibits/exampleExhibitOrbital.jpg', -4);
 
 insert into category(id, category_title, color) values (1, 'Umwelt', '#C1BAFF');
