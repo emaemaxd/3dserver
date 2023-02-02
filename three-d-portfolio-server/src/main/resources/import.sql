@@ -12,8 +12,8 @@ insert into room(id, name, thumbnail_url, room_floor_url, room_wall_url, wall_ma
 
 insert into position(id, rotation, x, y, is_wall, room_id) values (1, null, 100, 200, false, 1);
 insert into position(id, rotation, x, y, is_wall, room_id) values (2, 40, 200, 300, true, 1);
-insert into position(id, rotation, x, y, is_wall, room_id) values (3, 40, 200, 300, true, 1);
-insert into position(id, rotation, x, y, is_wall, room_id) values (4, 40, 200, 300, true, 1);
+insert into position(id, rotation, x, y, is_wall, room_id) values (3, 40, 300, 300, false, 1);
+insert into position(id, rotation, x, y, is_wall, room_id) values (4, 40, 400, 300, false, 1);
 
 insert into exhibition(id, title, user_id, thumbnail_url, description, room_id)
     values (-1, 'Fotos von Künstlern', -1, 'thumbnails/banksyThumbnail.jpg', 'ich liebe diese künstler so sehr, deren kunst ist erstaundlich', 1);

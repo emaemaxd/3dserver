@@ -19,17 +19,17 @@ public class Exhibition extends PanacheEntity {
     public String description;
 
     // relationships <3
-    @OneToMany(mappedBy = "exhibition")
+    @OneToMany(mappedBy = "exhibition", cascade = CascadeType.REMOVE)
     public List<Exhibit> exhibits;
 
     @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL )
+    @ManyToOne
     public User user;
 
     @ManyToOne
     public Room room;
 
-    @ManyToMany(cascade = CascadeType.ALL )
+    @ManyToMany
     @JoinTable(
             name = "exhibitions_categories",
             joinColumns = @JoinColumn(name = "exhibition_id"),

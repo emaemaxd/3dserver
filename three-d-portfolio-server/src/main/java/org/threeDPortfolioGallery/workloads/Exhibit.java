@@ -19,8 +19,7 @@ public class Exhibit extends PanacheEntity {
 
     // relationships <3
     @JsonIgnore
-    @ManyToOne
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne// das gleiche nur für hibernate specific stuff: @OnDelete(action = OnDeleteAction.CASCADE)
     public Exhibition exhibition;
 
     @JsonIgnore
