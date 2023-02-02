@@ -109,7 +109,7 @@ public class ExhibitionResource {
                     // PictureEntity picture = new PictureEntity(postURL, "");
                     // exhibitRepo.persist(ex);
                     byte[] bytes = IOUtils.toByteArray(inputStream);
-                    fileName = FILE_PATH + "exhibits/" + fileName;
+                    fileName = FILE_PATH + "upload/" + fileName;
                     System.out.println(fileName + " . Filename");
 
                     writeFile(bytes, fileName);
