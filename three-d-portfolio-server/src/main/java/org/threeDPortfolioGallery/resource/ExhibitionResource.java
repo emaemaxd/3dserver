@@ -1,5 +1,6 @@
 package org.threeDPortfolioGallery.resource;
 
+import io.quarkus.cache.CacheInvalidateAll;
 import org.apache.commons.io.IOUtils;
 import org.apache.tika.Tika;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
@@ -31,7 +32,7 @@ import static org.threeDPortfolioGallery.repos.GeneralRepo.FILE_PATH;
 @Path("api/exhibitions")
 @Produces(MediaType.APPLICATION_JSON)
 public class ExhibitionResource {
-
+// TODO remove Cache-Dependency in pom.xml
     int fileCount = 0;
 
     @Inject
@@ -178,7 +179,7 @@ public class ExhibitionResource {
     @GET
     @Path("/all")
     public Response getAllExhibitions(){
-        Set<ExhibitionWithUserRecord> exhibitionSet = exhibitionRepo.listAllExhibitionsWithUserField();
+        List<ExhibitionWithUserRecord> exhibitionSet = exhibitionRepo.listAllExhibitionsWithUserField();
         if(exhibitionSet.isEmpty()){
             return Response.noContent().build();
         } else {
@@ -237,10 +238,12 @@ public class ExhibitionResource {
     }
 
     // TODO fix code duplication
+    // TODO die @OneToOne exhibit - position beziehung geht ned, weil one to one aber mehrere entries usw. muss man fixen, prolly mit composite key oder so a schmoan
     @POST
     @Transactional
     @Path("/new")
     @Consumes(MediaType.APPLICATION_JSON)
+    @CacheInvalidateAll(cacheName = "")
     public Response postNewExhibition(AddExhibitionDTO newExhibition){
         Exhibition exhibition = new Exhibition();
         List<Exhibit> newExhibitList = new LinkedList<>();
@@ -259,6 +262,12 @@ public class ExhibitionResource {
                 categories.add(temp);
             }
         }
+        exhibition.user = user;
+        exhibition.room = room;
+        exhibition.categories = categories;
+        exhibition.thumbnail_url = newExhibition.getThumbnail_url();
+        exhibition.description = newExhibition.getDescription();
+        exhibition.title = newExhibition.getTitle();
 
         // exhibits
         for(AddExhibitDTO i: newExhibition.getExhibits()){
@@ -272,24 +281,29 @@ public class ExhibitionResource {
                     newExhibit.theme = theme;
                     newExhibit.position = position;
                     newExhibitList.add(newExhibit);
+                    //newExhibit.exhibition = exhibition;
+                  //  exhibitRepo.persist(newExhibitList);
                 }
             }
         }
 
-        exhibition.user = user;
-        exhibition.room = room;
-        exhibition.categories = categories;
-        exhibition.thumbnail_url = newExhibition.getThumbnail_url();
-        exhibition.description = newExhibition.getDescription();
-        exhibition.title = newExhibition.getTitle();
+
 
         // hier werden die exhibits zuerst eingeschrieben bevor sie hinzugefügt werden
         if((long) newExhibitList.size() > 0){
-            exhibitRepo.postExhibits(newExhibitList, exhibition);
+             exhibitRepo.persist(newExhibitList);
+             exhibition.exhibits = newExhibitList;
+           // exhibitRepo.postExhibits(newExhibitList, exhibition);
         } else {
             return Response.status(406).entity("cannot post exhibition without exhibits").build();
         }
         exhibitionRepo.persist(exhibition);
         return Response.ok().build();
+    }
+
+    @DELETE
+    @Path("/deleteById/{exhibitionId}")
+    public Response deleteExhibitionById(@PathParam("exhibitionId") Long id){
+        return null;
     }
 }

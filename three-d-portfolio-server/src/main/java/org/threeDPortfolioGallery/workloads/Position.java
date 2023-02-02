@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Position extends PanacheEntity {
@@ -20,6 +21,6 @@ public class Position extends PanacheEntity {
     public Room room;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "position", cascade = CascadeType.ALL)
-    public Exhibit exhibit;
+    @OneToMany(mappedBy = "position", cascade = CascadeType.ALL)
+    public List<Exhibit> exhibit;
 }

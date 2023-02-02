@@ -28,7 +28,7 @@ public class Exhibit extends PanacheEntity {
     @OnDelete(action = OnDeleteAction.CASCADE)
     public Theme theme;
 
-    @OneToOne
+    @ManyToOne
     public Position position;
 
     public Exhibit(String url, String data_type, String title, String description, int scale, String alignment) {

@@ -1,6 +1,7 @@
 package org.threeDPortfolioGallery.repos;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
+import org.hibernate.Session;
 import org.threeDPortfolioGallery.records.ExhibitionWithUserRecord;
 import org.threeDPortfolioGallery.workloads.Category;
 import org.threeDPortfolioGallery.workloads.Exhibition;
@@ -57,14 +58,15 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
     /**
      * @return alle Exhibitions in der DB
      */
-    public Set<ExhibitionWithUserRecord> listAllExhibitionsWithUserField() {
+    public List<ExhibitionWithUserRecord> listAllExhibitionsWithUserField() {
+
         String sql = "select new org.threeDPortfolioGallery.records.ExhibitionWithUserRecord(e, u.user_name, u.icon_url) from Exhibition e join e.user u left join e.categories c";
 
         TypedQuery<ExhibitionWithUserRecord> q = getEntityManager()
                 .createQuery(sql
                         , ExhibitionWithUserRecord.class);
-
-        return q.getResultStream().collect(Collectors.toSet());
+        var ret = q.getResultList();
+        return ret;
     }
 
     /**
