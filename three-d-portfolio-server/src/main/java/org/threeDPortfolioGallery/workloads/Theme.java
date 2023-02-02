@@ -12,23 +12,16 @@ import java.util.List;
 public class Theme extends PanacheEntity {
 
     public String name;
+    public String thumbnail_url;
 
-    public String mat_object;
+    public String container_url;
 
-    public String mat_inside;
+    public String container_mat_url;
 
-    public  float light_intensity;
-
-    public String model_path;
-
-    @NotNull
-    public Boolean is_exhibit;
+    public float light_intensity;
 
     // relations
     @OneToMany(mappedBy = "theme", cascade = CascadeType.ALL)
     @JsonIgnore
     public List<Exhibit> exhibits;
-
-    @OneToMany(mappedBy = "theme", cascade = CascadeType.ALL)
-    public List<Exhibition> exhibitions;
 }

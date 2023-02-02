@@ -1,6 +1,7 @@
 package org.threeDPortfolioGallery.repos;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
+import org.hibernate.Session;
 import org.threeDPortfolioGallery.records.ExhibitionWithUserRecord;
 import org.threeDPortfolioGallery.workloads.Category;
 import org.threeDPortfolioGallery.workloads.Exhibition;
@@ -26,7 +27,7 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
      * @return list of found exhibitions
      */
     public List<ExhibitionWithUserRecord> listAllBySearchTerm(String term) {
-        String sql = "select new org.threeDPortfolioGallery.records.ExhibitionWithUserRecord(e, u.user_name, u.icon_url) from Exhibition e " +
+        String sql = "select DISTINCT new org.threeDPortfolioGallery.records.ExhibitionWithUserRecord(e, u.user_name, u.icon_url) from Exhibition e " +
                 "join e.user u left join e.categories c " +
                 "where lower(e.user.user_name) like :term or lower(e.title) like :term order by e.id desc";
 
@@ -39,7 +40,7 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
     }
 
     /**
-     * Looks for 5 last added exhibitions
+     * Gibt die 5 zuletzt hinzugefügten Exhibitions zurück
      *
      * @return list of 5 exhibitions
      */
@@ -57,14 +58,15 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
     /**
      * @return alle Exhibitions in der DB
      */
-    public Set<ExhibitionWithUserRecord> listAllExhibitionsWithUserField() {
+    public List<ExhibitionWithUserRecord> listAllExhibitionsWithUserField() {
+
         String sql = "select new org.threeDPortfolioGallery.records.ExhibitionWithUserRecord(e, u.user_name, u.icon_url) from Exhibition e join e.user u left join e.categories c";
 
         TypedQuery<ExhibitionWithUserRecord> q = getEntityManager()
                 .createQuery(sql
                         , ExhibitionWithUserRecord.class);
-
-        return q.getResultStream().collect(Collectors.toSet());
+        var ret = q.getResultList();
+        return ret;
     }
 
     /**
@@ -83,9 +85,9 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
     }
 
     /**
-     * alle exhibitions zu mehreren ids
-     * @param ids
-     * @return
+     * alle exhibitions zu mehreren Category ids
+     * @param ids Eine Liste von Category Ids
+     * @return Alle gefundenen Exhibitions
      */
     public List<ExhibitionWithUserRecord> getByCategoryIds(List<Long> ids) {
         String sql = "select new org.threeDPortfolioGallery.records.ExhibitionWithUserRecord(e, u.user_name, u.icon_url) " +
@@ -106,7 +108,7 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
                 for (var cat: exhibition.exhibition().categories) {
                     catIds.add(cat.id);
                 }
-                if(new HashSet<>(catIds).containsAll(ids)){ // statt catIds.containsAll(ids) wegen performance?
+                if(new HashSet<>(catIds).containsAll(ids)){ // statt catIds.containsAll(ids) wegen performance, ye
                     ret.add(exhibition);
                 }
             }

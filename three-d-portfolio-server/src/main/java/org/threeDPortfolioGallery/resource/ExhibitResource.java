@@ -1,6 +1,7 @@
 package org.threeDPortfolioGallery.resource;
 
 import org.threeDPortfolioGallery.repos.ExhibitRepo;
+import org.threeDPortfolioGallery.repos.GeneralRepo;
 import org.threeDPortfolioGallery.workloads.Exhibit;
 import org.threeDPortfolioGallery.workloads.User;
 
@@ -10,9 +11,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("api/exhibits")
+@Produces(MediaType.APPLICATION_JSON)
 public class ExhibitResource {
+    @Inject
+    GeneralRepo gr;
     @Inject
     ExhibitRepo exhibitRepo;
 
@@ -22,11 +27,15 @@ public class ExhibitResource {
      * @return
      */
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{exhibit_id}")
-    public Exhibit getExhibitById(@PathParam("exhibit_id") long id) {
-        return exhibitRepo.findById(id);
+    @Path("/{exhibitId}")
+    public Response getExhibitById(@PathParam("exhibitId") Long id) {
+        return gr.checkIfEmpty(exhibitRepo.findById(id));
     }
 
     // TODO get exhibits by exhibition repo
+    @GET
+    @Path("getByExhibition/{exhibitionId}")
+    public Response getExhibitsByExhibitionId(@PathParam("exhibitionId") Long id){
+        return null;
+    }
 }

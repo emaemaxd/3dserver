@@ -1,18 +1,13 @@
 package org.threeDPortfolioGallery.resource;
 
+import io.quarkus.cache.CacheInvalidateAll;
 import org.apache.commons.io.IOUtils;
 import org.apache.tika.Tika;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 import org.threeDPortfolioGallery.records.ExhibitionWithUserRecord;
-import org.threeDPortfolioGallery.repos.CategoryRepo;
-import org.threeDPortfolioGallery.repos.ExhibitRepo;
-import org.threeDPortfolioGallery.repos.ExhibitionRepo;
-import org.threeDPortfolioGallery.repos.UserRepo;
-import org.threeDPortfolioGallery.workloads.Category;
-import org.threeDPortfolioGallery.workloads.Exhibit;
-import org.threeDPortfolioGallery.workloads.Exhibition;
-import org.threeDPortfolioGallery.workloads.User;
+import org.threeDPortfolioGallery.repos.*;
+import org.threeDPortfolioGallery.workloads.*;
 import org.threeDPortfolioGallery.workloads.dto.AddExhibitDTO;
 import org.threeDPortfolioGallery.workloads.dto.AddExhibitionDTO;
 
@@ -27,6 +22,8 @@ import javax.ws.rs.core.Response;
 import java.io.*;
 import java.util.*;
 
+import static org.threeDPortfolioGallery.repos.GeneralRepo.FILE_PATH;
+
 /**
  *  Alle Schnittstellen für die Entity Exhibition
  *
@@ -35,8 +32,11 @@ import java.util.*;
 @Path("api/exhibitions")
 @Produces(MediaType.APPLICATION_JSON)
 public class ExhibitionResource {
-
+// TODO remove Cache-Dependency in pom.xml
     int fileCount = 0;
+
+    @Inject
+    GeneralRepo gr;
 
     @Inject
     ExhibitionRepo exhibitionRepo;
@@ -44,44 +44,55 @@ public class ExhibitionResource {
     UserRepo userRepo;
 
     @Inject
+    ThemeRepo themeRepo;
+
+    @Inject
+    PositionRepo positionRepo;
+
+    @Inject
     CategoryRepo categoryRepo;
+    @Inject
+    RoomRepo roomRepo;
 
     @Inject
     ExhibitRepo exhibitRepo;
 
     /**
      *
-     * @param fileName
-     * @return
-     * @throws FileNotFoundException
+     * @param fileName aber mit ordner davor, weil base path ist auf files/
+     * @return Response codes für FE
      */
     @GET
-    @Path("/get/{fileName}")
-    // @Produces({"image/png"})
-    public Response downloadFile(@PathParam("fileName") String fileName) throws FileNotFoundException {
-/*      File file = new File("src/main/resources/files/" + fileName);
-        if (!file.exists()) {
-            throw new RuntimeException("File not found: src/main/resources/files/" + fileName);
-        }
-        Response.ResponseBuilder res = Response.ok((Object) file);
-        res.header("Content-Disposition", "inline;filename=" + fileName);
-        return res.build();
- */
+    @Path("/download/{fileName}")
+    public Response downloadFile(@PathParam("fileName") String fileName) throws IOException {
+        File file = new File(FILE_PATH  + fileName); // + "exhibits/"
         Tika tika = new Tika();
-        InputStream fileStream = new FileInputStream("src/main/resources/files/" + fileName);
-        if (fileStream == null) {
-            throw new RuntimeException("File not found: " + "src/main/resources/files/" + fileName);
+        if (!file.exists()) {
+            return Response.noContent().entity("file not found").build();
         }
+        InputStream fileStream = new FileInputStream(FILE_PATH  + fileName);
         String mimeType = tika.detect(fileName);
         return Response.ok(fileStream, mimeType)
                 .header("Content-Disposition", "attachment; filename=" + fileName)
                 .build();
-        // src/main/resources/files/file0BodyPaint_Pinguin.c4d
+        // => src/main/resources/files/
+    }
+
+    @GET
+    @Path("/downloadImageFile/{fileName}")
+    @Produces({"image/png"})
+    public Response downloadImageFile(@PathParam("fileName") String fileName) {
+        File file = new File(FILE_PATH + fileName);
+        if (!file.exists()) {
+            return Response.noContent().entity("file not found").build();
+        }
+        return Response.ok(file).header("Content-Disposition", "inline;filename=" + fileName).build();
     }
 
     @POST
     @Path("/upload")
     @Consumes("multipart/form-data")
+    @Produces(MediaType.TEXT_PLAIN)
     @Transactional
     public Response uploadFile(MultipartFormDataInput input) {
         String fileName = "";
@@ -97,42 +108,38 @@ public class ExhibitionResource {
                     // Exhibit ex = new Exhibit(postURL, "png", "test", "desc");
                     // PictureEntity picture = new PictureEntity(postURL, "");
                     // exhibitRepo.persist(ex);
-
                     byte[] bytes = IOUtils.toByteArray(inputStream);
-                    fileName = "src/main/resources/files/" + fileName;
-                    System.out.println(fileName + " . Filename");
+                    var fileName2 = FILE_PATH + "upload/" + fileName;
 
-                    writeFile(bytes, fileName);
-                    System.out.println("Done");
+                    writeFile(bytes, fileName2);
                     fileCount++;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-            return Response.status(200).entity("{\"message\":\"uploadFile is called, Uploaded file name : " + fileName + "\"}").build();
+            return Response.status(200).entity("upload/" + fileName).build();
         } else {
             return Response.status(401).entity("something went wrong").build();
         }
     }
 
     private String getFileName(MultivaluedMap<String, String> header) {
-
         String[] contentDisposition = header.getFirst("Content-Disposition").split(";");
 
         for (String filename : contentDisposition) {
+            // System.out.println(filename);  => name="uploadedFile" filename="WhatsApp Image 2022-05-04 at 10.20.19.jpeg"
             if ((filename.trim().startsWith("filename"))) {
-                String[] name = filename.split("=");
-                return name[1].trim().replaceAll("\"", "");
+                String[] name = filename.split("="); // => [ filename, "WhatsApp Image 2022-05-04 at 10.20.19.jpeg"]
+                String nameToReturn = name[1].trim().replaceAll("\"", "");
+                return nameToReturn.replaceAll(" ","");
             }
         }
         return "unknown";
     }
     private void writeFile(byte[] content, String filename) throws IOException {
         File file = new File(filename);
-
         if (!file.exists()) {
             file.createNewFile();
-            System.out.println("success");
         }
         FileOutputStream fos = new FileOutputStream(file);
         fos.write(content);
@@ -160,8 +167,7 @@ public class ExhibitionResource {
     @RolesAllowed({"admin"})
     @Path("/getByUserId/{userid}")
     public Response getExhibitionsByUser(@PathParam("userid") long id){
-        List<Exhibition> exhibitionList = exhibitionRepo.getAllExhibitionsForUser(id);
-        return checkIfEmpty(exhibitionList);
+        return gr.checkIfEmpty(exhibitionRepo.getAllExhibitionsForUser(id));
     }
 
     /**
@@ -172,7 +178,7 @@ public class ExhibitionResource {
     @GET
     @Path("/all")
     public Response getAllExhibitions(){
-        Set<ExhibitionWithUserRecord> exhibitionSet = exhibitionRepo.listAllExhibitionsWithUserField();
+        List<ExhibitionWithUserRecord> exhibitionSet = exhibitionRepo.listAllExhibitionsWithUserField();
         if(exhibitionSet.isEmpty()){
             return Response.noContent().build();
         } else {
@@ -190,7 +196,7 @@ public class ExhibitionResource {
     @Path("/search/{searchTerm}")
     public Response getExhibitionsBySearchTerm(@PathParam("searchTerm") String searchTerm){
         List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.listAllBySearchTerm(searchTerm);
-        return checkIfEmpty(exhibitionList);
+        return gr.checkIfEmpty(exhibitionList);
     }
 
     /**
@@ -203,7 +209,7 @@ public class ExhibitionResource {
     @Path("/latestFive")
     public Response getLastFiveExhibitions(){
         List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getLatestFive();
-        return checkIfEmpty(exhibitionList);
+        return gr.checkIfEmpty(exhibitionList);
     }
 
     /**
@@ -215,7 +221,7 @@ public class ExhibitionResource {
     @Path("/getByCategoryId/{categoryId}")
     public Response getExhibitionByCategory(@PathParam("categoryId") Long id){
         List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getByCategoryId(id);
-        return checkIfEmpty(exhibitionList);
+        return gr.checkIfEmpty(exhibitionList);
     }
 
     @GET
@@ -227,17 +233,25 @@ public class ExhibitionResource {
             longIds.add(Long.parseLong(id));
         }
         List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getByCategoryIds(longIds);
-        return checkIfEmpty(exhibitionList);
+        return gr.checkIfEmpty(exhibitionList);
     }
 
+    // TODO fix code duplication
+    // TODO die @OneToOne exhibit - position beziehung geht ned, weil one to one aber mehrere entries usw. muss man fixen, prolly mit composite key oder so a schmoan
     @POST
     @Transactional
     @Path("/new")
     @Consumes(MediaType.APPLICATION_JSON)
+    @CacheInvalidateAll(cacheName = "")
     public Response postNewExhibition(AddExhibitionDTO newExhibition){
         Exhibition exhibition = new Exhibition();
         List<Exhibit> newExhibitList = new LinkedList<>();
         User user = userRepo.findById(newExhibition.getUser_id());
+        Room room = roomRepo.findById(newExhibition.getRoom_id());
+        if (user == null || room == null){
+            return Response.status(406).build();
+        }
+
         Set<Category> categories = new HashSet<>();
         for (Long i: newExhibition.getCategory_ids()) {
             Category temp = categoryRepo.findById(i);
@@ -247,25 +261,38 @@ public class ExhibitionResource {
                 categories.add(temp);
             }
         }
-        if (user == null){
-            return Response.status(406).build();
-        }
+        exhibition.user = user;
+        exhibition.room = room;
+        exhibition.categories = categories;
+        exhibition.thumbnail_url = newExhibition.getThumbnail_url();
+        exhibition.description = newExhibition.getDescription();
+        exhibition.title = newExhibition.getTitle();
+
         // exhibits
         for(AddExhibitDTO i: newExhibition.getExhibits()){
             if(i != null){
-                Exhibit newExhibit = new Exhibit(i.getUrl(), i.getData_type(), i.getTitle(), i.getDescription());
-                newExhibitList.add(newExhibit);
+                Theme theme = themeRepo.findById(i.getTheme_id());
+                Position position = positionRepo.findById(i.getPosition_id());
+                if ((theme == null) || (i.getAlignment().length() != 1) || (position == null)){        // weil alignment nur Länge von 1 hat
+                    return Response.status(406).build();
+                } else {
+                    Exhibit newExhibit = new Exhibit(i.getUrl(), i.getData_type(), i.getTitle(), i.getDescription(), i.getScale(), i.getAlignment());
+                    newExhibit.theme = theme;
+                    newExhibit.position = position;
+                    newExhibitList.add(newExhibit);
+                    //newExhibit.exhibition = exhibition;
+                  //  exhibitRepo.persist(newExhibitList);
+                }
             }
         }
 
-        exhibition.user = user;
-        exhibition.categories = categories;
-        exhibition.thumbnail_url = newExhibition.getThumbnail_url();
-        exhibition.title = newExhibition.getTitle();
 
-        // hier werden die exhibits zuerst eingeschrieben bevor sie
+
+        // hier werden die exhibits zuerst eingeschrieben bevor sie hinzugefügt werden
         if((long) newExhibitList.size() > 0){
-            exhibitRepo.postExhibits(newExhibitList, exhibition);
+             exhibitRepo.persist(newExhibitList);
+             exhibition.exhibits = newExhibitList;
+           // exhibitRepo.postExhibits(newExhibitList, exhibition);
         } else {
             return Response.status(406).entity("cannot post exhibition without exhibits").build();
         }
@@ -273,17 +300,9 @@ public class ExhibitionResource {
         return Response.ok().build();
     }
 
-    /**
-     *
-     * @param list
-     * @return  Response 200 und alle gefundenen Exhibitions
-     *                   oder 204, falls keine Exhibitions gefunden wurden
-     */
-    public Response checkIfEmpty(List list){
-        if(list.isEmpty()){
-            return Response.noContent().build();
-        } else {
-            return Response.ok().entity(list).build();
-        }
+    @DELETE
+    @Path("/deleteById/{exhibitionId}")
+    public Response deleteExhibitionById(@PathParam("exhibitionId") Long id){
+        return null;
     }
 }

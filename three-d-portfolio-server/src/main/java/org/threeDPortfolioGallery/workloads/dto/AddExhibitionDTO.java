@@ -10,8 +10,11 @@ import java.util.List;
 public class AddExhibitionDTO {
     String thumbnail_url;
     String title;
+    String description;
 
     // Theme theme;
+
+    Long room_id;
 
     Long user_id;
     Long[] category_ids;
