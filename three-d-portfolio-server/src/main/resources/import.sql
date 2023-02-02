@@ -16,9 +16,9 @@ insert into position(id, rotation, x, y, is_wall, room_id) values (3, 40, 200, 3
 insert into position(id, rotation, x, y, is_wall, room_id) values (4, 40, 200, 300, true, 1);
 
 insert into exhibition(id, title, user_id, thumbnail_url, description, room_id)
-    values (-1, 'Fotos von Künstlern', -1, 'https://1.bp.blogspot.com/-sXSoVW0bAQ8/V_515OFKUgI/AAAAAAAAwIQ/fnfeepcuTxoY84BD7U2fsDpCrHSraYmyACLcB/s1600/newsweek-cover-crop.jpg', 'ich liebe diese künstler so sehr, deren kunst ist erstaundlich', 1);
+    values (-1, 'Fotos von Künstlern', -1, 'thumbnails/banksyThumbnail.jpg', 'ich liebe diese künstler so sehr, deren kunst ist erstaundlich', 1);
 insert into exhibition(id, title, user_id, thumbnail_url, description, room_id)
-    values (-2, 'Fotos von meinem Huhn', -1, 'https://www.huehner-haltung.de/img/rhodelaender-huhn-768x768.jpg', 'Hühner sind die besten Haustiere', 1);
+    values (-2, 'Fotos von meinem Huhn', -1, 'thumbnails/chickenThumbnail.jpg', 'Hühner sind die besten Haustiere', 1);
 
 insert into exhibition(id, title, user_id, thumbnail_url, description, room_id)
     values (-3, 'Nudeln mhh', -2, 'example-exhibits/file2spaghetti-mhhh.jpg', 'mhhhhhhhhh pasta', 1);

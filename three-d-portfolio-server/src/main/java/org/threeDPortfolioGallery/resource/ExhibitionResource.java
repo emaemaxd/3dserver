@@ -110,7 +110,6 @@ public class ExhibitionResource {
                     // exhibitRepo.persist(ex);
                     byte[] bytes = IOUtils.toByteArray(inputStream);
                     var fileName2 = FILE_PATH + "upload/" + fileName;
-                    System.out.println(fileName2 + " . Filename");
 
                     writeFile(bytes, fileName2);
                     fileCount++;
