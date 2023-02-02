@@ -147,15 +147,16 @@ public class ExhibitionResource {
         fos.close();
     }
 
+    /**
+     * Gibt Exhibition zurück nach Id
+     * @param id Long
+     * @return 1 Exhibition
+     */
     @GET
-    @Path("/{exhibitionid}")
-    public Response getExhibitionById(@PathParam("exhibitionid") long id){
+    @Path("/{exhibitionId}")
+    public Response getExhibitionById(@PathParam("exhibitionId") Long id){
         Exhibition exhibition = exhibitionRepo.findById(id);
-        if (exhibition == null) {
-            return Response.noContent().build();
-        }else {
-            return Response.ok().entity(exhibition).build();
-        }
+        return gr.checkIfEmpty(exhibition);
     }
 
     /**
@@ -165,8 +166,8 @@ public class ExhibitionResource {
      */
     @GET
     @RolesAllowed({"admin"})
-    @Path("/getByUserId/{userid}")
-    public Response getExhibitionsByUser(@PathParam("userid") long id){
+    @Path("/getByUserId/{userId}")
+    public Response getExhibitionsByUser(@PathParam("userId") long id){
         return gr.checkIfEmpty(exhibitionRepo.getAllExhibitionsForUser(id));
     }
 
@@ -306,6 +307,9 @@ public class ExhibitionResource {
         if (exhibition == null){
             return Response.status(406).entity("no exhibition with this id").build();
         } else {
+            for (Exhibit exhibit : exhibition.exhibits) {
+                exhibitRepo.delete(exhibit);
+            }
             exhibitionRepo.delete(exhibition);
             return Response.noContent().build();
         }

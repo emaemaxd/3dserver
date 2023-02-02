@@ -21,6 +21,6 @@ public class Position extends PanacheEntity {
     public Room room;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "position", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "position")
     public List<Exhibit> exhibit;
 }
