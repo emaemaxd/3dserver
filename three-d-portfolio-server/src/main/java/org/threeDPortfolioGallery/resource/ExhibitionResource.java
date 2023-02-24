@@ -147,15 +147,16 @@ public class ExhibitionResource {
         fos.close();
     }
 
+    /**
+     * Gibt Exhibition zurück nach Id
+     * @param id Long
+     * @return 1 Exhibition
+     */
     @GET
-    @Path("/{exhibitionid}")
-    public Response getExhibitionById(@PathParam("exhibitionid") long id){
-        Exhibition exhibition = exhibitionRepo.getById(id);
-        if (exhibition == null) {
-            return Response.noContent().build();
-        }else {
-            return Response.ok().entity(exhibition).build();
-        }
+    @Path("/{exhibitionId}")
+    public Response getExhibitionById(@PathParam("exhibitionId") Long id){
+        Exhibition exhibition = exhibitionRepo.findById(id);
+        return gr.checkIfEmpty(exhibition);
     }
 
     /**
@@ -165,8 +166,8 @@ public class ExhibitionResource {
      */
     @GET
     @RolesAllowed({"admin"})
-    @Path("/getByUserId/{userid}")
-    public Response getExhibitionsByUser(@PathParam("userid") long id){
+    @Path("/getByUserId/{userId}")
+    public Response getExhibitionsByUser(@PathParam("userId") long id){
         return gr.checkIfEmpty(exhibitionRepo.getAllExhibitionsForUser(id));
     }
 
@@ -242,7 +243,6 @@ public class ExhibitionResource {
     @Transactional
     @Path("/new")
     @Consumes(MediaType.APPLICATION_JSON)
-    @CacheInvalidateAll(cacheName = "")
     public Response postNewExhibition(AddExhibitionDTO newExhibition){
         Exhibition exhibition = new Exhibition();
         List<Exhibit> newExhibitList = new LinkedList<>();
@@ -279,15 +279,13 @@ public class ExhibitionResource {
                     Exhibit newExhibit = new Exhibit(i.getUrl(), i.getData_type(), i.getTitle(), i.getDescription(), i.getScale(), i.getAlignment());
                     newExhibit.theme = theme;
                     newExhibit.position = position;
+                    newExhibit.exhibition = exhibition;
                     newExhibitList.add(newExhibit);
                     //newExhibit.exhibition = exhibition;
                   //  exhibitRepo.persist(newExhibitList);
                 }
             }
         }
-
-
-
         // hier werden die exhibits zuerst eingeschrieben bevor sie hinzugefügt werden
         if((long) newExhibitList.size() > 0){
              exhibitRepo.persist(newExhibitList);
@@ -301,8 +299,19 @@ public class ExhibitionResource {
     }
 
     @DELETE
+    @Transactional
+    @Produces(MediaType.TEXT_PLAIN)
     @Path("/deleteById/{exhibitionId}")
     public Response deleteExhibitionById(@PathParam("exhibitionId") Long id){
-        return null;
+        Exhibition exhibition = exhibitionRepo.findById(id);
+        if (exhibition == null){
+            return Response.status(406).entity("no exhibition with this id").build();
+        } else {
+            for (Exhibit exhibit : exhibition.exhibits) {
+                exhibitRepo.delete(exhibit);
+            }
+            exhibitionRepo.delete(exhibition);
+            return Response.noContent().build();
+        }
     }
 }

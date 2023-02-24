@@ -32,7 +32,7 @@ public class ExhibitResource {
         return gr.checkIfEmpty(exhibitRepo.findById(id));
     }
 
-    // TODO get exhibits by exhibition repo
+    // TODO fragen ob get exhibits by exhibition repo needed???
     @GET
     @Path("getByExhibition/{exhibitionId}")
     public Response getExhibitsByExhibitionId(@PathParam("exhibitionId") Long id){

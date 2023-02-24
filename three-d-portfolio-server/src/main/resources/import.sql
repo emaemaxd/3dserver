@@ -10,10 +10,10 @@ insert into theme(id, name, thumbnail_url, container_url, container_mat_url, lig
 insert into room(id, name, thumbnail_url, room_floor_url, room_wall_url, wall_mat_url, floor_mat_url, floorRepeatTexture)
     values (1, 'Cross', 'thumbnails/crossRoomThumbnail', 'rooms/floor2.gltf', 'rooms/wall2.gltf', 'src/nopath', 'src/nopath', 1);  /* src/main/resources/files/rooms/ */
 
-insert into position(id, rotation, x, y, is_wall, room_id) values (1, null, 100, 200, false, 1);
-insert into position(id, rotation, x, y, is_wall, room_id) values (2, 40, 200, 300, true, 1);
-insert into position(id, rotation, x, y, is_wall, room_id) values (3, 40, 200, 300, true, 1);
-insert into position(id, rotation, x, y, is_wall, room_id) values (4, 40, 200, 300, true, 1);
+insert into position(id, rotation, x, y, is_wall, room_id) values (1, null, 200, 200, false, 1);
+insert into position(id, rotation, x, y, is_wall, room_id) values (2, 40, 200, 50, true, 1);
+insert into position(id, rotation, x, y, is_wall, room_id) values (3, 40, 200, 350, false, 1);
+insert into position(id, rotation, x, y, is_wall, room_id) values (4, 40, 200, 500, false, 1);
 
 insert into exhibition(id, title, user_id, thumbnail_url, description, room_id)
     values (-1, 'Fotos von Künstlern', -1, 'thumbnails/banksyThumbnail.jpg', 'ich liebe diese künstler so sehr, deren kunst ist erstaundlich', 1);

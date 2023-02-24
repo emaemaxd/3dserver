@@ -21,7 +21,7 @@ public class Theme extends PanacheEntity {
     public float light_intensity;
 
     // relations
-    @OneToMany(mappedBy = "theme", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "theme")
     @JsonIgnore
     public List<Exhibit> exhibits;
 }
