@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="three-d-portfolio-server" target="18" />
+      <module name="three-d-portfolio-server" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
