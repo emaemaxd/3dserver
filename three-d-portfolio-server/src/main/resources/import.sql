@@ -9,19 +9,30 @@ insert into theme(id, name, thumbnail_url, container_url, container_mat_url, lig
 
 insert into room(id, name, thumbnail_url, room_floor_url, room_wall_url, wall_mat_url, floor_mat_url, floorRepeatTexture)
     values (1, 'Cross', 'thumbnails/crossRoomThumbnail.png', 'rooms/floor2.gltf', 'rooms/wall2.gltf', 'src/nopath', 'src/nopath', 1);  /* src/main/resources/files/rooms/ */
+insert into room(id, name, thumbnail_url, room_floor_url, room_wall_url, wall_mat_url, floor_mat_url, floorRepeatTexture)
+    values (2, 'Cube', 'thumbnails/crossRoomThumbnail.png', 'rooms/floor1.gltf', 'rooms/wall1.gltf', 'src/nopath', 'src/nopath', 1);  /* src/main/resources/files/rooms/ */
 
-insert into position(id, rotation, x, y, is_wall, room_id) values (1, null, 200, 200, false, 1);
-insert into position(id, rotation, x, y, is_wall, room_id) values (2, 40, 200, 50, true, 1);
+insert into position(id, rotation, x, y, is_wall, room_id) values (1, null, 500, 0, false, 1);
+insert into position(id, rotation, x, y, is_wall, room_id) values (2, null, -100, 0, false, 1);
+
+/*
 insert into position(id, rotation, x, y, is_wall, room_id) values (3, 40, 200, 350, false, 1);
 insert into position(id, rotation, x, y, is_wall, room_id) values (4, 40, 200, 500, false, 1);
+*/
+insert into position(id, rotation, x, y, is_wall, room_id) values (3, 0, 200, -590, true, 1);
+insert into position(id, rotation, x, y, is_wall, room_id) values (4, 90, -790, 0, true, 1);
+insert into position(id, rotation, x, y, is_wall, room_id) values (5, 0, -500, 190, true, 1);
+insert into position(id, rotation, x, y, is_wall, room_id) values (6, 0, -500, -190, true, 1);
+insert into position(id, rotation, x, y, is_wall, room_id) values (7, 0, 200, 575, true, 1);
+
 
 insert into exhibition(id, title, user_id, thumbnail_url, description, room_id)
     values (-1, 'Fotos von Künstlern', -1, 'thumbnails/banksyThumbnail.jpg', 'ich liebe diese künstler so sehr, deren kunst ist erstaundlich', 1);
 insert into exhibition(id, title, user_id, thumbnail_url, description, room_id)
-    values (-2, 'Fotos von meinem Huhn', -1, 'thumbnails/chickenThumbnail.jpg', 'Hühner sind die besten Haustiere', 1);
+    values (-2, 'Fotos von meinem Haustier', -1, 'thumbnails/chickenThumbnail.jpg', 'Hühner sind die besten Haustiere', 1);
 
 insert into exhibition(id, title, user_id, thumbnail_url, description, room_id)
-    values (-3, 'Nudeln mhh', -2, 'example-exhibits/file2spaghetti-mhhh.jpg', 'mhhhhhhhhh pasta', 1);
+    values (-3, 'Newer Abstract', -2, 'example-exhibits/abstract1.jpg', 'Just some of my latest pieces. I tried combining lines with bright colors to achieve abstract pieces.', 1);
 insert into exhibition(id, title, user_id, thumbnail_url, description, room_id)
     values (-4, 'Favourite Shots in CP2077', -2, 'thumbnails/ExampleThumbnailCyberpunk.jpg', 'Just some pictures i took while exploring Night City!', 1);
 
@@ -31,8 +42,19 @@ insert into exhibit(id, title, scale, alignment, url, exhibition_id)
 insert into exhibit(id, title, scale, alignment, url, exhibition_id)
     values (-3, 'Freunde.', 0, 'c', 'https://img.fotocommunity.com/hahn-im-korb-bielefelder-kennhuehner-huehnerschar-mit-kraehendem-hahn-19460011-fd7e-4c9f-961e-aeba8b21b00a.jpg?width=1000', -2);
  insert into exhibit(id, title, scale, alignment, url, exhibition_id)
-
     values (-4, 'Stand', 0, 'c', 'example-exhibits/exampleExhibitOrbital.jpg', -4);
+
+/*
+ TODO
+ */
+insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id)
+values (-5, 'Abstract 1', 0, 'c', 'example-exhibits%2Fabstract1.jpg', -3, 4);
+insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id)
+values (-6, 'Abstract 2', 0, 'c', 'example-exhibits%2Fabstract2.jpg', -3, 3);
+insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id)
+values (-7, 'Abstract 3', 0, 'c', 'example-exhibits%2Fabstract3.jpg', -3, 5);
+insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id, data_type)
+values (-8, 'Abstract 3D', 0, 'c', 'example-exhibits/abstract5.gltf', -3, 1, 'gltf');
 
 insert into category(id, category_title, color) values (1, 'Umwelt', '#C1BAFF');
 insert into category(id, category_title, color) values (2, 'Tiere', '#ADD0FF');
