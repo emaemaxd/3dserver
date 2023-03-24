@@ -76,16 +76,21 @@ public class UserResource {
     @Path("/login")
     public Response login(UserLoginDTO loginDTO){
         String token;
+        User user = null;
         // first hash password
         loginDTO.setPassword(this.hashPassword(loginDTO.getPassword()));
 
         // then find user
         // return ((this.userRepo.isUser(loginDTO))? Response.ok("{'token':'Test'}") : Response.status(401)).build();
-        User user = userRepo.find("(user_name=?1 or email=?2) and password=?3", loginDTO.getEmailOrUsername(), loginDTO.getEmailOrUsername(), loginDTO.getPassword()).singleResult();
+        try {
+            user = userRepo.find("(user_name=?1 or email=?2) and password=?3", loginDTO.getEmailOrUsername(), loginDTO.getEmailOrUsername(), loginDTO.getPassword()).singleResult();
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
         if (user != null) {
             return Response.ok(jwtService.generateJwt(user.id)).build();
         }else {
-            return Response.status(Response.Status.UNAUTHORIZED).build();
+            return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
 }

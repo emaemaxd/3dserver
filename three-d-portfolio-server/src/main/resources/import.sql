@@ -1,5 +1,5 @@
 insert into users (id, user_name, email, password) values (-1, 'user', 'email@gmx.com', 'cGFzc21leW95b3lv');
-insert into users (id, user_name, email, password) values (-2, 'hehe_cat2.0', 'ema_il@gmx.com', 'cGFzc21leW95b3lv');
+insert into users (id, user_name, email, password) values (-2, 'lorenz', 'ema_il@gmx.com', 'cGFzc21leW95b3lv');
 insert into users (id, user_name, email, password) values (-3, 'FAnDave', 'ichliebejuicewrld@gmx.com', 'cGFzc21leW95b3lv');
 
 insert into theme(id, name, thumbnail_url, container_url, container_mat_url, light_intensity)
@@ -48,17 +48,20 @@ insert into exhibit(id, title, scale, alignment, url, exhibition_id)
  TODO
  */
 insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id)
-values (-5, 'Abstract 1', 0, 'c', 'example-exhibits%2Fabstract1.jpg', -3, 4);
+values (-5, 'Abstract 1', 0, 'c', 'example-exhibits/abstract1.jpg', -3, 4);
 insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id)
-values (-6, 'Abstract 2', 0, 'c', 'example-exhibits%2Fabstract2.jpg', -3, 3);
+values (-6, 'Abstract 2', 0, 'c', 'example-exhibits/abstract2.jpg', -3, 3);
 insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id)
-values (-7, 'Abstract 3', 0, 'c', 'example-exhibits%2Fabstract3.jpg', -3, 5);
+values (-7, 'Abstract 3', 0, 'c', 'example-exhibits/abstract3.jpg', -3, 5);
 insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id, data_type)
 values (-8, 'Abstract 3D', 0, 'c', 'example-exhibits/abstract5.gltf', -3, 1, 'gltf');
 
 insert into category(id, category_title, color) values (1, 'Umwelt', '#C1BAFF');
 insert into category(id, category_title, color) values (2, 'Tiere', '#ADD0FF');
 insert into category(id, category_title, color) values (3, 'Essen', '#E2ADFF');
+insert into category(id, category_title, color) values (4, 'Geschichte', '#FA9EDC');
+insert into category(id, category_title, color) values (5, 'Länder', '#D9A7F5');
+insert into category(id, category_title, color) values (6, 'Kunst', '#E4D7F6');
 /*
 insert into exhibitions_categories(category_id, exhibition_id) values (1,-2);
 insert into exhibitions_categories(category_id, exhibition_id) values (2,-2);
