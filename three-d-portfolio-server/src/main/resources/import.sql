@@ -47,12 +47,12 @@ insert into exhibit(id, title, scale, alignment, url, exhibition_id)
 /*
  TODO
  */
-insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id)
-values (-5, 'Abstract 1', 0, 'c', 'example-exhibits%2Fabstract1.jpg', -3, 4);
-insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id)
-values (-6, 'Abstract 2', 0, 'c', 'example-exhibits%2Fabstract2.jpg', -3, 3);
-insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id)
-values (-7, 'Abstract 3', 0, 'c', 'example-exhibits%2Fabstract3.jpg', -3, 5);
+insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id, data_type)
+values (-5, 'Abstract 1', 0, 'c', 'example-exhibits%2Fabstract1.jpg', -3, 4, 'jpg');
+insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id, data_type)
+values (-6, 'Abstract 2', 0, 'c', 'example-exhibits%2Fabstract2.jpg', -3, 3, 'jpg');
+insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id, data_type)
+values (-7, 'Abstract 3', 0, 'c', 'example-exhibits%2Fabstract3.jpg', -3, 5, 'jpg');
 insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id, data_type)
 values (-8, 'Abstract 3D', 0, 'c', 'example-exhibits%2Fabstract5.gltf', -3, 1, 'gltf');
 
