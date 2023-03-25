@@ -68,7 +68,7 @@ values (-11, 'Abstract 7', 0, 'c', 'example-exhibits%2Fabstract7.jpg', -3, 9, 'j
 insert into exhibit(id, title, description, scale, alignment, url, exhibition_id, position_id, data_type)
 values
     (-5, 'Abstract 1', 'Acrylic paint ', 0, 'c', 'example-exhibits%2Fabstract1.jpg', -3, 4, 'jpg'),
-    (-13, 'Abschlussfolie', 'Vielen Dank für Ihre Aufmerksamkeit!', 20, 'c', 'example-exhibits%2F3D-Porfolio-AbschlussFolie.png', -3, 11, 'png'),
+    (-13, 'Abschlussfolie', 'Vielen Dank für Ihre Aufmerksamkeit!', 0, 'c', 'example-exhibits%2F3D-Porfolio-AbschlussFolie.png', -3, 11, 'png'),
        (-14, 'Abstract 8', 'Swirls with different blue, pink and beige tones', 0, 'c', 'example-exhibits%2Fabstract8.jpg', -3, 12, 'jpg'),
        (-15, 'Red Lake', 'Abstract piece with mainly red and blue', 0, 'c', 'example-exhibits%2Fabstract9.jpg', -3, 13, 'jpg'),
     (-12, 'Satisfying video', 'Get hypnotized by the calm movement of the video', 0, 'c', 'example-exhibits%2Fabstract10.mp4', -3, 10, 'mp4'),
