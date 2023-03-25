@@ -19,11 +19,18 @@ insert into position(id, rotation, x, y, is_wall, room_id) values (2, null, -100
 insert into position(id, rotation, x, y, is_wall, room_id) values (3, 40, 200, 350, false, 1);
 insert into position(id, rotation, x, y, is_wall, room_id) values (4, 40, 200, 500, false, 1);
 */
-insert into position(id, rotation, x, y, is_wall, room_id) values (3, 0, 200, -590, true, 1);
+
 insert into position(id, rotation, x, y, is_wall, room_id) values (4, 90, -790, 0, true, 1);
 insert into position(id, rotation, x, y, is_wall, room_id) values (5, 0, -500, 190, true, 1);
 insert into position(id, rotation, x, y, is_wall, room_id) values (6, 0, -500, -190, true, 1);
-insert into position(id, rotation, x, y, is_wall, room_id) values (7, 0, 200, 575, true, 1);
+insert into position(id, rotation, x, y, is_wall, room_id) values (8, 0, -200, -190, true, 1);
+insert into position(id, rotation, x, y, is_wall, room_id) values (9, 0, -200, 190, true, 1);
+
+insert into position(id, rotation, x, y, is_wall, room_id) values (7, 0, 200, 590, true, 1);
+insert into position(id, rotation, x, y, is_wall, room_id)
+values (10, 0, 200, -590, true, 1), (3, 90, 390, -350, true, 1), (14, 90, 5, -350, true, 1),
+       (11, 0, 200, 590, true, 1), (12, 90, 5, 350, true, 1), (13, 90, 390, 350, true, 1);
+
 
 
 insert into exhibition(id, title, user_id, thumbnail_url, description, room_id)
@@ -34,7 +41,7 @@ insert into exhibition(id, title, user_id, thumbnail_url, description, room_id)
 insert into exhibition(id, title, user_id, thumbnail_url, description, room_id)
     values (-3, 'Newer Abstract', -2, 'example-exhibits/abstract1.jpg', 'Just some of my latest pieces. I tried combining lines with bright colors to achieve abstract pieces.', 1);
 insert into exhibition(id, title, user_id, thumbnail_url, description, room_id)
-    values (-4, 'Favourite Shots in CP2077', -2, 'thumbnails/ExampleThumbnailCyberpunk.jpg', 'Just some pictures i took while exploring Night City!', 1);
+    values (-4, 'Favourite Shots in CP2077', -2, 'thumbnails/cpThumbnail.jpg', 'Just some pictures i took while exploring Night City!', 1);
 
 insert into exhibit(id, title, scale, alignment) values (-1, 'Picasso Foto', 0, 'c');
 insert into exhibit(id, title, scale, alignment, url, exhibition_id)
@@ -48,13 +55,26 @@ insert into exhibit(id, title, scale, alignment, url, exhibition_id)
  TODO
  */
 insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id, data_type)
-values (-5, 'Abstract 1', 0, 'c', 'example-exhibits%2Fabstract1.jpg', -3, 4, 'jpg');
-insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id, data_type)
-values (-6, 'Abstract 2', 0, 'c', 'example-exhibits%2Fabstract2.jpg', -3, 3, 'jpg');
-insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id, data_type)
 values (-7, 'Abstract 3', 0, 'c', 'example-exhibits%2Fabstract3.jpg', -3, 5, 'jpg');
 insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id, data_type)
 values (-8, 'Abstract 3D', 40, 'c', 'example-exhibits%2Fabstract5.gltf', -3, 1, 'gltf');
+insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id, data_type)
+values (-9, 'Abstract 4', 0, 'c', 'example-exhibits%2Fabstract4.jpg', -3, 6, 'jpg');
+insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id, data_type)
+values (-10, 'Abstract 6', 0, 'c', 'example-exhibits%2Fabstract6.jpg', -3, 8, 'jpg');
+insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id, data_type)
+values (-11, 'Abstract 7', 0, 'c', 'example-exhibits%2Fabstract7.jpg', -3, 9, 'jpg');
+
+insert into exhibit(id, title, description, scale, alignment, url, exhibition_id, position_id, data_type)
+values
+    (-5, 'Abstract 1', 'Acrylic paint ', 0, 'c', 'example-exhibits%2Fabstract1.jpg', -3, 4, 'jpg'),
+    (-13, 'Abschlussfolie', 'Vielen Dank für Ihre Aufmerksamkeit!', 20, 'c', 'example-exhibits%2F3D-Porfolio-AbschlussFolie.png', -3, 11, 'png'),
+       (-14, 'Abstract 8', 'Swirls with different blue, pink and beige tones', 0, 'c', 'example-exhibits%2Fabstract8.jpg', -3, 12, 'jpg'),
+       (-15, 'Red Lake', 'Abstract piece with mainly red and blue', 0, 'c', 'example-exhibits%2Fabstract9.jpg', -3, 13, 'jpg'),
+    (-12, 'Satisfying video', 'Get hypnotized by the calm movement of the video', 0, 'c', 'example-exhibits%2Fabstract10.mp4', -3, 10, 'mp4'),
+       (-16, 'Night Lights', 'LED lights taken with long exposure', 0, 'c', 'example-exhibits%2Fabstract11.jpg', -3, 14, 'jpg'),
+       (-6, 'On the Surface', 'Water in dawn light', 0, 'c', 'example-exhibits%2Fabstract2.jpg', -3, 3, 'jpg');
+
 
 insert into category(id, category_title, color) values (1, 'Umwelt', '#C1BAFF');
 insert into category(id, category_title, color) values (2, 'Tiere', '#ADD0FF');
@@ -67,7 +87,7 @@ insert into exhibitions_categories(category_id, exhibition_id) values (1,-2);
 insert into exhibitions_categories(category_id, exhibition_id) values (2,-2);
 
  */
-insert into exhibitions_categories(category_id, exhibition_id) values (3,-3);
+insert into exhibitions_categories(category_id, exhibition_id) values (6,-3);
 
 
 /* special test cases
