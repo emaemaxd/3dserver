@@ -8,29 +8,26 @@ insert into theme(id, name, thumbnail_url, container_url, container_mat_url, lig
     values (2, 'Dreamy', 'thumbnails/themeDreamy.jpg', '~/test.c4d', '~/test.c4d', 0.0 );
 
 insert into room(id, name, thumbnail_url, room_floor_url, room_wall_url, wall_mat_url, floor_mat_url, floorRepeatTexture)
-    values (1, 'Cross', 'thumbnails/crossRoomThumbnail.png', 'rooms/floor2.gltf', 'rooms/wall2.gltf', 'src/nopath', 'src/nopath', 1);  /* src/main/resources/files/rooms/ */
-insert into room(id, name, thumbnail_url, room_floor_url, room_wall_url, wall_mat_url, floor_mat_url, floorRepeatTexture)
-    values (2, 'Cube', 'thumbnails/crossRoomThumbnail.png', 'rooms/floor1.gltf', 'rooms/wall1.gltf', 'src/nopath', 'src/nopath', 1);  /* src/main/resources/files/rooms/ */
+    values (1, 'Cross', 'thumbnails/crossRoomThumbnail.png', 'rooms/floor2.gltf', 'rooms/wall2.gltf', 'src/nopath', 'src/nopath', 1),
+            (2, 'Cube', 'thumbnails/cubeThumbnail.png', 'rooms/floor1.gltf', 'rooms/wall1.gltf', 'src/nopath', 'src/nopath', 1),
+            (3, 'Triangle', 'thumbnails/triangleThumbnail.png', 'rooms/floor3.gltf', 'rooms/wall3.gltf', '', '', 1);  /* src/main/resources/files/rooms/ */
 
-insert into position(id, rotation, x, y, is_wall, room_id) values (1, null, 500, 0, false, 1);
-insert into position(id, rotation, x, y, is_wall, room_id) values (2, null, -100, 0, false, 1);
 
 /*
 insert into position(id, rotation, x, y, is_wall, room_id) values (3, 40, 200, 350, false, 1);
 insert into position(id, rotation, x, y, is_wall, room_id) values (4, 40, 200, 500, false, 1);
 */
 
-insert into position(id, rotation, x, y, is_wall, room_id) values (4, 90, -790, 0, true, 1);
-insert into position(id, rotation, x, y, is_wall, room_id) values (5, 0, -500, 190, true, 1);
-insert into position(id, rotation, x, y, is_wall, room_id) values (6, 0, -500, -190, true, 1);
-insert into position(id, rotation, x, y, is_wall, room_id) values (8, 0, -200, -190, true, 1);
-insert into position(id, rotation, x, y, is_wall, room_id) values (9, 0, -200, 190, true, 1);
-
-insert into position(id, rotation, x, y, is_wall, room_id) values (7, 0, 200, 590, true, 1);
 insert into position(id, rotation, x, y, is_wall, room_id)
-values (10, 0, 200, -590, true, 1), (3, 90, 390, -350, true, 1), (14, 90, 5, -350, true, 1),
-       (11, 0, 200, 590, true, 1), (12, 90, 5, 350, true, 1), (13, 90, 390, 350, true, 1);
+values (2, null, -350, 0, false, 1), (4, 90, -790, 0, true, 1), (5, 0, -500, 190, true, 1), (6, 0, -500, -190, true, 1), (8, 0, -200, -190, true, 1), (9, 0, -200, 190, true, 1),
+        (1, null, 500, 0, false, 1),
+        (7, 0, 200, 590, true, 1),
+        (10, 0, 200, -590, true, 1), (3, 90, 390, -350, true, 1), (14, 90, 5, -350, true, 1),
+        (11, 0, 200, 590, true, 1), (12, 90, 5, 350, true, 1), (13, 90, 390, 350, true, 1),
+        (15, 0, 0, 0, false, 2),
 
+        (16, 0, 0, 0, false, 3),
+        (17, 0, 100, 0, true, 3);
 
 
 insert into exhibition(id, title, user_id, thumbnail_url, description, room_id)
@@ -58,37 +55,41 @@ insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id
 values (-7, 'Abstract 3', 0, 'c', 'example-exhibits%2Fabstract3.jpg', -3, 5, 'jpg');
 insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id, data_type)
 values (-8, 'Abstract 3D', 40, 'c', 'example-exhibits%2Fabstract5.gltf', -3, 1, 'gltf');
+
 insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id, data_type)
 values (-9, 'Abstract 4', 0, 'c', 'example-exhibits%2Fabstract4.jpg', -3, 6, 'jpg');
 insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id, data_type)
 values (-10, 'Abstract 6', 0, 'c', 'example-exhibits%2Fabstract6.jpg', -3, 8, 'jpg');
-insert into exhibit(id, title, scale, alignment, url, exhibition_id, position_id, data_type)
-values (-11, 'Abstract 7', 0, 'c', 'example-exhibits%2Fabstract7.jpg', -3, 9, 'jpg');
 
 insert into exhibit(id, title, description, scale, alignment, url, exhibition_id, position_id, data_type)
 values
-    (-5, 'Abstract 1', 'Acrylic paint ', 0, 'c', 'example-exhibits%2Fabstract1.jpg', -3, 4, 'jpg'),
+    (-20, 'Art Blob', 'Sculpture made by Lorenz Litzlanze', 40, 'c', 'example-exhibits%2FabstraktArtBlob.gltf', -3, 2, 'gltf'),
+
+    (-5, 'Warm Freeze', 'Acrylic paint in multiple colors', 0, 'c', 'example-exhibits%2Fabstract1.jpg', -3, 4, 'jpg'),
+        (-11, 'Peacock', 'Play with colors reminding of a view from a microscope', 0, 'c', 'example-exhibits%2Fabstract7.jpg', -3, 9, 'jpg'),
     (-13, 'Abschlussfolie', 'Vielen Dank für Ihre Aufmerksamkeit!', 0, 'c', 'example-exhibits%2F3D-Porfolio-AbschlussFolie.png', -3, 11, 'png'),
-       (-14, 'Abstract 8', 'Swirls with different blue, pink and beige tones', 0, 'c', 'example-exhibits%2Fabstract8.jpg', -3, 12, 'jpg'),
-       (-15, 'Red Lake', 'Abstract piece with mainly red and blue', 0, 'c', 'example-exhibits%2Fabstract9.jpg', -3, 13, 'jpg'),
+        (-14, 'Nail Polish', 'Swirls with different blue, pink and beige tones', 0, 'c', 'example-exhibits%2Fabstract8.jpg', -3, 12, 'jpg'),
+        (-15, 'Red Lake', 'Abstract piece with mainly red and blue', 0, 'c', 'example-exhibits%2Fabstract9.jpg', -3, 13, 'jpg'),
     (-12, 'Satisfying video', 'Get hypnotized by the calm movement of the video', 0, 'c', 'example-exhibits%2Fabstract10.mp4', -3, 10, 'mp4'),
-       (-16, 'Night Lights', 'LED lights taken with long exposure', 0, 'c', 'example-exhibits%2Fabstract11.jpg', -3, 14, 'jpg'),
-       (-6, 'On the Surface', 'Water in dawn light', 0, 'c', 'example-exhibits%2Fabstract2.jpg', -3, 3, 'jpg');
+        (-16, 'Night Lights', 'LED lights taken with long exposure', 0, 'c', 'example-exhibits%2Fabstract11.jpg', -3, 14, 'jpg'),
+        (-6, 'On the Surface', 'Water in dawn light', 0, 'c', 'example-exhibits%2Fabstract2.jpg', -3, 3, 'jpg');
 
 
-insert into category(id, category_title, color) values (1, 'Umwelt', '#C1BAFF');
-insert into category(id, category_title, color) values (2, 'Tiere', '#ADD0FF');
-insert into category(id, category_title, color) values (3, 'Essen', '#E2ADFF');
-insert into category(id, category_title, color) values (4, 'Geschichte', '#FA9EDC');
-insert into category(id, category_title, color) values (5, 'Länder', '#D9A7F5');
-insert into category(id, category_title, color) values (6, 'Kunst', '#E4D7F6');
+insert into category(id, category_title, color)
+values (1, 'Umwelt', '#C1BAFF'),
+       (2, 'Tiere', '#ADD0FF'),
+       (3, 'Essen', '#E2ADFF'),
+       (4, 'Geschichte', '#FA9EDC'),
+       (5, 'Länder', '#D9A7F5'),
+       (6, 'Kunst', '#E4D7F6'),
+       (7, 'Spiel und Film', '#C3F5FD');
 /*
 insert into exhibitions_categories(category_id, exhibition_id) values (1,-2);
 insert into exhibitions_categories(category_id, exhibition_id) values (2,-2);
 
  */
 insert into exhibitions_categories(category_id, exhibition_id) values (6,-3);
-
+insert into exhibitions_categories(category_id, exhibition_id) values (7,-4);
 
 /* special test cases
 
