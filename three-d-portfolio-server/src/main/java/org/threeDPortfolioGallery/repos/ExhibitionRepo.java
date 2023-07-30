@@ -11,6 +11,7 @@ import javax.persistence.TypedQuery;
 import java.util.*;
 import java.util.stream.Collectors;
 
+//TODO JAVADOC
 @ApplicationScoped
 public class ExhibitionRepo implements PanacheRepository<Exhibition> {
 
@@ -71,7 +72,7 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
 
     /**
      * @param id category id
-     * @return List<ExhibitionWithUserRecord>
+     * @return eine Liste von ExhibitionWithUserRecord
      */
     public List<ExhibitionWithUserRecord> getByCategoryId(Long id) {
         String sql = "select new org.threeDPortfolioGallery.records.ExhibitionWithUserRecord(e, u.user_name, u.icon_url) " +

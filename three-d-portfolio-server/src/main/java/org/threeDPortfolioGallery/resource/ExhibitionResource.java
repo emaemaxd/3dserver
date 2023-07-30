@@ -22,8 +22,6 @@ import javax.ws.rs.core.Response;
 import java.io.*;
 import java.util.*;
 
-import static org.threeDPortfolioGallery.repos.GeneralRepo.FILE_PATH;
-
 /**
  *  Alle Schnittstellen für die Entity Exhibition
  *
@@ -33,10 +31,10 @@ import static org.threeDPortfolioGallery.repos.GeneralRepo.FILE_PATH;
 @Produces(MediaType.APPLICATION_JSON)
 public class ExhibitionResource {
 // TODO remove Cache-Dependency in pom.xml
+    // TODO JAVADOC
     int fileCount = 0;
 
-    @Inject
-    GeneralRepo gr;
+    public static final String FILE_PATH = "src/main/resources/files/";
 
     @Inject
     ExhibitionRepo exhibitionRepo;
@@ -156,7 +154,11 @@ public class ExhibitionResource {
     @Path("/{exhibitionId}")
     public Response getExhibitionById(@PathParam("exhibitionId") Long id){
         Exhibition exhibition = exhibitionRepo.findById(id);
-        return gr.checkIfEmpty(exhibition);
+        if(exhibition == null){
+            return Response.noContent().build();
+        } else {
+            return Response.ok().entity(exhibition).build();
+        }
     }
 
     /**
@@ -168,7 +170,12 @@ public class ExhibitionResource {
     @RolesAllowed({"admin"})
     @Path("/getByUserId/{userId}")
     public Response getExhibitionsByUser(@PathParam("userId") long id){
-        return gr.checkIfEmpty(exhibitionRepo.getAllExhibitionsForUser(id));
+        List<Exhibition> exhibitions = exhibitionRepo.getAllExhibitionsForUser(id);
+        if(exhibitions == null){
+            return Response.noContent().build();
+        } else {
+            return Response.ok().entity(exhibitions).build();
+        }
     }
 
     /**
@@ -196,12 +203,17 @@ public class ExhibitionResource {
     @GET
     @Path("/search/{searchTerm}")
     public Response getExhibitionsBySearchTerm(@PathParam("searchTerm") String searchTerm){
-        List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.listAllBySearchTerm(searchTerm);
-        return gr.checkIfEmpty(exhibitionList);
+        List<ExhibitionWithUserRecord> exhibitions = exhibitionRepo.listAllBySearchTerm(searchTerm);
+        if(exhibitions == null){
+            return Response.noContent().build();
+        } else {
+            return Response.ok().entity(exhibitions).build();
+        }
     }
 
     /**
-     * Zeigt die letzten 5 hinzugefügten Exhibitions
+     * REST-Schnittstelle, die die letzten 5 hinzugefügten Exhibitions liefert
+     *
      * @return  Response 200 und 5 Exhibitions
      *                   oder 204, falls keine Exhibitions gefunden wurden
      */
@@ -209,20 +221,30 @@ public class ExhibitionResource {
     @PermitAll
     @Path("/latestFive")
     public Response getLastFiveExhibitions(){
-        List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getLatestFive();
-        return gr.checkIfEmpty(exhibitionList);
+        List<ExhibitionWithUserRecord> exhibitions = exhibitionRepo.getLatestFive();
+        if(exhibitions == null){
+            return Response.noContent().build();
+        } else {
+            return Response.ok().entity(exhibitions).build();
+        }
     }
 
     /**
-     * Gibt alle Exhibitions zu gesuchten Category Id zurück
-     * @return  Response 200 + Exhibition der Category oder
-     *          Response 204
+     * REST-Schnittstelle, die alle Exhibitions zu der gesuchten Category Id zurückgibt
+     *
+     * @param id Long id der Category
+     * @return  Response 200 und alle Exhibitions der angegebenen Category
+     *          oder Response 204
      */
     @GET
     @Path("/getByCategoryId/{categoryId}")
     public Response getExhibitionByCategory(@PathParam("categoryId") Long id){
-        List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getByCategoryId(id);
-        return gr.checkIfEmpty(exhibitionList);
+        List<ExhibitionWithUserRecord> exhibitions = exhibitionRepo.getByCategoryId(id);
+        if(exhibitions == null){
+            return Response.noContent().build();
+        } else {
+            return Response.ok().entity(exhibitions).build();
+        }
     }
 
     @GET
@@ -233,8 +255,12 @@ public class ExhibitionResource {
         for (String id : ids) {
             longIds.add(Long.parseLong(id));
         }
-        List<ExhibitionWithUserRecord> exhibitionList = exhibitionRepo.getByCategoryIds(longIds);
-        return gr.checkIfEmpty(exhibitionList);
+        List<ExhibitionWithUserRecord> exhibitions = exhibitionRepo.getByCategoryIds(longIds);
+        if(exhibitions == null){
+            return Response.noContent().build();
+        } else {
+            return Response.ok().entity(exhibitions).build();
+        }
     }
 
     // TODO fix code duplication

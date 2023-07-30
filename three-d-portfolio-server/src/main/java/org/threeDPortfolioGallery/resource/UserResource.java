@@ -16,19 +16,30 @@ import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 import java.util.Base64;
 
+/**
+ * Controller Klasse, um User zu verwalten mittels REST-Endpoints. Diese Endpoints ermöglichen CRUD der Tabelle User.
+ */
 @Path("/api/users")
 public class UserResource {
 
+    // TODO JAVADOC
+    // TODO Delete User
+    /**
+     * User Repository injected, um PanacheRepository Funktionen zu nutzen
+     */
     @Inject
     UserRepo userRepo;
 
+    /**
+     *
+     */
     @Inject
     JwtService jwtService;
 
     /**
-     * GET a User by their id
-     * @param id long
-     * @return JSON Object of User
+     * Gibt den Nutzer der mitgegebenen Id zurück
+     * @param id Nummer des gesuchten Benutzers
+     * @return JSON-Objekt des Benutzers
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)

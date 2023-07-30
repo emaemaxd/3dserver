@@ -17,6 +17,7 @@ import javax.ws.rs.core.Response;
 @ApplicationScoped
 public class AuthResource {
 
+    // TODO JAVADOC
     @Inject
     JwtService jwtService;
 
