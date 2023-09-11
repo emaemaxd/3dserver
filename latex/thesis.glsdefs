@@ -1,0 +1,560 @@
+\glsdefs@newdocentry{guid}%
+{%
+name={\acronymfont {\glsentryshort {guid}}},%
+sort={API},%
+type={main},%
+first={API},%
+firstplural={APIs},%
+text={API},%
+plural={APIs},%
+description={Application Programming Interface},%
+descriptionplural={Application Programming Interface},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Application Programming Interface},%
+longplural={Application Programming Interfaces},%
+short={API},%
+shortplural={APIs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{cli}%
+{%
+name={\acronymfont {\glsentryshort {cli}}},%
+sort={CLI},%
+type={main},%
+first={CLI},%
+firstplural={CLIs},%
+text={CLI},%
+plural={CLIs},%
+description={Command Line Interface},%
+descriptionplural={Command Line Interface},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Command Line Interface},%
+longplural={Command Line Interfaces},%
+short={CLI},%
+shortplural={CLIs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{jvm}%
+{%
+name={\acronymfont {\glsentryshort {jvm}}},%
+sort={JVM},%
+type={main},%
+first={JVM},%
+firstplural={JVMs},%
+text={JVM},%
+plural={JVMs},%
+description={Java Virtual Machine},%
+descriptionplural={Java Virtual Machine},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Java Virtual Machine},%
+longplural={Java Virtual Machines},%
+short={JVM},%
+shortplural={JVMs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{jdbc}%
+{%
+name={\acronymfont {\glsentryshort {jdbc}}},%
+sort={JDBC},%
+type={main},%
+first={JDBC},%
+firstplural={JDBCs},%
+text={JDBC},%
+plural={JDBCs},%
+description={Java Database Connectivity},%
+descriptionplural={Java Database Connectivity},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Java Database Connectivity},%
+longplural={Java Database Connectivitys},%
+short={JDBC},%
+shortplural={JDBCs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{orm}%
+{%
+name={\acronymfont {\glsentryshort {orm}}},%
+sort={ORM},%
+type={main},%
+first={ORM},%
+firstplural={ORMs},%
+text={ORM},%
+plural={ORMs},%
+description={Object Relational Mapper},%
+descriptionplural={Object Relational Mapper},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Object Relational Mapper},%
+longplural={Object Relational Mappers},%
+short={ORM},%
+shortplural={ORMs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{ide}%
+{%
+name={\acronymfont {\glsentryshort {ide}}},%
+sort={IDE},%
+type={main},%
+first={IDE},%
+firstplural={IDEs},%
+text={IDE},%
+plural={IDEs},%
+description={Integrated Development Environment},%
+descriptionplural={Integrated Development Environment},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Integrated Development Environment},%
+longplural={Integrated Development Environments},%
+short={IDE},%
+shortplural={IDEs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{uml}%
+{%
+name={\acronymfont {\glsentryshort {uml}}},%
+sort={UML},%
+type={main},%
+first={UML},%
+firstplural={UMLs},%
+text={UML},%
+plural={UMLs},%
+description={Unified Modeling Language},%
+descriptionplural={Unified Modeling Language},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Unified Modeling Language},%
+longplural={Unified Modeling Languages},%
+short={UML},%
+shortplural={UMLs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{crud}%
+{%
+name={\acronymfont {\glsentryshort {crud}}},%
+sort={CRUD},%
+type={main},%
+first={CRUD},%
+firstplural={CRUDs},%
+text={CRUD},%
+plural={CRUDs},%
+description={Create Replace Update Delete},%
+descriptionplural={Create Replace Update Delete},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Create Replace Update Delete},%
+longplural={Create Replace Update Deletes},%
+short={CRUD},%
+shortplural={CRUDs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{http}%
+{%
+name={\acronymfont {\glsentryshort {http}}},%
+sort={HTTP},%
+type={main},%
+first={HTTP},%
+firstplural={HTTPs},%
+text={HTTP},%
+plural={HTTPs},%
+description={Hypertext Transfer Protocol},%
+descriptionplural={Hypertext Transfer Protocol},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Hypertext Transfer Protocol},%
+longplural={Hypertext Transfer Protocols},%
+short={HTTP},%
+shortplural={HTTPs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{rest}%
+{%
+name={\acronymfont {\glsentryshort {rest}}},%
+sort={REST},%
+type={main},%
+first={REST},%
+firstplural={RESTs},%
+text={REST},%
+plural={RESTs},%
+description={Representational State Transfer},%
+descriptionplural={Representational State Transfer},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Representational State Transfer},%
+longplural={Representational State Transfers},%
+short={REST},%
+shortplural={RESTs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{sql}%
+{%
+name={\acronymfont {\glsentryshort {sql}}},%
+sort={SQL},%
+type={main},%
+first={SQL},%
+firstplural={SQLs},%
+text={SQL},%
+plural={SQLs},%
+description={Structured Query Language},%
+descriptionplural={Structured Query Language},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Structured Query Language},%
+longplural={Structured Query Languages},%
+short={SQL},%
+shortplural={SQLs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{jpql}%
+{%
+name={\acronymfont {\glsentryshort {jpql}}},%
+sort={JPQL},%
+type={main},%
+first={JPQL},%
+firstplural={JPQLs},%
+text={JPQL},%
+plural={JPQLs},%
+description={Jakarta Persistance Query Language},%
+descriptionplural={Jakarta Persistance Query Language},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Jakarta Persistance Query Language},%
+longplural={Jakarta Persistance Query Languages},%
+short={JPQL},%
+shortplural={JPQLs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{dto}%
+{%
+name={\acronymfont {\glsentryshort {dto}}},%
+sort={DTO},%
+type={main},%
+first={DTO},%
+firstplural={DTOs},%
+text={DTO},%
+plural={DTOs},%
+description={Data Transfer Object},%
+descriptionplural={Data Transfer Object},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Data Transfer Object},%
+longplural={Data Transfer Objects},%
+short={DTO},%
+shortplural={DTOs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{json}%
+{%
+name={\acronymfont {\glsentryshort {json}}},%
+sort={JSON},%
+type={main},%
+first={JSON},%
+firstplural={JSONs},%
+text={JSON},%
+plural={JSONs},%
+description={JavaScript Object Notation},%
+descriptionplural={JavaScript Object Notation},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={JavaScript Object Notation},%
+longplural={JavaScript Object Notations},%
+short={JSON},%
+shortplural={JSONs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{jwt}%
+{%
+name={\acronymfont {\glsentryshort {jwt}}},%
+sort={JWT},%
+type={main},%
+first={JWT},%
+firstplural={JWTs},%
+text={JWT},%
+plural={JWTs},%
+description={JSON Web Token},%
+descriptionplural={JSON Web Token},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={JSON Web Token},%
+longplural={JSON Web Tokens},%
+short={JWT},%
+shortplural={JWTs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{ttl}%
+{%
+name={\acronymfont {\glsentryshort {ttl}}},%
+sort={TTL},%
+type={main},%
+first={TTL},%
+firstplural={TTLs},%
+text={TTL},%
+plural={TTLs},%
+description={Time To Live},%
+descriptionplural={Time To Live},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Time To Live},%
+longplural={Time To Lives},%
+short={TTL},%
+shortplural={TTLs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{api}%
+{%
+name={API},%
+sort={API},%
+type={main},%
+first={API},%
+firstplural={APIs},%
+text={API},%
+plural={APIs},%
+description={ Der Begriff steht für \textit {Application Programming Interface}. Durch APIs können verschieden Applikationen miteinander kommunizieren, ohne die jeweils andere Implementierung wissen zum müssen. \cite {API2022} },%
+descriptionplural={ Der Begriff steht für \textit {Application Programming Interface}. Durch APIs können verschieden Applikationen miteinander kommunizieren, ohne die jeweils andere Implementierung wissen zum müssen. \cite {API2022} },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{cascade}%
+{%
+name={Cascade Types},%
+sort={Cascade Types},%
+type={main},%
+first={Cascade Types},%
+firstplural={Cascade Typess},%
+text={Cascade Types},%
+plural={Cascade Typess},%
+description={ Es gibt verschiedene Arten von Cascade Types. Sie definieren, was mit Abhängigkeiten passiert, wenn diese bearbeitet oder gelöscht werden. \cite {CascadeTypes} },%
+descriptionplural={ Es gibt verschiedene Arten von Cascade Types. Sie definieren, was mit Abhängigkeiten passiert, wenn diese bearbeitet oder gelöscht werden. \cite {CascadeTypes} },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{erd}%
+{%
+name={ERD},%
+sort={ERD},%
+type={main},%
+first={ERD},%
+firstplural={ERDs},%
+text={ERD},%
+plural={ERDs},%
+description={ Der Begriff steht für \textit {Entity Relationship Diagram}. Diese Diagramme visualisieren, welche Beziehungen verschiedenen \textit {Entitäten} zueinander haben. \cite {ERD2023} },%
+descriptionplural={ Der Begriff steht für \textit {Entity Relationship Diagram}. Diese Diagramme visualisieren, welche Beziehungen verschiedenen \textit {Entitäten} zueinander haben. \cite {ERD2023} },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{fw}%
+{%
+name={Framework},%
+sort={Framework},%
+type={main},%
+first={Framework},%
+firstplural={Frameworks},%
+text={Framework},%
+plural={Frameworks},%
+description={ Frameworks bieten Funktionen an, ohne dass diese selbst implementiert werden müssen. Sie erleichtern das Programmieren innorm. \cite {FrameworkAbout} },%
+descriptionplural={ Frameworks bieten Funktionen an, ohne dass diese selbst implementiert werden müssen. Sie erleichtern das Programmieren innorm. \cite {FrameworkAbout} },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+

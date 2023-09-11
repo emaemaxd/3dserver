@@ -22,17 +22,9 @@ import java.util.Base64;
 @Path("/api/users")
 public class UserResource {
 
-    // TODO JAVADOC
-    // TODO Delete User
-    /**
-     * User Repository injected, um PanacheRepository Funktionen zu nutzen
-     */
     @Inject
     UserRepo userRepo;
 
-    /**
-     *
-     */
     @Inject
     JwtService jwtService;
 
@@ -72,6 +64,11 @@ public class UserResource {
         return Response.created(uri).build();
     }
 
+    /**
+     * Eine private Methode, die dafür da ist den übergebenen Parameter zu salten und hashen.
+     * @param password
+     * @return
+     */
     private String hashPassword(String password){
         password = password + "yoyoyo";
         Base64.Encoder encoder = Base64.getEncoder();
@@ -103,5 +100,24 @@ public class UserResource {
         }else {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
+    }
+
+    /**
+     * Sucht nach einem Nutzer mit der übergebenen Id und löscht diesen.
+     * @param id nimmt einen Long
+     * @return Response 204 falls alles funktioniert hat <i>oder</i>
+     *          Response 406, falls eine nicht-existente Id übergeben wurde.
+     */
+    @DELETE
+    @Transactional
+    @Path("{userid}")
+    public Response deleteUser(@PathParam("userid")Long id){
+        if(id > 0){
+            var i = userRepo.deleteById(id);
+            if (i){
+                return Response.noContent().build();
+            }
+        }
+        return Response.status(406).build();
     }
 }

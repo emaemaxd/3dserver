@@ -1,6 +1,5 @@
 package org.threeDPortfolioGallery.resource;
 
-import io.quarkus.cache.CacheInvalidateAll;
 import org.apache.commons.io.IOUtils;
 import org.apache.tika.Tika;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
@@ -23,7 +22,8 @@ import java.io.*;
 import java.util.*;
 
 /**
- *  Alle Schnittstellen für die Entity Exhibition
+ * Controller-Klasse, um Exhibitions zu verwalten mittels REST-Endpoints. Diese Endpoints ermöglichen CRUD der Tabelle Exhibition.
+ * Die REST-Schnittstellen sind aufrufbar unter <a href="http://localhost:8080/api/exhibitions">http://localhost:8080/api/exhibitions</a>
  *
  * @author Ema Halilovic
  */
@@ -32,15 +32,20 @@ import java.util.*;
 public class ExhibitionResource {
 // TODO remove Cache-Dependency in pom.xml
     // TODO JAVADOC
+    /**
+     * Diese Variable stellt sicher, dass jedes hochgeladene File einen einzigartigen Namen hat.
+     */
     int fileCount = 0;
 
+    /**
+     * Diese Variable definiert den Pfad, in dem alle Files gespeichert werden. Der Wert wird nie geändert.
+     */
     public static final String FILE_PATH = "src/main/resources/files/";
 
     @Inject
     ExhibitionRepo exhibitionRepo;
     @Inject
     UserRepo userRepo;
-
     @Inject
     ThemeRepo themeRepo;
 
@@ -56,9 +61,12 @@ public class ExhibitionResource {
     ExhibitRepo exhibitRepo;
 
     /**
+     * HTTP-Methode GET zum Download von Dateien.
+     * Mitgegeben wird der Name + zugehöriger Ordner des benötigten Files.
+     * Die genauen Pfade sind gespeichert in der Datenbank oder werden beim Fileupload zurückgegeben.
      *
-     * @param fileName aber mit ordner davor, weil base path ist auf files/
-     * @return Response codes für FE
+     * @param fileName Der Name des Files, sowie der Ordner-Pfad davor base path ist auf files/
+     * @return Response code 200 mit dem FileStream <i>oder</i> HTTP-Statuscode No Content
      */
     @GET
     @Path("/download/{fileName}")
@@ -76,6 +84,11 @@ public class ExhibitionResource {
         // => src/main/resources/files/
     }
 
+    /**
+     * Eine GET-Methode zum anzeigen von Bildern, für einfachere Verwendung in der Datenbank.
+     * @param fileName aus der Datenbank
+     * @return Bild
+     */
     @GET
     @Path("/downloadImageFile/{fileName}")
     @Produces({"image/png"})
@@ -87,6 +100,11 @@ public class ExhibitionResource {
         return Response.ok(file).header("Content-Disposition", "inline;filename=" + fileName).build();
     }
 
+    /**
+     *
+     * @param input Blob aus dem Frontend, beliebige Datei
+     * @return
+     */
     @POST
     @Path("/upload")
     @Consumes("multipart/form-data")
@@ -102,7 +120,7 @@ public class ExhibitionResource {
                     MultivaluedMap<String, String> header = inputPart.getHeaders();
                     fileName = "file" + fileCount + getFileName(header);
                     InputStream inputStream = inputPart.getBody(InputStream.class, null);
-                    System.out.println(fileName);
+                    // System.out.println(fileName);
                     // Exhibit ex = new Exhibit(postURL, "png", "test", "desc");
                     // PictureEntity picture = new PictureEntity(postURL, "");
                     // exhibitRepo.persist(ex);
@@ -248,6 +266,7 @@ public class ExhibitionResource {
     }
 
     @GET
+    @PermitAll
     @Path("/getByCategoryIds/{categoryIds}")
     public Response getExhibitionsByCategories(@PathParam("categoryIds") String categoryIds){
         String[] ids = categoryIds.split(",");
@@ -265,6 +284,13 @@ public class ExhibitionResource {
 
     // TODO fix code duplication
     // TODO die @OneToOne exhibit - position beziehung geht ned, weil one to one aber mehrere entries usw. muss man fixen, prolly mit composite key oder so a schmoan
+
+    /**
+     *
+     * @param newExhibition ein DTO einer neuen Exhibition
+     * @return Response 200 <i>oder</i>
+     *          Response 406 mit einer definierten Fehlermeldung
+     */
     @POST
     @Transactional
     @Path("/new")

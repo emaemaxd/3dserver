@@ -17,7 +17,6 @@ public class User extends PanacheEntity {
 
     public String icon_url;
 
-    @JsonIgnore
     public String password;
 
     // relationship exhibition

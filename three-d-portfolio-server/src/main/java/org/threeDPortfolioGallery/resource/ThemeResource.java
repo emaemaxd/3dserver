@@ -18,9 +18,6 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class ThemeResource {
 
-    /**
-     * Setzen der Variable themeRepo, um auf das Repository des Themes zuzugreifen
-     */
     @Inject
     ThemeRepo themeRepo;
 
@@ -32,5 +29,4 @@ public class ThemeResource {
     public List<Theme> getAll(){
         return themeRepo.listAll();
     }
-
 }

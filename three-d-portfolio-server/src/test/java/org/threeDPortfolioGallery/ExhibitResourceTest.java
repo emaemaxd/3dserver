@@ -1,27 +1,37 @@
 package org.threeDPortfolioGallery;
 
+import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;
+import io.quarkus.test.junit.mockito.InjectMock;
 import org.junit.jupiter.api.Test;
-
-import javax.json.Json;
+import org.mockito.Mockito;
+import org.threeDPortfolioGallery.repos.ExhibitRepo;
+import org.threeDPortfolioGallery.resource.ExhibitResource;
+import org.threeDPortfolioGallery.workloads.Exhibit;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.is;
 
-// TODO tests schreiben
 @QuarkusTest
+@TestHTTPEndpoint(ExhibitResource.class)
 public class ExhibitResourceTest {
-    /*@GET
-    @Path("/{exhibitId}")
-    public Response getExhibitById(@PathParam("exhibitId") Long id) {
-        return gr.checkIfEmpty(exhibitRepo.findById(id));
-    }
-     */
+    @InjectMock
+    ExhibitRepo exhibitRepo;
+
     @Test
-    public void testNonExistentExhibit() {
+    public void testGetExhibitByCorrectId() {
+        Exhibit mockExhibit = new Exhibit();
+        mockExhibit.id = 1L;
+        mockExhibit.title = "Test";
+        Mockito.when(exhibitRepo.findById(mockExhibit.id)).thenReturn(mockExhibit);
+    }
+
+    @Test
+    public void testGetExhibitByIncorrectId() {
         given()
-                .when().get("/exhibit/100")
+                .when()
+                .pathParam("exhibitId", 1L)
+                .get("/api/exhibits/{exhibitId}")
                 .then()
-                .statusCode(404);
+                .statusCode(204);
     }
 }

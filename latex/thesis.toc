@@ -1,0 +1,35 @@
+\babel@toc {ngerman}{}\relax 
+\contentsline {chapter}{\numberline {1}Einleitung}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Ausgangssituation}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Zielsetzung}{1}{section.1.2}%
+\contentsline {chapter}{\numberline {2}Technologien}{2}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Quarkus}{2}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Maven}{3}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}\gls *{jdbc} Driver - PostgreSQL}{3}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Hibernate ORM mit Panache}{3}{subsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.1.4}REST-Easy}{4}{subsection.2.1.4}%
+\contentsline {section}{\numberline {2.2}PostgreSQL}{4}{section.2.2}%
+\contentsline {section}{\numberline {2.3}IntelliJ IDEA}{4}{section.2.3}%
+\contentsline {section}{\numberline {2.4}LeoCloud}{5}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Notion}{5}{section.2.5}%
+\contentsline {section}{\numberline {2.6}PlantUML}{5}{section.2.6}%
+\contentsline {section}{\numberline {2.7}JSON Web Token}{6}{section.2.7}%
+\contentsline {chapter}{\numberline {3}Umsetzung}{7}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Erstellung des ERDs}{7}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Umsetzung des ERDs in Quarkus}{7}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Implementierung der REST-Schnittstellen}{11}{section.3.3}%
+\contentsline {subsubsection}{\nonumberline Repositories}{11}{subsubsection*.11}%
+\contentsline {subsubsection}{\nonumberline Records und DTOs}{12}{subsubsection*.13}%
+\contentsline {subsection}{\numberline {3.3.1}User}{12}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Exhibitions}{12}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Filemanagement}{14}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Hosten auf einer Cloud}{14}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Schreiben der Tests}{14}{section.3.5}%
+\contentsline {chapter}{\numberline {4}Zusammenfassung}{15}{chapter.4}%
+\contentsline {chapter}{Glossar}{V}{section*.14}%
+\contentsline {chapter}{\nonumberline Literaturverzeichnis}{VII}{chapter*.16}%
+\contentsline {chapter}{\nonumberline Abbildungsverzeichnis}{IX}{chapter*.17}%
+\contentsline {chapter}{\nonumberline Tabellenverzeichnis}{X}{chapter*.18}%
+\contentsline {chapter}{\nonumberline Quellcodeverzeichnis}{XI}{chapter*.19}%
+\contentsline {chapter}{\nonumberline Anhang}{XII}{chapter*.20}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

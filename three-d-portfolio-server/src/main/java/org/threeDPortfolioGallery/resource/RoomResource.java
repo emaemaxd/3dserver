@@ -13,7 +13,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-// TODO JAVA DOC
 /**
  * Controller Klasse, um User zu verwalten mittels REST-Endpoints. Diese Endpoints ermöglichen CRUD der Tabelle User.
  * Die REST-Schnittstellen sind über <a href="http://localhost:8080/api/rooms">http://localhost:8080/api/rooms</a> erreichbar.
@@ -66,9 +65,9 @@ public class RoomResource {
     /**
      * Liefert alle Räume mit Positionen.
      *
-     * Diese HTTP-GET-Methode
+     * Diese Methode gibt alle Räume zurück mit den darin festgelegten {@link org.threeDPortfolioGallery.workloads.Position}-Objekten. Die Methode funktioniert mittels HTTP-Methode GET.
      *
-     * @return
+     * @return Eine Response mit HTTP-Statuscode 200 + {@link Room} und dessen {@link org.threeDPortfolioGallery.workloads.Position} <i>oder</i> HTTP-Statuscode 204 (no Content).
      */
     @GET
     @Path("/allRoomPositions")

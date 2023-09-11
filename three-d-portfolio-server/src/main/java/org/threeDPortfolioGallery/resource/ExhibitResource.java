@@ -12,18 +12,25 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
- * Controller Klasse, um Themen zu verwalten mittels REST-Endpoints. Diese Endpoints ermöglichen CRUD der Tabelle Theme.
+ * Controller Klasse, um Exhibits zu verwalten mittels REST-Endpoints. Diese Endpoints ermöglichen CRUD der Tabelle Exhibit.
+ * Die REST-Schnittstellen sind über <a href="http://localhost:8080/api/exhibits">http://localhost:8080/api/exhibits</a> erreichbar.
+ *
+ * @author Ema Halilovic
  */
 @Path("api/exhibits")
 @Produces(MediaType.APPLICATION_JSON)
 public class ExhibitResource {
+
     @Inject
     ExhibitRepo exhibitRepo;
 
     /**
-     * Get one exhibit by id
-     * @param id
-     * @return
+     * Gibt einen Raum nach Id zurück
+     *
+     * HTTP-GET-Methode, die ein Exhibit liefert passend zur übergebenen Id.
+     *
+     * @param id Eindeutige nummerischer Wert für die Id eines Exhibits. Diese wird in der URL mitgegeben.
+     * @return Eine Response mit HTTP-Statuscode 200 + das zugehörige Exhibit <i>oder</i> HTTP-Statuscode 204 (no Content).
      */
     @GET
     @Path("/{exhibitId}")
@@ -34,12 +41,5 @@ public class ExhibitResource {
         } else {
             return Response.ok().entity(exhibit).build();
         }
-    }
-
-    // TODO fragen ob get exhibits by exhibition repo needed???
-    @GET
-    @Path("getByExhibition/{exhibitionId}")
-    public Response getExhibitsByExhibitionId(@PathParam("exhibitionId") Long id){
-        return null;
     }
 }
