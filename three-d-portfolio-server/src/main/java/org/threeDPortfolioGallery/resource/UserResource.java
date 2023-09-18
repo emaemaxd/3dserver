@@ -66,13 +66,13 @@ public class UserResource {
 
     /**
      * Eine private Methode, die dafür da ist den übergebenen Parameter zu salten und hashen.
-     * @param password
-     * @return
+     * @param string beliebiges Wort, was geändert werden soll
+     * @return abgeänderter Parameter
      */
-    private String hashPassword(String password){
-        password = password + "yoyoyo";
+    private String hashPassword(String string){
+        string = string + "yoyoyo";
         Base64.Encoder encoder = Base64.getEncoder();
-        return encoder.encodeToString(password.getBytes());
+        return encoder.encodeToString(string.getBytes());
         // return password.concat("hi");
     }
 
