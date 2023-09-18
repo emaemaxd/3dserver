@@ -34,11 +34,15 @@ public class CategoryResource {
     @PermitAll
     @Path("/all")
     public Response getAllCategories(){
-        List<Category> categories = categoryRepo.listAll();
-        if (categories.isEmpty()){
-            return Response.noContent().build();
-        } else {
-            return Response.ok().entity(categories).build();
+        try{
+            List<Category> categories = categoryRepo.listAll();
+            if (categories.isEmpty()){
+                return Response.noContent().build();
+            } else {
+                return Response.ok().entity(categories).build();
+            }
+        }catch (Exception e){
+            return Response.status(500, "hi").build();
         }
     }
 }
