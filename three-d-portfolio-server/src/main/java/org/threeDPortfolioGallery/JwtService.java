@@ -1,8 +1,8 @@
 package org.threeDPortfolioGallery;
 
 import io.smallrye.jwt.build.Jwt;
+import jakarta.inject.Singleton;
 
-import javax.inject.Singleton;
 import java.util.*;
 
 // TODO ändern wegen roles

@@ -1,18 +1,19 @@
 package org.threeDPortfolioGallery.resource;
 
+import jakarta.transaction.Transactional;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.UriInfo;
 import org.threeDPortfolioGallery.JwtService;
 import org.threeDPortfolioGallery.repos.UserRepo;
 import org.threeDPortfolioGallery.workloads.User;
 import org.threeDPortfolioGallery.workloads.dto.UserLoginDTO;
 
-import javax.annotation.security.PermitAll;
-import javax.inject.Inject;
-import javax.transaction.Transactional;
-import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
+import jakarta.annotation.security.PermitAll;
+import jakarta.ws.rs.Produces;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import java.net.URI;
 import java.util.Base64;
 

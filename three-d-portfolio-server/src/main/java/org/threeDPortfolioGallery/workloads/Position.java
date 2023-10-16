@@ -3,7 +3,9 @@ package org.threeDPortfolioGallery.workloads;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
+
 import java.util.List;
 
 @Entity

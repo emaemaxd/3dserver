@@ -1,5 +1,8 @@
 package org.threeDPortfolioGallery.resource;
 
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.transaction.Transactional;
+import jakarta.ws.rs.core.MultivaluedMap;
 import org.apache.commons.io.IOUtils;
 import org.apache.tika.Tika;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
@@ -10,14 +13,13 @@ import org.threeDPortfolioGallery.workloads.*;
 import org.threeDPortfolioGallery.workloads.dto.AddExhibitDTO;
 import org.threeDPortfolioGallery.workloads.dto.AddExhibitionDTO;
 
-import javax.annotation.security.PermitAll;
-import javax.annotation.security.RolesAllowed;
-import javax.inject.Inject;
-import javax.transaction.Transactional;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.Response;
+import jakarta.annotation.security.PermitAll;
+import jakarta.ws.rs.Produces;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+
 import java.io.*;
 import java.util.*;
 

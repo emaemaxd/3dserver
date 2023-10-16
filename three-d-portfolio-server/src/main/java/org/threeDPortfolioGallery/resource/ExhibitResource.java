@@ -3,13 +3,11 @@ package org.threeDPortfolioGallery.resource;
 import org.threeDPortfolioGallery.repos.ExhibitRepo;
 import org.threeDPortfolioGallery.workloads.Exhibit;
 
-import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.Produces;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 /**
  * Controller Klasse, um Exhibits zu verwalten mittels REST-Endpoints. Diese Endpoints ermöglichen CRUD der Tabelle Exhibit.
@@ -22,7 +20,7 @@ import javax.ws.rs.core.Response;
 public class ExhibitResource {
 
     @Inject
-    ExhibitRepo exhibitRepo;
+    public ExhibitRepo exhibitRepo;
 
     /**
      * Gibt einen Raum nach Id zurück

@@ -5,7 +5,9 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
+
 
 @Entity
 public class Exhibit extends PanacheEntity {

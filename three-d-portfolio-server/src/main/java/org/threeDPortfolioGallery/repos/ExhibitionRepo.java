@@ -1,13 +1,14 @@
 package org.threeDPortfolioGallery.repos;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
+import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.threeDPortfolioGallery.records.ExhibitionWithUserRecord;
 import org.threeDPortfolioGallery.workloads.Category;
 import org.threeDPortfolioGallery.workloads.Exhibition;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.persistence.TypedQuery;
+import jakarta.enterprise.context.ApplicationScoped;
+
 import java.util.*;
 import java.util.stream.Collectors;
 

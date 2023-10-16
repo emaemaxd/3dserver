@@ -3,11 +3,13 @@ package org.threeDPortfolioGallery.resource;
 import org.threeDPortfolioGallery.repos.ThemeRepo;
 import org.threeDPortfolioGallery.workloads.Theme;
 
-import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import jakarta.annotation.security.PermitAll;
+
+import jakarta.ws.rs.Produces;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import java.util.List;
 
 /**

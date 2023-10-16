@@ -4,7 +4,7 @@ import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import org.threeDPortfolioGallery.workloads.Exhibit;
 import org.threeDPortfolioGallery.workloads.Exhibition;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 import java.util.List;
 
 @ApplicationScoped

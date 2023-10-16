@@ -4,7 +4,7 @@ import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import org.threeDPortfolioGallery.workloads.User;
 import org.threeDPortfolioGallery.workloads.dto.UserLoginDTO;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class UserRepo implements PanacheRepository<User> {

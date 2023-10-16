@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.12.1)  18 SEP 2023 15:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.12.1)  27 SEP 2023 16:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1257,7 +1257,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
  [3] [4]
-<pics/NotionPage.png, id=205, 1165.35374pt x 838.13126pt>
+<pics/NotionPage.png, id=203, 1165.35374pt x 838.13126pt>
 File: pics/NotionPage.png Graphic file (type png)
 <use pics/NotionPage.png>
 Package pdftex.def Info: pics/NotionPage.png  used on input line 125.
@@ -1265,45 +1265,45 @@ Package pdftex.def Info: pics/NotionPage.png  used on input line 125.
  [5]) [6 <./pics/NotionPage.png>]
 chapter 3.
 (./sections/implementation.tex
-<pics/firstversion_erd.png, id=239, 663.47874pt x 722.7pt>
+<pics/firstversion_erd.png, id=237, 663.47874pt x 722.7pt>
 File: pics/firstversion_erd.png Graphic file (type png)
 <use pics/firstversion_erd.png>
-Package pdftex.def Info: pics/firstversion_erd.png  used on input line 19.
+Package pdftex.def Info: pics/firstversion_erd.png  used on input line 21.
 (pdftex.def)             Requested size: 331.73856pt x 361.3491pt.
-<pics/lastversion_erd.png, id=240, 683.55376pt x 985.6825pt>
+<pics/lastversion_erd.png, id=238, 683.55376pt x 985.6825pt>
 File: pics/lastversion_erd.png Graphic file (type png)
 <use pics/lastversion_erd.png>
-Package pdftex.def Info: pics/lastversion_erd.png  used on input line 26.
+Package pdftex.def Info: pics/lastversion_erd.png  used on input line 28.
 (pdftex.def)             Requested size: 341.77605pt x 492.84004pt.
-<pics/quarkusplugin.png, id=244, 915.42pt x 817.0525pt>
-File: pics/quarkusplugin.png Graphic file (type png)
-<use pics/quarkusplugin.png>
-Package pdftex.def Info: pics/quarkusplugin.png  used on input line 39.
-(pdftex.def)             Requested size: 366.16151pt x 326.81522pt.
  [7
 
 ] [8 <./pics/firstversion_erd.png>] [9 <./pics/lastversion_erd.png>]
+<pics/quarkusplugin.png, id=261, 915.42pt x 817.0525pt>
+File: pics/quarkusplugin.png Graphic file (type png)
+<use pics/quarkusplugin.png>
+Package pdftex.def Info: pics/quarkusplugin.png  used on input line 43.
+(pdftex.def)             Requested size: 366.16151pt x 326.81522pt.
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <8> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 53.
- (/usr/local/texlive/2022/texmf-dist/tex/latex/listings/lstlang1.sty
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 57.
+ [10 <./pics/quarkusplugin.png>] (/usr/local/texlive/2022/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
-) [10 <./pics/quarkusplugin.png>]
-Overfull \hbox (6.0pt too wide) in paragraph at lines 100--100
+)
+Overfull \hbox (6.0pt too wide) in paragraph at lines 104--104
 [][][][][][][][] 
  []
 
 [11] [12]
-Overfull \hbox (6.0pt too wide) in paragraph at lines 148--148
+Overfull \hbox (6.0pt too wide) in paragraph at lines 152--152
 [][][][][][][][] 
  []
 
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 180--180
+Overfull \hbox (6.0pt too wide) in paragraph at lines 184--184
 [][][][][][][][] 
  []
 
 [13]
-Overfull \hbox (6.0pt too wide) in paragraph at lines 215--215
+Overfull \hbox (6.0pt too wide) in paragraph at lines 219--219
 [][][][][][][][] 
  []
 
@@ -1383,17 +1383,17 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 ### semi simple group (level 1) entered at line 84 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 35313 strings out of 474971
- 647010 string characters out of 5776123
- 1468744 words of memory out of 5000000
- 55858 multiletter control sequences out of 15000+600000
- 520679 words of font info for 129 fonts, out of 8000000 for 9000
+ 35319 strings out of 474971
+ 647099 string characters out of 5776123
+ 1461783 words of memory out of 5000000
+ 55857 multiletter control sequences out of 15000+600000
+ 520808 words of font info for 130 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,20n,108p,10656b,3680s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmro12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtt8.pfb>
-Output written on thesis.pdf (29 pages, 1606151 bytes).
+Output written on thesis.pdf (29 pages, 1605614 bytes).
 PDF statistics:
- 629 PDF objects out of 1000 (max. 8388607)
- 188 named destinations out of 1000 (max. 500000)
- 30458 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 632 PDF objects out of 1000 (max. 8388607)
+ 193 named destinations out of 1000 (max. 500000)
+ 30450 words of extra memory for PDF output out of 35830 (max. 10000000)
 

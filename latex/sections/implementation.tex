@@ -1,4 +1,6 @@
-\section{Erstellung des ERDs}
+\section{Design und Planung}
+
+\subsection{Erstellung des ERDs}
 Um zu gewährleisten, dass die Systemanforderung getroffen werden, ist es notwendig ein entsprechendes \gls{erd} zu erstellen.
 Innerhalb eines \gls{erd} werden alle verschiedene Entitäten, Attribute sowie deren Beziehungen dargestellt.
 Dieses dient als gemeinsamer Nenner für die Projektentwicklung, da jedes Teammitglied eine eigene Vorstellung der Datenstruktur haben könnte. 
@@ -28,7 +30,9 @@ Unsere Gründe dafür waren einige Planänderungen bei der Kommunikation zwische
     \label{fig:erd:lastversion}
 \end{figure}
 
-\section{Umsetzung des ERDs in Quarkus}
+\section{Aufsetzen der Datenbank und des Servers}
+
+\subsection{Umsetzung des ERDs in Quarkus}
 Bevor das \gls{erd} umgesetzt werden kann, muss ein Quarkus Projekt erstellt werden, und PostgreSQL lokal gestartet werden. 
 Das erste Ziel ist es, das Projekt lokal starten zu können und eine Datenbankverbindung herzustellen. 
 Um ein Quarkus Projekt zu erstellen wurde das Quarkus Plugin von JetBrains s.r.o. verwendet. 
@@ -85,7 +89,7 @@ Das bedeutet, dass für diese Entitäten keine Methoden angelegt werden müssen,
 Verwendet wurde dafür eine \emph{import.sql}-Datei. 
 Diese wird bei jedem Quarkus Start ausgeführt. 
 
-\section{Implementierung der REST-Schnittstellen}
+\subsection{Implementierung der REST-Schnittstellen}
 
 Um das Frontend auf die Daten zugreifen zu lassen werden Schnittstellen benötigt, die dies ermöglichen. 
 Dafür werden im Backends Resource-Klassen erstellt, um die einzelnen Endpoints zu verwalten. 
@@ -123,7 +127,7 @@ Deswegen eignen sie sich besonders gut, Daten aus \gls{sql}-Statements zu speich
 \gls{dto}s hingegen können mittels Set-Methoden die Werte wieder ändern.
 Dies ist nicht umbedingt notwendig beim Auslesen der Datenbank, aber sehr nützlich beim Anlegen neuer Objekte. 
 
-\subsection{User}
+\subsubsection{User}
 Ein User wird angelegt durch das Definieren eines Nutzernamens, sowie eines Passwortes. 
 Optional können ebenso Pfade angegeben werden für Profilbilder. 
 Jedes Passwort bekommt vor dem Speichervorgang einen Salt angehängt und wird mithilfe von Base64 verschlüsselt. 
@@ -136,7 +140,7 @@ Die Limitationen werden bei der Definition der Methoden angegeben mittels \emph{
 Genauso gibt es jedoch \emph{@RolesAllowed}, was nur definierten Rollen den Zugriff erlaubt.  
 
 
-\subsection{Exhibitions}
+\subsubsection{Exhibitions}
 Eine der wichtigsten Funktionen der Exhibitions-Resource, ist das Anlegen einer Exhibition. 
 Dafür wird eine \emph{@POST}-Methode erstellt, die ein Objekt nach dem \gls{dto} in Codeausschnitt \ref{lst:exhibitiondto} einliest.
 \gls{dto}s können auch verschachtelt werden, was in Zeile 12 erkennbar ist. 
@@ -189,7 +193,7 @@ Diese Vorgehensweise wird durch die Annotation \emph{@Transactional} definiert.
     }
 \end{lstlisting}
 
-\subsection{Filemanagement}
+\subsubsection{Filemanagement}
 Der File-Upload geschieht während der Bearbeitung der Exhibition im Frontend. 
 Nach jeder Dateiauswahl des Nutzers der Webseite, wird der Endpoint zuständig für den Fileupload aufgerufen. 
 Dieser erwartet sich, anders als die anderen POST-Methoden, kein \gls{json}-Objekt, sondern eine Datei. 

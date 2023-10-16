@@ -1,8 +1,8 @@
 package org.threeDPortfolioGallery;
 
+import io.quarkus.test.InjectMock;
 import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;
-import io.quarkus.test.junit.mockito.InjectMock;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.threeDPortfolioGallery.repos.ExhibitRepo;
@@ -32,6 +32,6 @@ public class ExhibitResourceTest {
                 .pathParam("exhibitId", 1L)
                 .get("/api/exhibits/{exhibitId}")
                 .then()
-                .statusCode(204);
+                .statusCode(404);
     }
 }

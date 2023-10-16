@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import io.smallrye.common.constraint.NotNull;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
+
 import java.lang.reflect.Type;
 import java.util.List;
 
