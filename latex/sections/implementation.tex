@@ -6,7 +6,7 @@ Innerhalb eines \gls{erd} werden alle verschiedene Entitäten, Attribute sowie d
 Dieses dient als gemeinsamer Nenner für die Projektentwicklung, da jedes Teammitglied eine eigene Vorstellung der Datenstruktur haben könnte. 
 Ein weiterer Vorteil eines \gls{erd}s ist das Potenzial Fehlerquellen zu identifizieren und dadurch zukünfige Problem zu umgehen. 
 
-Nach dem die benötigten Entitäten, sowie deren Attribute festgelegt wurden, müssen nun die Beziehungen zwischen ihnen festgelegt werden. 
+Nachdem die benötigten Entitäten, sowie deren Attribute festgelegt wurden, müssen nun die Beziehungen zueinander festgelegt werden. 
 Dabei wird gewählt zwischen One-to-One, One-to-Many und Many-to-Many Beziehungen, wobei die Many-to-Many Beziehung innerhalb einer Assoziationstabelle dargestellt wird. 
 
 Innerhalb dieser Arbeit ist die Entität \emph{Exhibitions} das zentrale Objekt, dies ist in den Abbildung \ref{fig:erd:lastversion} gut ersichtlich.
@@ -33,7 +33,7 @@ Unsere Gründe dafür waren einige Planänderungen bei der Kommunikation zwische
 \section{Aufsetzen der Datenbank und des Servers}
 
 \subsection{Umsetzung des ERDs in Quarkus}
-Bevor das \gls{erd} umgesetzt werden kann, muss ein Quarkus Projekt erstellt werden, und PostgreSQL lokal gestartet werden. 
+Um das \gls{erd} umzusetzen, wird ein Quarkus-Projekt benötigt, sowie eine laufende PostgreSQL-Installation. 
 Das erste Ziel ist es, das Projekt lokal starten zu können und eine Datenbankverbindung herzustellen. 
 Um ein Quarkus Projekt zu erstellen wurde das Quarkus Plugin von JetBrains s.r.o. verwendet. 
 Hiermit werden die Funktionen der Webseite \href{https://code.quarkus.io}{code.quarkus.io} in einem IntelliJ Fenster dargestellt (siehe Abb. \ref{fig:intellij:plugin}). 
