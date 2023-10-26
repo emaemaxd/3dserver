@@ -111,6 +111,13 @@ Auth0, ,,What is JSON Web Token?'' WebPage, 2023, letzter Zugriff am
   09.09.2023. Online verfügbar: \url{https://jwt.io/introduction}
 \BIBentrySTDinterwordspacing
 
+\bibitem{QuarkusPlugin}
+\BIBentryALTinterwordspacing
+J.~s.r.o., ,,Quarkus - IntelliJ IDEs Plugin | Marketplace,'' WebPage, 2023,
+  letzter Zugriff am 26.10.2023. Online verfügbar:
+  \url{https://plugins.jetbrains.com/plugin/20306-quarkus}
+\BIBentrySTDinterwordspacing
+
 \bibitem{Lambok}
 \BIBentryALTinterwordspacing
 T.~P.~L. Authors, ,,Project Lombok,'' WebPage, 2023, letzter Zugriff am

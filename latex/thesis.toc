@@ -18,16 +18,16 @@
 \contentsline {section}{\numberline {3.1}Design und Planung}{7}{section.3.1}%
 \contentsline {subsection}{\numberline {3.1.1}Erstellung des ERDs}{7}{subsection.3.1.1}%
 \contentsline {section}{\numberline {3.2}Aufsetzen der Datenbank und des Servers}{7}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Umsetzung des ERDs in Quarkus}{7}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.1}Umsetzung des ERDs in Quarkus}{11}{subsection.3.2.1}%
 \contentsline {subsection}{\numberline {3.2.2}Implementierung der REST-Schnittstellen}{11}{subsection.3.2.2}%
 \contentsline {subsubsection}{\nonumberline Repositories}{11}{subsubsection*.11}%
 \contentsline {subsubsection}{\nonumberline Records und DTOs}{12}{subsubsection*.13}%
 \contentsline {subsubsection}{\nonumberline User}{12}{subsubsection*.15}%
-\contentsline {subsubsection}{\nonumberline Exhibitions}{12}{subsubsection*.17}%
+\contentsline {subsubsection}{\nonumberline Exhibitions}{13}{subsubsection*.17}%
 \contentsline {subsubsection}{\nonumberline Filemanagement}{14}{subsubsection*.19}%
-\contentsline {section}{\numberline {3.3}Hosten auf einer Cloud}{14}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Schreiben der Tests}{14}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Zusammenfassung}{15}{chapter.4}%
+\contentsline {section}{\numberline {3.3}Hosten auf einer Cloud}{15}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Schreiben der Tests}{15}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Zusammenfassung}{16}{chapter.4}%
 \contentsline {chapter}{Glossar}{V}{section*.20}%
 \contentsline {chapter}{\nonumberline Literaturverzeichnis}{VII}{chapter*.22}%
 \contentsline {chapter}{\nonumberline Abbildungsverzeichnis}{IX}{chapter*.23}%

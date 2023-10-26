@@ -2,19 +2,19 @@
 
 \subsection{Erstellung des ERDs}
 Um zu gewährleisten, dass die Systemanforderung getroffen werden, ist es notwendig ein entsprechendes \gls{erd} zu erstellen.
-Innerhalb eines \gls{erd} werden alle verschiedene Entitäten, Attribute sowie deren Beziehungen dargestellt.
-Dieses dient als gemeinsamer Nenner für die Projektentwicklung, da jedes Teammitglied eine eigene Vorstellung der Datenstruktur haben könnte. 
+Innerhalb eines \gls{erd} werden alle Entitäten, Attribute, sowie deren Beziehungen dargestellt.
+Es dient als gemeinsamer Nenner für die Projektentwicklung, da jedes Teammitglied eine eigene Vorstellung der Datenstruktur haben könnte. 
 Ein weiterer Vorteil eines \gls{erd}s ist das Potenzial Fehlerquellen zu identifizieren und dadurch zukünfige Problem zu umgehen. 
 
 Nachdem die benötigten Entitäten, sowie deren Attribute festgelegt wurden, müssen nun die Beziehungen zueinander festgelegt werden. 
 Dabei wird gewählt zwischen One-to-One, One-to-Many und Many-to-Many Beziehungen, wobei die Many-to-Many Beziehung innerhalb einer Assoziationstabelle dargestellt wird. 
 
-Innerhalb dieser Arbeit ist die Entität \emph{Exhibitions} das zentrale Objekt, dies ist in den Abbildung \ref{fig:erd:lastversion} gut ersichtlich.
-Die Beziehungen zwischen \emph{Positionen, Exhibits, Rooms und Exhibitions} stellt sich besonders als Herausforderung dar, aufgrund der vielen Abhängigkeiten untereinander. 
-
-Üblicherweise muss das \gls{erd} im Laufe der Entwicklung etwas überarbeitet werden. 
-Unsere Gründe dafür waren einige Planänderungen bei der Kommunikation zwischen zwei Entitäten, sowie der Aufbau der Hauptentitäten \emph{Exhibition und Exhibit} (siehe Abb. \ref{fig:erd:firstversion}).
-
+Innerhalb dieser Arbeit ist die Entität \emph{Exhibitions} das zentrale Objekt, was in der Abbildung \ref{fig:erd:lastversion} gut ersichtlich ist.
+Die Beziehungen zwischen \emph{Positionen, Exhibits, Rooms und Exhibitions} stellten sich besonders als Herausforderung dar, aufgrund der vielen Abhängigkeiten zueinander. 
+Diese wurden besonders erst in der Implementierung ersichtlich, wodurch das \gls{erd} im Laufe der Entwicklung etwas angepasst wurde. 
+Weitere Gründe für die Abänderung, waren Planänderungen bei der Kommunikation zwischen zwei Entitäten, sowie der Aufbau der Hauptentitäten \emph{Exhibition und Exhibit}. 
+Die Unterschiede zwischen der ersten Version und der finalen sind deutlich (siehe Abb. \ref{fig:erd:firstversion} und \ref{fig:erd:lastversion}).
+Besonders lassen sich die oben erläuterten Änderungen erkennen. 
  
 \begin{figure}
     \centering
@@ -31,12 +31,18 @@ Unsere Gründe dafür waren einige Planänderungen bei der Kommunikation zwische
 \end{figure}
 
 \section{Aufsetzen der Datenbank und des Servers}
+Um das Quarkus-Projekt aufzusetzen, gibt es mehrere Möglichkeiten. 
+Standardmäßig wird dazu die Webseite \href{https://code.quarkus.io}{code.quarkus.io} verwendet, da hier die gewünschten Abhängigkeiten durch unkompliziertes Auswählen hinzugefügt werden können. 
+Für diese Arbeit wurde jedoch das IntelliJ Plug-in \emph{Quarkus} von JetBrains s.r.o. verwendet. 
+Dieses bildet dieselben Möglichkeiten, wie die Webseite, in einem eigenem Fenster ab (siehe Abb. \ref{fig:intellij:plugin}).
+Zusätzlich werden Tools zur Verfügung gestellt, wie zum Beispiel Code-Assistenz, oder Laufkonfigurationen. \cite{QuarkusPlugin}
 
-\subsection{Umsetzung des ERDs in Quarkus}
-Um das \gls{erd} umzusetzen, wird ein Quarkus-Projekt benötigt, sowie eine laufende PostgreSQL-Installation. 
-Das erste Ziel ist es, das Projekt lokal starten zu können und eine Datenbankverbindung herzustellen. 
-Um ein Quarkus Projekt zu erstellen wurde das Quarkus Plugin von JetBrains s.r.o. verwendet. 
-Hiermit werden die Funktionen der Webseite \href{https://code.quarkus.io}{code.quarkus.io} in einem IntelliJ Fenster dargestellt (siehe Abb. \ref{fig:intellij:plugin}). 
+Nach dem Aufsetzen des Projektes, wird eine Datenbankverbindung benötigt. 
+Dazu wird eine Installation von PostgreSQL am Gerät benötigt, die eine Datenbank lokal ausführt.
+Name, Nutzer und Port der Datenbank können frei gewählt werden, allerdings wurden diese hier nach standardmäßiger Vorgabe gelassen.
+
+Als nächsten Schritt wird eine Verbindung zur lokalen Datenbank aufgebaut. 
+Dafür werden die Konfigurationen in Abb. \ref{lst:quarkusDatasourceProject} benötigt.
 
 \begin{figure}
     \centering
@@ -45,8 +51,6 @@ Hiermit werden die Funktionen der Webseite \href{https://code.quarkus.io}{code.q
     \label{fig:intellij:plugin}
 \end{figure}
 
-Als nächstes wird eine Verbindung zur lokalen Datenbank aufgebaut. 
-Dafür werden die Konfigurationen in Abb. \ref{lst:quarkusDatasourceProject} benötigt.
 
 \begin{lstlisting}[label=lst:quarkusDatasourceProject]
     quarkus.datasource.db-kind=postgresql
@@ -59,6 +63,8 @@ Dafür werden die Konfigurationen in Abb. \ref{lst:quarkusDatasourceProject} ben
 
 Falls der Verbindungsaufbau versagt, wirft Quarkus während der Kompilierung Fehlermeldungen. 
 Ansonsten können nun die Tabellen angelegt werden. 
+
+\subsection{Umsetzung des ERDs in Quarkus}
 Diese lassen sich mittels der Annotation \emph{@Entity} definieren. 
 Durch die Entwicklung mithilfe des Hibernate \gls{orm} mit Panache brauchen die einzelnen Klassen keine explizit definierte Id, sondern nur die Extensioins der \emph{PanacheEntity}-Klasse (siehe Abb. \ref{lst:exhibitionEntityCode}, Zeile2). 
 
