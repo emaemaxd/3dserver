@@ -20,7 +20,7 @@
 \contentsline {section}{\numberline {3.2}Aufsetzen der Datenbank und des Servers}{7}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}Umsetzung des ERDs in Quarkus}{11}{subsection.3.2.1}%
 \contentsline {subsection}{\numberline {3.2.2}Implementierung der REST-Schnittstellen}{11}{subsection.3.2.2}%
-\contentsline {subsubsection}{\nonumberline Repositories}{11}{subsubsection*.11}%
+\contentsline {subsubsection}{\nonumberline Repositories}{12}{subsubsection*.11}%
 \contentsline {subsubsection}{\nonumberline Records und DTOs}{12}{subsubsection*.13}%
 \contentsline {subsubsection}{\nonumberline User}{12}{subsubsection*.15}%
 \contentsline {subsubsection}{\nonumberline Exhibitions}{13}{subsubsection*.17}%

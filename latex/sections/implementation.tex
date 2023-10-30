@@ -37,13 +37,6 @@ Für diese Arbeit wurde jedoch das IntelliJ Plug-in \emph{Quarkus} von JetBrains
 Dieses bildet dieselben Möglichkeiten, wie die Webseite, in einem eigenem Fenster ab (siehe Abb. \ref{fig:intellij:plugin}).
 Zusätzlich werden Tools zur Verfügung gestellt, wie zum Beispiel Code-Assistenz, oder Laufkonfigurationen. \cite{QuarkusPlugin}
 
-Nach dem Aufsetzen des Projektes, wird eine Datenbankverbindung benötigt. 
-Dazu wird eine Installation von PostgreSQL am Gerät benötigt, die eine Datenbank lokal ausführt.
-Name, Nutzer und Port der Datenbank können frei gewählt werden, allerdings wurden diese hier nach standardmäßiger Vorgabe gelassen.
-
-Als nächsten Schritt wird eine Verbindung zur lokalen Datenbank aufgebaut. 
-Dafür werden die Konfigurationen in Abb. \ref{lst:quarkusDatasourceProject} benötigt.
-
 \begin{figure}
     \centering
     \includegraphics[scale=0.4]{pics/quarkusplugin.png}
@@ -51,6 +44,12 @@ Dafür werden die Konfigurationen in Abb. \ref{lst:quarkusDatasourceProject} ben
     \label{fig:intellij:plugin}
 \end{figure}
 
+Nach dem Aufsetzen des Projektes, wird eine Datenbankverbindung benötigt. 
+Dazu wird PostgreSQL am Gerät installiert und gestarted.
+Name, Nutzer und Port der Datenbank können frei gewählt werden, allerdings wurden diese hier nach standardmäßiger Vorgabe gelassen.
+
+Als nächsten Schritt wird eine Verbindung zu diesem lokalen Sysytem aufgebaut. 
+Dafür werden die Einstellungen in Abb. \ref{lst:quarkusDatasourceProject} konfiguriert.
 
 \begin{lstlisting}[label=lst:quarkusDatasourceProject]
     quarkus.datasource.db-kind=postgresql
@@ -62,10 +61,14 @@ Dafür werden die Konfigurationen in Abb. \ref{lst:quarkusDatasourceProject} ben
 \end{lstlisting}
 
 Falls der Verbindungsaufbau versagt, wirft Quarkus während der Kompilierung Fehlermeldungen. 
-Ansonsten können nun die Tabellen angelegt werden. 
+Andernfalls können nun die Tabellen angelegt werden. 
 
 \subsection{Umsetzung des ERDs in Quarkus}
-Diese lassen sich mittels der Annotation \emph{@Entity} definieren. 
+Um eine Tabelle zu erstellen wird, wie vorher erwähnt, die Quarkus-Abhängigkeit \emph{Hibernate ORM} verwendet.
+Mittels dieser wird eine Tabelle erstellt duch die Definition der Annotation \emph{@Entity}.
+Da ebenso Panache verwendet wird, müssen keine Get- und Set-Methoden, sowie Ids definiert werden. 
+// TODO
+Diese lassen sich mittels der  definieren. 
 Durch die Entwicklung mithilfe des Hibernate \gls{orm} mit Panache brauchen die einzelnen Klassen keine explizit definierte Id, sondern nur die Extensioins der \emph{PanacheEntity}-Klasse (siehe Abb. \ref{lst:exhibitionEntityCode}, Zeile2). 
 
 Beziehungen werden durch die Annotationen \emph{@OneToMany, @ManyToMany, @OnetoOne} dargestellt. 
