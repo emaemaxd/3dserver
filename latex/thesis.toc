@@ -12,7 +12,7 @@
 \contentsline {section}{\numberline {2.3}IntelliJ IDEA}{4}{section.2.3}%
 \contentsline {section}{\numberline {2.4}LeoCloud}{5}{section.2.4}%
 \contentsline {section}{\numberline {2.5}Notion}{5}{section.2.5}%
-\contentsline {section}{\numberline {2.6}PlantUML}{5}{section.2.6}%
+\contentsline {section}{\numberline {2.6}PlantUML}{6}{section.2.6}%
 \contentsline {section}{\numberline {2.7}JSON Web Token}{6}{section.2.7}%
 \contentsline {chapter}{\numberline {3}Umsetzung}{7}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Design und Planung}{7}{section.3.1}%

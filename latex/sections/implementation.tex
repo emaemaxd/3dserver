@@ -64,15 +64,15 @@ Falls der Verbindungsaufbau versagt, wirft Quarkus während der Kompilierung Feh
 Andernfalls können nun die Tabellen angelegt werden. 
 
 \subsection{Umsetzung des ERDs in Quarkus}
-Um eine Tabelle zu erstellen wird, wie vorher erwähnt, die Quarkus-Abhängigkeit \emph{Hibernate ORM} verwendet.
+Um eine Tabelle zu erstellen wird, wie vorher erwähnt, die Quarkus-Abhängigkeit \emph{Hibernate ORM mit Panache} verwendet.
 Mittels dieser wird eine Tabelle erstellt duch die Definition der Annotation \emph{@Entity}.
-Da ebenso Panache verwendet wird, müssen keine Get- und Set-Methoden, sowie Ids definiert werden. 
-// TODO
-Diese lassen sich mittels der  definieren. 
-Durch die Entwicklung mithilfe des Hibernate \gls{orm} mit Panache brauchen die einzelnen Klassen keine explizit definierte Id, sondern nur die Extensioins der \emph{PanacheEntity}-Klasse (siehe Abb. \ref{lst:exhibitionEntityCode}, Zeile2). 
+Üblicherweise benötigt jede Entitäten-Klasse eine definierte Id.
+Durch die Ableitung der \emph{PanacheEntity}-Klasse (siehe Abb. \ref{lst:exhibitionEntityCode}, Zeile2) kann jedoch auf diese verzichtet werden, da sie dort schon definiert wurde.
 
-Beziehungen werden durch die Annotationen \emph{@OneToMany, @ManyToMany, @OnetoOne} dargestellt. 
-Jede Beziehung muss auf einer Seite gemapped werden, da sie sonst mehrfach generiert wird(siehe Abb. \ref{lst:exhibitionEntityCode}, Zeile 4). 
+In der Klasse werden alle Attribute als Variablen, gemäß des \gls*{erd}s definiert. 
+Die Beziehungen zu anderen Entitäten werden durch die Annotationen \emph{@OneToMany, @ManyToMany und @OnetoOne} über der dazugehörigen Variable dargestellt. 
+Auf der gegenseitigen Entität muss ebenso eine Variable erstellt werden, wobei da die Annotation etwas anders aussieht. 
+Diese muss die \emph{mappedBy}-Einstellung konfigurieren, da ansonsten die Beziehung mehrmals generiert wird(siehe Abb. \ref{lst:exhibitionEntityCode}, Zeile 4). 
 Bei Many-to-Many wird eine zuätzliche Annotation @JoinTable hinzugefügt, um die Assoziationstabelle zu konfigurieren (siehe Abb. \ref{lst:exhibitionEntityCode}, Zeilen 5 bis 12). 
 Zu den Relationen können zusätzlich noch \gls{cascade} festgelegt werden. 
 
@@ -93,15 +93,15 @@ public class Exhibition extends PanacheEntity {
 }
 \end{lstlisting}
 
-Für die Entitäten Theme, Positionen und Rooms hat sich das Team dafür entschieden, die Daten vorgefertigt in die Datenbank zu laden. 
+Für die Entitäten Theme, Positionen und Rooms hat sich das Team dafür entschieden, die Daten vorgefertigt in die Datenbank zu laden und die dazugehörigen Dateien manuell auf den Server zu speichern. 
 Das bedeutet, dass für diese Entitäten keine Methoden angelegt werden müssen, um neue Objekte zu erstellen. 
-Verwendet wurde dafür eine \emph{import.sql}-Datei. 
-Diese wird bei jedem Quarkus Start ausgeführt. 
+Da in den \emph{application.properties} die Art der Datenbank auf \emph{drop-and-create} gesetzt wurde, war eine \emph{import.sql}-Datei während der Entwicklung von großer Bedeutung. 
+Diese lädt die vordefinierten Daten bei jedem Start automatisch in die Datenbank. 
 
 \subsection{Implementierung der REST-Schnittstellen}
 
 Um das Frontend auf die Daten zugreifen zu lassen werden Schnittstellen benötigt, die dies ermöglichen. 
-Dafür werden im Backends Resource-Klassen erstellt, um die einzelnen Endpoints zu verwalten. 
+Dafür werden im Backends Resource-Klassen erstellt, um Endpoints zu verwalten. 
 Diese definiert man durch die \emph{@Path}-Annotation, da diese angibt, unter welchem Pfad die Methoden erreichbar sind. 
 Für jede Methoden muss zusätzlich die \gls{http}-Methode als Annotation definiert werden. 
 
