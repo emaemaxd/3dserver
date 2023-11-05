@@ -8,6 +8,7 @@
 \contentsline {subsection}{\numberline {2.1.2}\gls *{jdbc} Driver - PostgreSQL}{3}{subsection.2.1.2}%
 \contentsline {subsection}{\numberline {2.1.3}Hibernate ORM mit Panache}{3}{subsection.2.1.3}%
 \contentsline {subsection}{\numberline {2.1.4}REST-Easy}{4}{subsection.2.1.4}%
+\contentsline {subsection}{\numberline {2.1.5}Swagger-ui}{4}{subsection.2.1.5}%
 \contentsline {section}{\numberline {2.2}PostgreSQL}{4}{section.2.2}%
 \contentsline {section}{\numberline {2.3}IntelliJ IDEA}{4}{section.2.3}%
 \contentsline {section}{\numberline {2.4}LeoCloud}{5}{section.2.4}%
@@ -22,7 +23,7 @@
 \contentsline {subsection}{\numberline {3.2.2}Implementierung der REST-Schnittstellen}{11}{subsection.3.2.2}%
 \contentsline {subsubsection}{\nonumberline Repositories}{12}{subsubsection*.11}%
 \contentsline {subsubsection}{\nonumberline Records und DTOs}{12}{subsubsection*.13}%
-\contentsline {subsubsection}{\nonumberline User}{12}{subsubsection*.15}%
+\contentsline {subsubsection}{\nonumberline User}{13}{subsubsection*.15}%
 \contentsline {subsubsection}{\nonumberline Exhibitions}{13}{subsubsection*.17}%
 \contentsline {subsubsection}{\nonumberline Filemanagement}{14}{subsubsection*.19}%
 \contentsline {section}{\numberline {3.3}Hosten auf einer Cloud}{15}{section.3.3}%

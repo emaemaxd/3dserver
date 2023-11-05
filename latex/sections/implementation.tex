@@ -100,10 +100,12 @@ Diese lädt die vordefinierten Daten bei jedem Start automatisch in die Datenban
 
 \subsection{Implementierung der REST-Schnittstellen}
 
-Um das Frontend auf die Daten zugreifen zu lassen werden Schnittstellen benötigt, die dies ermöglichen. 
-Dafür werden im Backends Resource-Klassen erstellt, um Endpoints zu verwalten. 
-Diese definiert man durch die \emph{@Path}-Annotation, da diese angibt, unter welchem Pfad die Methoden erreichbar sind. 
-Für jede Methoden muss zusätzlich die \gls{http}-Methode als Annotation definiert werden. 
+Damit das Frontend auf Daten zugreifen kann, werden Schnittstellen, oder sogenannte Endpoints, benötigt. 
+Um dies zu ermöglichen werden im Backends Resource-Klassen erstellt. 
+Ein Endpoint wird erstellt durch die Verwendung der \emph{@Path}-Annotation.
+Zusätzlich wird definiert, unter welchem Pfad die Methoden erreichbar sind, sowie mittels welcher \gls{http}-Methode darauf zugegriffen werden kann. 
+
+Für das Testen während der Entwicklung wurde die Extension \emph{swagger-ui} und das Programm Postman verwendet.
 
 \subsubsection{Repositories} 
 Um in Resource-Klassen die Datenbank anzusprechen, müssen die benötigten Repositories injiziert werden. 
