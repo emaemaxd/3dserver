@@ -1,0 +1,88 @@
+
+\section{Quarkus}
+Das open-source \gls{fw} Quarkus, wird verwendet um cloud-native Projekte in Java zu entwickeln. 
+Vorteile dieses \glspl{fw} sind die kurzen Startzeiten, sowie der geringe Arbeitsspeicherverbrauch.
+\cite{QuarkusHomepage}
+
+Nach der Erstellung eines neuen Projekts wird standardmäßig eine \hyperref[ch::MavenTool]{Maven}-Struktur erstellt, sowie Quarkus-Datein, welche die Projekteinstellungen modifizieren können, wie zum Beispiel die \emph{application.properties}-Datei. 
+Zusätzlich verfügt Quarkus über eine Vielzahl von Extensions, welche durch Command-line-Befehle oder händisch zu Projekten hinzugefügt werden können. 
+Um dies und weitere Quarkus-Aktionen zu vereinfachen, bietet dieses \gls{fw} ein zusätzliches Quarkus-\gls{cli}.
+\cite{QuarkusAbout, QuarkusFirstApplication}
+
+
+\subsection{Maven}
+\label{ch::MavenTool}
+Da die Kompilierungsprozess eines Projektes recht komplex werden können, wird Maven verwendet, um diese zu vereinfachen.
+Ein gutes Beispiel eines komplexen Kompilierungsprozess ist die Ausführung eines Projekts auf unterschiedlichen Geräten mit verschiedener Hardware und Konfigurationen.
+%Meist sind lokale Konfigurationen der Auslöser dafür.
+Durch die Verwendung von Maven wird garantiert, dass dieses Problem nicht auftritt, da die einzige Vorraussetzung des Zielgerätes nun ist, dass Maven installiert und eingerichtet ist.
+
+Mit einem "Maven-Ordner" können Projekte mit gewohnten Maven-Befehlen ausgeführt werden, ohne dass eine Installation des Tools notwendig ist.
+Quarkus-Projekte verwenden von Mavens \emph{pom.xml}-Datei, um zum Beispiel die verwendete Java Version oder alle verwendeten Extensions abzuspeichert.
+Zusätzlich ist es möglich, ein einheitliches System für Projektkonfigurationen zu bieten.
+Dadurch müssen Einstellungen nicht mehr manuell bei Gerätewechsel getroffen werden. 
+\cite{MavenAbout}
+%In Quarkus-Projekten werden in der \emph{pom.xml}-Datei zum Beispiel die verwendete Java Version, oder alle verwendeten Extensions gespeichert.
+
+
+\subsection{\gls*{jdbc} Driver - PostgreSQL}
+Für Quarkus Projekte gibt es eine Extension namens \textit{"\gls{jdbc} Driver - PostgreSQL"}.
+Diese ermöglicht eine Verbindung zu PostgreSQL-Datenbanken. 
+In Java versteht man unter der \gls{jdbc} eine \gls{api} für Java-Anwendungen. 
+Die \gls{jdbc}-Driver sind Implementationen der \gls{api} für den benötigten Fall, wie hier für PostgreSQL \cite{StackOFJDBC}.
+
+
+Um die Extension verwenden zu können und eine Datenbankverbindung aufzubauen, müssen in den \emph{application.properties} einige zusätzlichen Konfigurationen eingefügt werden. 
+Wichtig sind Informationen, wie die Art der Datenbank, der Pfad, um diese zu erreichen, und die Login-Daten eines berechtigten Nutzeres \ref{lst:quarkusDatasource}:
+
+\begin{lstlisting}[caption=Beispielkonfigurationen,label=lst:quarkusDatasource]
+  quarkus.datasource.db-kind=postgresql 
+  quarkus.datasource.username=meinUser
+  quarkus.datasource.password=meinPassword
+  quarkus.datasource.jdbc.url=jdbc:postgresql://<URL>:<Port>/<meinName>
+\end{lstlisting}
+
+\subsection{Hibernate ORM mit Panache}
+Hibernate ORM ist der \gls{orm} für Quarkus. 
+Da in Java objekt-orientiert programmiert wird und PostgreSQL eine relationale Datenbank ist, muss eine Möglichkeit gefunden werden, wie die in Java erstellten Objekte in die Datenbank übertragen werden. 
+Da kommt ein \gls{orm} ins Spiel. 
+Dieser "übersetzt" den Java-Code für die Datenbank. 
+Dadurch können Java-Klassen als Objekte persistiert werden und gelöscht werden, ohne dass komplexe Codezeilen konstruiert werden müssen. 
+\cite{ORMAbout}
+
+Panache bietet zusätzliche Klassen mit Funktionen, von denen abgeleitet werden kann. 
+Diese erleichtern das Arbeiten mit angelegten Entitäten, besonders bei \gls{crud}-Operationen.
+Zum Beispiel ist für das Persistieren eines neue Objekts lediglich ein Aufruf der \emph{.persist()}-Methode notwendig.
+\cite{HibernateORMwithPanache}
+
+\subsection{REST-Easy}
+\gls{rest}-Easy ist eine Erweiterung, die es ermöglicht, im Quarkus Projekt mit Jakarta RESTful Web Servies zu arbeiten. 
+%\gls{rest} hat sich als Standard für Mikroservice-Anwendungen festgelegt.\cite{RESTAbout}
+Das heißt, dass durch diese Extension im Projekt \gls{api}s erstellt werden können. 
+Im Code werden diese erstellt durch die zweit Annotationen \emph{@Path} und \emph{@<beliebige HTTP-Methode>}.
+
+Folgende \gls{http}-Methoden werden in dieser Arbeit verwendet:
+\begin{compactitem}
+    \item GET
+    \item POST 
+    \item DELETE
+\end{compactitem}
+
+\subsection{Swagger-ui}
+Swagger UI ist ein Tool, welches beim Testen einer \gls{rest}-\gls{api} hilft. 
+Es ist open-source und liefert mehrere Funktionalitäten.
+Für diese Arbeit wurde nur ein Teil des Tools verwendet, nämlich die Visualisierung der Schnittstellen. 
+Diese bietet, je nach definierter Variable, vorgefertigte Requests, welche mit Mausklick ausgeführt werden können, und jederzeit bearbeitbar sind.
+Ebenso zeigt sie die dafür benötigte \gls{http}-Methode. 
+\cite{SwaggeruiAbout}
+
+\subsection{JUnit}
+JUnit steht für Java Unit und ist ein Test\gls{fw}. 
+Es hat sich als der Standart dieser Programmierspraache festgelegt und ist spezialisiert auf die Überprüfung von Methoden und Klassen.
+Da es open-source ist, besteht eine ausreichliche Dokumentation.
+Durch die Popularität, inspirierte dieses Konzept die Testoptionen für andere Programmiersprachen.
+
+JUnit ist in vielen der gängisten \gls{ide}s inkludiert. 
+Zum Anlegen einer Testklasse wird gewöhnlich der Name der zu testenden Klasse genommen mit \emph{.test} als Suffix. 
+Die benötigten Repositories werden simuliert, sodass diese wie gewohnt verwendet werden können.
+\cite{JUnitAbout}

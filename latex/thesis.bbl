@@ -67,6 +67,20 @@ Quarkus, ,,SIMPLIFIED HIBERNATE ORM WITH PANACHE,'' WebPage, 2023, letzter
   \url{https://quarkus.io/guides/hibernate-orm-panache}
 \BIBentrySTDinterwordspacing
 
+\bibitem{SwaggeruiAbout}
+\BIBentryALTinterwordspacing
+S.~Software, ,,REST API Documentation Tool | Swagger UI,'' WebPage, 2023,
+  letzter Zugriff am 07.09.2023. Online verfügbar:
+  \url{https://swagger.io/tools/swagger-ui/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{JUnitAbout}
+\BIBentryALTinterwordspacing
+J.-D. Kranz, ,,Was ist JUnit? Was sind JUnit Tests?'' WebPage, 2020, letzter
+  Zugriff am 14.11.2023. Online verfügbar:
+  \url{https://it-talents.de/it-wissen/junit/}
+\BIBentrySTDinterwordspacing
+
 \bibitem{PostgreSQLAbout}
 \BIBentryALTinterwordspacing
 T.~P. G.~D. Grou, ,,What is Maven?'' WebPage, 2023, letzter Zugriff am
@@ -124,11 +138,25 @@ T.~P.~L. Authors, ,,Project Lombok,'' WebPage, 2023, letzter Zugriff am
   09.09.2023. Online verfügbar: \url{https://projectlombok.org/#}
 \BIBentrySTDinterwordspacing
 
+\bibitem{cicdabout}
+\BIBentryALTinterwordspacing
+R.~Hat, ,,Was ist CI/CD? Konzepte und CI/CD Tools im Überblick,'' WebPage,
+  2023, letzter Zugriff am 19.11.2023. Online verfügbar:
+  \url{https://www.redhat.com/de/topics/devops/what-is-ci-cd}
+\BIBentrySTDinterwordspacing
+
 \bibitem{API2022}
 \BIBentryALTinterwordspacing
-R.~Hat, ,,What is an API?'' WebPage, 2022, letzter Zugriff am 21.08.2023.
+------, ,,What is an API?'' WebPage, 2022, letzter Zugriff am 21.08.2023.
   Online verfügbar:
   \url{https://www.redhat.com/en/topics/api/what-are-application-programming-interfaces}
+\BIBentrySTDinterwordspacing
+
+\bibitem{BoilerCodeAbout}
+\BIBentryALTinterwordspacing
+AWS, ,,Was ist Boilerplate-Code? - Boilerplate-Code erklärt – AWS,''
+  WebPage, 2023, letzter Zugriff am 09.11.2023. Online verfügbar:
+  \url{https://aws.amazon.com/de/what-is/boilerplate-code/}
 \BIBentrySTDinterwordspacing
 
 \bibitem{CascadeTypes}

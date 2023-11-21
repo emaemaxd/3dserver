@@ -1,5 +1,16 @@
 \section{Design und Planung}
 
+\subsection{Allgemeine Anforderungen}
+In den Anfangsgesprächen wurden schon einige Anforderungen für die Planung festgelegt. 
+Dabei wurde ein gemeinsamer Workspace in Notion erstellt, sowie ein gemeinsames Github-Repository.
+Dadurch wurden für die Termine, sowie den Coding-Prozess eine \gls{ssot} gewährleistet.
+
+Ebenso kamen die ersten Anforderungen der Entitäten zustande für das zukünftige \gls{erd}.
+
+Das Hauptanwendungsszenario der Arbeit wurde definiert als \emph{Ein Nutzer kann Exhibitions erstellen und sich die Exhibitions von anderen Nutzern ansehen.} 
+Alle weiteren Diskussionen über die Umsetzung dieses wurden anschließend in einem \gls{erd} zusammengefasst.
+
+%\subsection{Erstellung eines Workspaces in Notion}
 \subsection{Erstellung des ERDs}
 Um zu gewährleisten, dass die Systemanforderung getroffen werden, ist es notwendig ein entsprechendes \gls{erd} zu erstellen.
 Innerhalb eines \gls{erd} werden alle Entitäten, Attribute, sowie deren Beziehungen dargestellt.
@@ -30,227 +41,13 @@ Besonders lassen sich die oben erläuterten Änderungen erkennen.
     \label{fig:erd:lastversion}
 \end{figure}
 
-\section{Aufsetzen der Datenbank und des Servers}
-Um das Quarkus-Projekt aufzusetzen, gibt es mehrere Möglichkeiten. 
-Standardmäßig wird dazu die Webseite \href{https://code.quarkus.io}{code.quarkus.io} verwendet, da hier die gewünschten Abhängigkeiten durch unkompliziertes Auswählen hinzugefügt werden können. 
-Für diese Arbeit wurde jedoch das IntelliJ Plug-in \emph{Quarkus} von JetBrains s.r.o. verwendet. 
-Dieses bildet dieselben Möglichkeiten, wie die Webseite, in einem eigenem Fenster ab (siehe Abb. \ref{fig:intellij:plugin}).
-Zusätzlich werden Tools zur Verfügung gestellt, wie zum Beispiel Code-Assistenz, oder Laufkonfigurationen. \cite{QuarkusPlugin}
 
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.4]{pics/quarkusplugin.png}
-    \caption{Auswählen der gewünschten Quarkus Extensions im Quarkus Plugin}
-    \label{fig:intellij:plugin}
-\end{figure}
-
-Nach dem Aufsetzen des Projektes, wird eine Datenbankverbindung benötigt. 
-Dazu wird PostgreSQL am Gerät installiert und gestarted.
-Name, Nutzer und Port der Datenbank können frei gewählt werden, allerdings wurden diese hier nach standardmäßiger Vorgabe gelassen.
-
-Als nächsten Schritt wird eine Verbindung zu diesem lokalen Sysytem aufgebaut. 
-Dafür werden die Einstellungen in Abb. \ref{lst:quarkusDatasourceProject} konfiguriert.
-
-\begin{lstlisting}[label=lst:quarkusDatasourceProject]
-    quarkus.datasource.db-kind=postgresql
-    quarkus.datasource.username = postgres
-    quarkus.datasource.password = postgres
-    quarkus.datasource.jdbc.url=jdbc:postgresql://localhost:5432/postgres
-
-    quarkus.hibernate-orm.database.generation=drop-and-create
-\end{lstlisting}
-
-Falls der Verbindungsaufbau versagt, wirft Quarkus während der Kompilierung Fehlermeldungen. 
-Andernfalls können nun die Tabellen angelegt werden. 
-
-\subsection{Umsetzung des ERDs in Quarkus}
-Um eine Tabelle zu erstellen wird, wie vorher erwähnt, die Quarkus-Abhängigkeit \emph{Hibernate ORM mit Panache} verwendet.
-Mittels dieser wird eine Tabelle erstellt duch die Definition der Annotation \emph{@Entity}.
-Üblicherweise benötigt jede Entitäten-Klasse eine definierte Id.
-Durch die Ableitung der \emph{PanacheEntity}-Klasse (siehe Abb. \ref{lst:exhibitionEntityCode}, Zeile2) kann jedoch auf diese verzichtet werden, da sie dort schon definiert wurde.
-
-In der Klasse werden alle Attribute als Variablen, gemäß des \gls*{erd}s definiert. 
-Die Beziehungen zu anderen Entitäten werden durch die Annotationen \emph{@OneToMany, @ManyToMany und @OnetoOne} über der dazugehörigen Variable dargestellt. 
-Auf der gegenseitigen Entität muss ebenso eine Variable erstellt werden, wobei da die Annotation etwas anders aussieht. 
-Diese muss die \emph{mappedBy}-Einstellung konfigurieren, da ansonsten die Beziehung mehrmals generiert wird(siehe Abb. \ref{lst:exhibitionEntityCode}, Zeile 4). 
-Bei Many-to-Many wird eine zuätzliche Annotation @JoinTable hinzugefügt, um die Assoziationstabelle zu konfigurieren (siehe Abb. \ref{lst:exhibitionEntityCode}, Zeilen 5 bis 12). 
-Zu den Relationen können zusätzlich noch \gls{cascade} festgelegt werden. 
-
-\begin{lstlisting}[label=lst:exhibitionEntityCode, language=java]
-@Entity
-public class Exhibition extends PanacheEntity {
-    // ...
-    @OneToMany(mappedBy = "exhibition", cascade = CascadeType.REMOVE)
-    public List<Exhibit> exhibits;
-
-    @ManyToMany
-    @JoinTable(
-            name = "exhibitions_categories",
-            joinColumns = @JoinColumn(name = "exhibition_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id")
-    )
-    public Set<Category> categories;
-}
-\end{lstlisting}
-
-Für die Entitäten Theme, Positionen und Rooms hat sich das Team dafür entschieden, die Daten vorgefertigt in die Datenbank zu laden und die dazugehörigen Dateien manuell auf den Server zu speichern. 
-Das bedeutet, dass für diese Entitäten keine Methoden angelegt werden müssen, um neue Objekte zu erstellen. 
-Da in den \emph{application.properties} die Art der Datenbank auf \emph{drop-and-create} gesetzt wurde, war eine \emph{import.sql}-Datei während der Entwicklung von großer Bedeutung. 
-Diese lädt die vordefinierten Daten bei jedem Start automatisch in die Datenbank. 
-
-\subsection{Implementierung der REST-Schnittstellen}
-
-Damit das Frontend auf Daten zugreifen kann, werden Schnittstellen, oder sogenannte Endpoints, benötigt. 
-Um dies zu ermöglichen werden im Backends Resource-Klassen erstellt. 
-Ein Endpoint wird erstellt durch die Verwendung der \emph{@Path}-Annotation.
-Zusätzlich wird definiert, unter welchem Pfad die Methoden erreichbar sind, sowie mittels welcher \gls{http}-Methode darauf zugegriffen werden kann. 
-
-Für das Testen während der Entwicklung wurde die Extension \emph{swagger-ui} und das Programm Postman verwendet.
-
-\subsubsection{Repositories} 
-Um in Resource-Klassen die Datenbank anzusprechen, müssen die benötigten Repositories injiziert werden. 
-Durch die Verwendung der Panache Extension, implementieren alle Repository-Klassen das \emph{PanacheRepository}, wobei die zugehörige Tabelle in spitzen Klammern angegeben werden muss, wie in Code Beispiel \ref{lst:panacherepo} bei Zeile 2.
-Dieses fügt einfache Methoden für \gls{crud}-Operationen hinzu, ohne diese zusätzlich zu definieren. 
-
-\begin{lstlisting}[label=lst:panacherepo, language=Java, caption=Teil aus dem Exhibition Repository]
-@ApplicationScoped
-public class ExhibitionRepo implements PanacheRepository<Exhibition> {
-    //...
-    public List<ExhibitionWithUserRecord> listAllExhibitionsWithUserField() {
-        String sql = "select new 
-            org.threeDPortfolioGallery.records.ExhibitionWithUserRecord(e, u.user_name, u.icon_url) from Exhibition e join e.user u left join e.categories c";
-        TypedQuery<ExhibitionWithUserRecord> q = getEntityManager()
-                .createQuery(sql, ExhibitionWithUserRecord.class);
-        var ret = q.getResultList();
-        return ret;
-    }
-}
-\end{lstlisting}
-
-Die Repositories ermöglichen ebenso das Definieren von eigenen \gls{jpql}-Befehlen. 
-\gls{jpql} ermöglicht, neben der Nutzung der gewohnten \gls{sql}-Keywords, das definieren von Parametern in Queries, sowie die Verwendung von eigenen Records und \gls{dto}s.
-
-\subsubsection{Records und DTOs}
-Records sind eine Möglichkeit, einen Datensatz zurückzugeben, mit Werten aus verschiedenen Tabellen. 
-Sie können gesetzt werden, jedoch nicht mehr geändert werden. 
-Deswegen eignen sie sich besonders gut, Daten aus \gls{sql}-Statements zu speichern und zu returnen.
-
-\gls{dto}s hingegen können mittels Set-Methoden die Werte wieder ändern.
-Dies ist nicht umbedingt notwendig beim Auslesen der Datenbank, aber sehr nützlich beim Anlegen neuer Objekte. 
-
-\subsubsection{User}
-Ein User wird angelegt durch das Definieren eines Nutzernamens, sowie eines Passwortes. 
-Optional können ebenso Pfade angegeben werden für Profilbilder. 
-Jedes Passwort bekommt vor dem Speichervorgang einen Salt angehängt und wird mithilfe von Base64 verschlüsselt. 
-
-Der Zugriff auf die Schnittstelle ist gesichert durch ein Tokensystem. 
-Nach jedem erfolgreichem login wird ein Token zurückgesendet, der für die Authentifizierung genutzt werden kann. 
-In diesem Token ist der Nutzername gespeichert, sowie zu welcher Gruppe der Nutzer angehört. 
-Je nach Gruppe kann auf verschiedene Endpoints zugegriffen werden. 
-Die Limitationen werden bei der Definition der Methoden angegeben mittels \emph{@PermitAll}, was keine Limitationen hinzugefügt.
-Genauso gibt es jedoch \emph{@RolesAllowed}, was nur definierten Rollen den Zugriff erlaubt.  
+\include{sections/parts/impl_ums.tex}
 
 
-\subsubsection{Exhibitions}
-Eine der wichtigsten Funktionen der Exhibitions-Resource, ist das Anlegen einer Exhibition. 
-Dafür wird eine \emph{@POST}-Methode erstellt, die ein Objekt nach dem \gls{dto} in Codeausschnitt \ref{lst:exhibitiondto} einliest.
-\gls{dto}s können auch verschachtelt werden, was in Zeile 12 erkennbar ist. 
+\include{sections/parts/impl_tests}
 
-In der Klasse wurde ebenfalls die Annotation \emph{@Data} verwendet. 
-Diese stammt aus der Java Library Project Lombok und automatisiert die erstellung von Get- und Set-Methoden. 
-\cite{Lambok}
-
-\begin{lstlisting}[label=lst:exhibitiondto, language=Java, caption=Exhibition DTO]
-    @Data
-    public class AddExhibitionDTO {
-        String thumbnail_url;
-        String title;
-        String description;
-
-        Long room_id;
-
-        Long user_id;
-        Long[] category_ids;
-
-        AddExhibitDTO[] exhibits;
-    }
-\end{lstlisting}
-
-Da die Methode ein \gls{dto} erwartet, muss definiert werden, dass etwas eingelesen werden soll. 
-Dies macht man durch das \emph{@Consumes}. 
-Der Codeabschnitt \ref{lst:newExhibitionMethod} Zeile 4 legt fest, dass beim Senden der POST-Methode ein \gls{json}-Objekt erwartet werden soll. 
-Der Ausdruck in der Klammer in Zeile 5 im selben Abschnitt beschreibt, wie dieses Objekt konstruiert sein soll.
-
-Beim Aufruf der Methode wird das mitgegebene Objekt in der Variable \emph{newExhibition} gespeichert.
-Danach werden zwei leere Variable initialisert. 
-Zum einen eine neue Exhibition, zum anderen eine LinkedList bestehend aus Exhibits.
-Diese sind getrennt, da alle Exhibits zuerst in die Datenbank eingefügt werden müssen, bevor die Exhibition tatsächlich gespeichert wird. 
-
-Neben den Exhibits, müssen genauso die anderen Werte der mitgegebenen Variable geprüft werden. 
-Das heißt, es muss sichergestellt werden, dass keine nicht-existierenden User- oder Category-Ids übergeben wurden. 
-Falls etwas einen Fehler während der Überprüfung wirft, Fehlermeldung zurückgegeben mit dem Statuscode 406 "Not Acceptable". 
-Gleichzeitig geschieht ein Rollback der davor gespeicherten Objekte. 
-Diese Vorgehensweise wird durch die Annotation \emph{@Transactional} definiert. 
-
-\begin{lstlisting}[label=lst:newExhibitionMethod, language=Java, caption=Methode zum Anlegen von Exhibitions]
-    @POST
-    @Transactional
-    @Path("/new")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response postNewExhibition(AddExhibitionDTO newExhibition){
-        Exhibition exhibition = new Exhibition();
-        List<Exhibit> newExhibitList = new LinkedList<>();
-        // ...
-    }
-\end{lstlisting}
-
-\subsubsection{Filemanagement}
-Der File-Upload geschieht während der Bearbeitung der Exhibition im Frontend. 
-Nach jeder Dateiauswahl des Nutzers der Webseite, wird der Endpoint zuständig für den Fileupload aufgerufen. 
-Dieser erwartet sich, anders als die anderen POST-Methoden, kein \gls{json}-Objekt, sondern eine Datei. 
-Wiedermals wird dies fesgelegt mittels der \emph{@Consumes}-Annotation, mit \emph{"multipart/form-data"} als Wert. 
-Das Limit der akzeptierten Datein wird in den \emph{application.properties} (Abb. \ref{lst:filesizemax}) festgelegt. 
-\begin{lstlisting}[label=lst:filesizemax]
-    quarkus.http.limits.max-body-size = 300m
-\end{lstlisting}
-
-Für das eigentliche Abspeichern einer Datei, ist die Methode \emph{writeFile()} zuständig (siehe Abb. \ref{lst:fileupload}). 
-Diese wird aufgerufen, wenn der Endpoint aufgerufen wird und eine Datei mitgegeben wurde. 
-Der erste Parameter der Methode, das Byte-Array, wird mittels eines Inputstreams erstellt. 
-Der Filename wird in einer extra Methode erstellt. 
-Dafür wird der ursprüngliche Name der Datei genommen und untersucht auf Leerzeichen. 
-Sobald diese entfernt wurden, wird der abgeänderte Name zurückgegeben. 
-
-Nachdem das File abgespeichert wurde, wird dessen Pfad mit dem neuen Namen in die Response mitgegeben. 
-Diese Antwort wird dann als Wert erwartet als Url, beim Anlegen neuer Exhibits. 
-
-%  POST-Methode der Exhibition aufgerufen wird. 
-% Da jedes Exhibit eine Datei beinhaltet muss diese hochgeladen werden, um den Abruf ohne fehlende Daten zu ermöglichen.
-
-\begin{lstlisting}[label=lst:fileupload, language=Java, caption=Hochladen der Dateien]
-    private void writeFile(byte[] content, String filename) throws IOException {
-        File file = new File(filename);
-        if (!file.exists()) {
-            file.createNewFile();
-        }
-        FileOutputStream fos = new FileOutputStream(file);
-        fos.write(content);
-        fos.flush();
-        fos.close();
-    }
-\end{lstlisting}
+\include{sections/parts/impl_cloud}
 
 
-
-\section{Hosten auf einer Cloud}
-
-\section{Schreiben der Tests}
-
-%TODO das wegmachen, for safety bleibt das noch drinnen
-next termin:
-    fertig mit praktischem dienstag 6. EH (12:45) am 3.10 treffen beim eingang
-    sonntag abend immer schicken
-
-feedback:
-- weglassen von der anfangsfrage
-- umsetzung gliedern nach user stories
+\include{sections/parts/impl_cicd}

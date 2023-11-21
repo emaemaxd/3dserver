@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.12.1)  5 NOV 2023 15:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.12.1)  21 NOV 2023 15:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -961,7 +961,7 @@ Package glossaries Info: Writing glossary file thesis.glo on input line 23.
 LaTeX Font Info:    Trying to load font information for T1+lmr on input line 25.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) (./thesis.aux)
+) (./thesis.aux (./sections/parts/tech_quarkus.aux) (./sections/parts/impl_ums.aux) (./sections/parts/impl_tests.aux) (./sections/parts/impl_cloud.aux) (./sections/parts/impl_cicd.aux))
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
@@ -1242,13 +1242,18 @@ chapter 2.
 (./sections/technologies.tex [2
 
 ]
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 55.
+\openout2 = `sections/parts/tech_quarkus.aux'.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 55--55
+ (./sections/parts/tech_quarkus.tex [3
+
+]
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 38.
+
+Overfull \hbox (6.0pt too wide) in paragraph at lines 38--38
 [][][][][][][][] 
  []
 
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 55.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 38.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -1256,60 +1261,122 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [3] [4]
-<pics/NotionPage.png, id=203, 1165.35374pt x 838.13126pt>
+ [4]) [5] [6
+
+
+]
+<pics/NotionPage.png, id=225, 1165.35374pt x 838.13126pt>
 File: pics/NotionPage.png Graphic file (type png)
 <use pics/NotionPage.png>
-Package pdftex.def Info: pics/NotionPage.png  used on input line 130.
+Package pdftex.def Info: pics/NotionPage.png  used on input line 59.
 (pdftex.def)             Requested size: 349.60883pt x 251.44131pt.
- [5]) [6 <./pics/NotionPage.png>]
+ [7 <./pics/NotionPage.png>]) [8]
 chapter 3.
-(./sections/implementation.tex
-<pics/firstversion_erd.png, id=239, 663.47874pt x 722.7pt>
+(./sections/implementation.tex [9
+
+]
+<pics/firstversion_erd.png, id=271, 663.47874pt x 722.7pt>
 File: pics/firstversion_erd.png Graphic file (type png)
 <use pics/firstversion_erd.png>
-Package pdftex.def Info: pics/firstversion_erd.png  used on input line 21.
+Package pdftex.def Info: pics/firstversion_erd.png  used on input line 32.
 (pdftex.def)             Requested size: 331.73856pt x 361.3491pt.
-<pics/lastversion_erd.png, id=240, 683.55376pt x 985.6825pt>
+<pics/lastversion_erd.png, id=272, 683.55376pt x 985.6825pt>
 File: pics/lastversion_erd.png Graphic file (type png)
 <use pics/lastversion_erd.png>
-Package pdftex.def Info: pics/lastversion_erd.png  used on input line 28.
+Package pdftex.def Info: pics/lastversion_erd.png  used on input line 39.
 (pdftex.def)             Requested size: 341.77605pt x 492.84004pt.
- [7
+ [10 <./pics/firstversion_erd.png>] [11 <./pics/lastversion_erd.png>]
+\openout2 = `sections/parts/impl_ums.aux'.
 
-] [8 <./pics/firstversion_erd.png>] [9 <./pics/lastversion_erd.png>]
-<pics/quarkusplugin.png, id=262, 915.42pt x 817.0525pt>
+ (./sections/parts/impl_ums.tex
+<pics/quarkusplugin.png, id=287, 915.42pt x 817.0525pt>
 File: pics/quarkusplugin.png Graphic file (type png)
 <use pics/quarkusplugin.png>
-Package pdftex.def Info: pics/quarkusplugin.png  used on input line 42.
+Package pdftex.def Info: pics/quarkusplugin.png  used on input line 11.
 (pdftex.def)             Requested size: 366.16151pt x 326.81522pt.
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <8> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 60.
- [10 <./pics/quarkusplugin.png>] (/usr/local/texlive/2022/texmf-dist/tex/latex/listings/lstlang1.sty
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 29.
+ [12
+
+ <./pics/quarkusplugin.png>] (/usr/local/texlive/2022/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
-) [11]
-Overfull \hbox (6.0pt too wide) in paragraph at lines 115--115
-[][][][][][][][] 
- []
-
-[12]
-Overfull \hbox (6.0pt too wide) in paragraph at lines 163--163
-[][][][][][][][] 
- []
-
-[13]
-Overfull \hbox (6.0pt too wide) in paragraph at lines 195--195
+) [13]
+Overfull \hbox (6.0pt too wide) in paragraph at lines 88--88
 [][][][][][][][] 
  []
 
 [14]
-Overfull \hbox (6.0pt too wide) in paragraph at lines 230--230
+Overfull \hbox (6.0pt too wide) in paragraph at lines 130--130
 [][][][][][][][] 
  []
 
-) [15]
+[15]
+Overfull \hbox (6.0pt too wide) in paragraph at lines 162--162
+[][][][][][][][] 
+ []
+
+[16]
+Overfull \hbox (6.0pt too wide) in paragraph at lines 194--194
+[][][][][][][][] 
+ []
+
+[17]
+Overfull \hbox (6.0pt too wide) in paragraph at lines 234--234
+[][][][][][][][] 
+ []
+
+) [18]
+\openout2 = `sections/parts/impl_tests.aux'.
+
+ (./sections/parts/impl_tests.tex
+<pics/swaggerui.png, id=457, 1128.215pt x 803.0pt>
+File: pics/swaggerui.png Graphic file (type png)
+<use pics/swaggerui.png>
+Package pdftex.def Info: pics/swaggerui.png  used on input line 13.
+(pdftex.def)             Requested size: 338.46712pt x 240.90186pt.
+<pics/swaggeruipost.png, id=459, 1128.215pt x 498.86375pt>
+File: pics/swaggeruipost.png Graphic file (type png)
+<use pics/swaggeruipost.png>
+Package pdftex.def Info: pics/swaggeruipost.png  used on input line 25.
+(pdftex.def)             Requested size: 338.46712pt x 149.66028pt.
+ [19
+
+
+
+ <./pics/swaggerui.png>]) [20 <./pics/swaggeruipost.png>]
+\openout2 = `sections/parts/impl_cloud.aux'.
+
+ (./sections/parts/impl_cloud.tex) [21
+
+
+
+]
+\openout2 = `sections/parts/impl_cicd.aux'.
+
+ (./sections/parts/impl_cicd.tex
+<pics/githubactions.png, id=480, 1705.37125pt x 732.7375pt>
+File: pics/githubactions.png Graphic file (type png)
+<use pics/githubactions.png>
+Package pdftex.def Info: pics/githubactions.png  used on input line 20.
+(pdftex.def)             Requested size: 426.34177pt x 183.18393pt.
+ [22
+
+
+
+ <./pics/githubactions.png>] (/usr/local/texlive/2022/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+) (/usr/local/texlive/2022/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+)
+Overfull \hbox (6.0pt too wide) in paragraph at lines 33--33
+[][][][][][][][] 
+ []
+
+) [23])
 chapter 4.
-(./sections/summary.tex) [16
+(./sections/summary.tex) [24
+
+
 
 ] (./glossary.tex
 \@gls@deffile=\write9
@@ -1323,7 +1390,7 @@ chapter without number
 [7
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 143--147
+Underfull \hbox (badness 10000) in paragraph at lines 171--175
 \T1/lmr/m/n/12 (+20) / / www . visual -[] paradigm . com / guide / data -[] modeling / what -[] is -[] entity -[] relationship -[]
  []
 
@@ -1374,7 +1441,7 @@ See the caption package documentation for explanation.
 
 [12
 
-] (./thesis.aux)
+] (./thesis.aux (./sections/parts/tech_quarkus.aux) (./sections/parts/impl_ums.aux) (./sections/parts/impl_tests.aux) (./sections/parts/impl_cloud.aux) (./sections/parts/impl_cicd.aux))
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  )
@@ -1383,17 +1450,17 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 ### semi simple group (level 1) entered at line 84 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 35321 strings out of 474971
- 647131 string characters out of 5776123
- 1445703 words of memory out of 5000000
- 55858 multiletter control sequences out of 15000+600000
- 520679 words of font info for 129 fonts, out of 8000000 for 9000
+ 35802 strings out of 474971
+ 658124 string characters out of 5776123
+ 1452879 words of memory out of 5000000
+ 56220 multiletter control sequences out of 15000+600000
+ 521764 words of font info for 138 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,20n,108p,10656b,2606s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmro12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtt8.pfb>
-Output written on thesis.pdf (30 pages, 1607723 bytes).
+Output written on thesis.pdf (38 pages, 2026665 bytes).
 PDF statistics:
- 639 PDF objects out of 1000 (max. 8388607)
- 196 named destinations out of 1000 (max. 500000)
- 30450 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 787 PDF objects out of 1000 (max. 8388607)
+ 254 named destinations out of 1000 (max. 500000)
+ 30473 words of extra memory for PDF output out of 35830 (max. 10000000)
 

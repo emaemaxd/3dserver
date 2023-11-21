@@ -26,6 +26,34 @@ parent={},%
 %
 }%
 
+\glsdefs@newdocentry{ssot}%
+{%
+name={\acronymfont {\glsentryshort {ssot}}},%
+sort={SSOT},%
+type={main},%
+first={SSOT},%
+firstplural={SSOTs},%
+text={SSOT},%
+plural={SSOTs},%
+description={Single Source of Trutz},%
+descriptionplural={Single Source of Trutz},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Single Source of Trutz},%
+longplural={Single Source of Trutzs},%
+short={SSOT},%
+shortplural={SSOTs},%
+counter={page},%
+parent={},%
+%
+}%
+
 \glsdefs@newdocentry{cli}%
 {%
 name={\acronymfont {\glsentryshort {cli}}},%
@@ -446,6 +474,62 @@ parent={},%
 %
 }%
 
+\glsdefs@newdocentry{ci}%
+{%
+name={\acronymfont {\glsentryshort {ci}}},%
+sort={CI},%
+type={main},%
+first={CI},%
+firstplural={CIs},%
+text={CI},%
+plural={CIs},%
+description={Continious Integration},%
+descriptionplural={Continious Integration},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Continious Integration},%
+longplural={Continious Integrations},%
+short={CI},%
+shortplural={CIs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{cd}%
+{%
+name={\acronymfont {\glsentryshort {cd}}},%
+sort={CD},%
+type={main},%
+first={CD},%
+firstplural={CDs},%
+text={CD},%
+plural={CDs},%
+description={Continious Deployment},%
+descriptionplural={Continious Deployment},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Continious Deployment},%
+longplural={Continious Deployments},%
+short={CD},%
+shortplural={CDs},%
+counter={page},%
+parent={},%
+%
+}%
+
 \glsdefs@newdocentry{api}%
 {%
 name={API},%
@@ -485,6 +569,34 @@ text={Cascade Types},%
 plural={Cascade Typess},%
 description={ Es gibt verschiedene Arten von Cascade Types. Sie definieren, was mit Abhängigkeiten passiert, wenn diese bearbeitet oder gelöscht werden. \cite {CascadeTypes} },%
 descriptionplural={ Es gibt verschiedene Arten von Cascade Types. Sie definieren, was mit Abhängigkeiten passiert, wenn diese bearbeitet oder gelöscht werden. \cite {CascadeTypes} },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{boilercode}%
+{%
+name={Boilerplate Code},%
+sort={Boilerplate Code},%
+type={main},%
+first={Boilerplate Code},%
+firstplural={Boilerplate Codes},%
+text={Boilerplate Code},%
+plural={Boilerplate Codes},%
+description={ Boilerplate Code sind meist Codeblöcke, die an verschiedene Situationen anwenden kann. Meist werden diese nicht geändert, manchmal jedoch müssen Anpassungen gemacht werden. \cite {BoilerCodeAbout} },%
+descriptionplural={ Boilerplate Code sind meist Codeblöcke, die an verschiedene Situationen anwenden kann. Meist werden diese nicht geändert, manchmal jedoch müssen Anpassungen gemacht werden. \cite {BoilerCodeAbout} },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
