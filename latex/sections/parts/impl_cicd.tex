@@ -1,14 +1,14 @@
 \section{Continious Integration und Deployment}
 
-Zusätzlich war eine implementation einer Continious Integration, sowie eines Continious Deployments geplant. 
+Zusätzlich war eine Implementation einer Continious Integration, sowie eines Continious Deployments geplant. 
 Die beiden Begriffe lassen sich mit CI/CD abkürzen.
 Sie sind für eine Automatisierung zuständig während der Softwareentwicklung. 
 
 \subsection{Continious Integration}
 
-Eine Continious Integration bedeutet, dass die Applikationsänderungen mittels mehreren Überprüfungen auf ihre Funktionalität getestet wird.
+Eine Continious Integration bedeutet, dass die Applikationsänderungen mittels mehrerer Überprüfungen auf ihre Funktionalität getestet wird.
 Dies ist besonders praktikabel, wenn im Projekt mehrere Entwickler Änderungen im Code vornehmen. 
-Eine CI Pipeline stellt sicher, dass diese keinen Konflikt verursachen bei der Zusammenführung dieser verschiedener Versionen entsteht. 
+Eine CI-Pipeline stellt sicher, dass diese keinen Konflikt verursachen bei der Zusammenführung dieser verschiedener Versionen entsteht. 
 Dies geschieht, durch Ausführung des Programms und eine Validierung der Tests. 
 \cite{cicdabout}
 
@@ -60,7 +60,10 @@ Das Ziel dieser ist es, die Applikation für die Produktion bereitzustellen.
 Dies geschieht ebenfalls durch eine Pipeline, welche die Anwendung Schritt für Schritt durchtestet und anschließend auf den Produktionsserver lädt. 
 \cite{cicdabout}
 
+In diesem Projekt wäre die Pipeline für die Ausführung der \emph{build.sh}-Datei zuständig gewesen. 
+Zusätzlich hätte die Entfernung der Pods definiert werden müssen. 
+
 Während der Entwicklung kam es zu dem Fazit, dass eine Konfiguration einer CI/CD Pipeline als nicht nötig empfunden wurde. 
 Dies ist einerseits, da nur eine Person an dem Backend arbeitete und somit keine zweite Validierung der Software nötig war, da diese schon manuell ausgeführt wurden. 
-Andererseits hätte es eine große Komplexität bedeutet, da Frontend und Backend auf unterschiedlichen Repositories entwickelt wurden. 
+Andererseits hätte es eine große Komplexität bedeutet, da Frontend und Backend auf unterschiedlichen Repositories entwickelt wurden und erst zum Schluss vereint. 
  

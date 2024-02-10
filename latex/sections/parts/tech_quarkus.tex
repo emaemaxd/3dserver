@@ -1,88 +1,139 @@
-
 \section{Quarkus}
-Das open-source \gls{fw} Quarkus, wird verwendet um cloud-native Projekte in Java zu entwickeln. 
-Vorteile dieses \glspl{fw} sind die kurzen Startzeiten, sowie der geringe Arbeitsspeicherverbrauch.
-\cite{QuarkusHomepage}
+\begin{wrapfigure}{r}{0.3\textwidth}
+    \begin{center}
+      \includegraphics[width=0.2\textwidth]{pics/logos/quarkus.png}
+     \caption{Quarkus Logo}
+    \end{center}
+  \end{wrapfigure}
+Das Open Source \gls{fw} Quarkus wird für die Entwicklung von cloud-native Projekten in Java verwendet. 
+Es zeichnet sich unter anderem durch die kurzen Startzeiten, sowie den geringen Arbeitsspeicherverbrauch aus. 
+Ebenso sind Quarkus-Projekte dazu optimiert, in Containerumgebungen, wie beispielsweise Kubernetes, ausgeführt zu werden.
+\cite{QuarkusHomepage, QuarkusAbout}
 
-Nach der Erstellung eines neuen Projekts wird standardmäßig eine \hyperref[ch::MavenTool]{Maven}-Struktur erstellt, sowie Quarkus-Datein, welche die Projekteinstellungen modifizieren können, wie zum Beispiel die \emph{application.properties}-Datei. 
-Zusätzlich verfügt Quarkus über eine Vielzahl von Extensions, welche durch Command-line-Befehle oder händisch zu Projekten hinzugefügt werden können. 
-Um dies und weitere Quarkus-Aktionen zu vereinfachen, bietet dieses \gls{fw} ein zusätzliches Quarkus-\gls{cli}.
+Ein neues Projekt wird entweder durch das Quarkus-\gls{cli} erstellt oder nach individueller Konfiguration auf \href{https://code.quarkus.io}{code.quarkus.io} heruntergeladen. 
+Standardmäßig sind in dem Projektordner \hyperref[ch::MavenTool]{Maven}-Verzeichnis, sowie Quarkus-Dateien enthalten, welche Projekteinstellungen enthalten. 
+Eine dieser Konfigurationsdateien wäre zum Beispiel die \emph{application.properties}-Datei. 
 \cite{QuarkusAbout, QuarkusFirstApplication}
 
+Zusätzlich verfügt Quarkus über eine Vielzahl von Extensions, welche eine Vielzahl der gängigsten Technologien unterstützen.
+Sie werden durch das \gls{cli} oder manuell hinzugefügt. 
+\cite{QuarkusAbout, QuarkusFirstApplication}
+
+Mit Quarkus wurde der Backend-Teil der Arbeit erstellt. 
+Die Möglichkeit das Projekt mit zusätzlichen Erweiterungen auszustatten war 
 
 \subsection{Maven}
 \label{ch::MavenTool}
-Da die Kompilierungsprozess eines Projektes recht komplex werden können, wird Maven verwendet, um diese zu vereinfachen.
-Ein gutes Beispiel eines komplexen Kompilierungsprozess ist die Ausführung eines Projekts auf unterschiedlichen Geräten mit verschiedener Hardware und Konfigurationen.
-%Meist sind lokale Konfigurationen der Auslöser dafür.
-Durch die Verwendung von Maven wird garantiert, dass dieses Problem nicht auftritt, da die einzige Vorraussetzung des Zielgerätes nun ist, dass Maven installiert und eingerichtet ist.
+\begin{wrapfigure}{r}{0.3\textwidth}
+    \begin{center}
+        \includegraphics[width=0.1\textwidth]{pics/logos/asf.jpg}
+        \caption{Apache feather Logo}
+    \end{center}
+\end{wrapfigure}
 
-Mit einem "Maven-Ordner" können Projekte mit gewohnten Maven-Befehlen ausgeführt werden, ohne dass eine Installation des Tools notwendig ist.
-Quarkus-Projekte verwenden von Mavens \emph{pom.xml}-Datei, um zum Beispiel die verwendete Java Version oder alle verwendeten Extensions abzuspeichert.
-Zusätzlich ist es möglich, ein einheitliches System für Projektkonfigurationen zu bieten.
-Dadurch müssen Einstellungen nicht mehr manuell bei Gerätewechsel getroffen werden. 
+Maven ist ein Open Source Build-Tool, welches von der Apache Software Foundation lizensiert ist.
+Es wurde in Java geschrieben und wird meist in Java-Projekten eingesetzt. 
+Durch zentrale Nutzung des \gls{pom} werden projektrelevante Informationen gesichert, wodurch der Kompilierungsprozess vereinfacht wird.
+\cite{MavenAbout, MavenAbout2gls}
+
+Maven sorgt dafür, dass unterschiedliche Geräte eine Applikation ausführen können, ohne manuelle Konfiguration. 
+Die einzige Voraussetzung  des Zielgerätes ist, dass Maven installiert und eingerichtet ist. 
+Ebenso können \emph{Maven-Ordner} gedownloadet werden. 
+Diese ermöglichen die Nutzung der Maven Befehle ohne Installation des Tools am Gerät.
+\cite{MavenAbout, MavenAbout2gls}
+
+Quarkus-Projekte verwenden Mavens \emph{pom.xml}-Datei, um unter anderem die verwendete Java Version oder die verwendeten Extensions abzuspeichern.
+Zusätzlich wird ein einheitliches System für Projektkonfigurationen geboten. 
+Dadurch müssen, wie oben erwähnt, Einstellungen bei Gerätewechsel nicht mehr manuell geändert werden. 
 \cite{MavenAbout}
-%In Quarkus-Projekten werden in der \emph{pom.xml}-Datei zum Beispiel die verwendete Java Version, oder alle verwendeten Extensions gespeichert.
 
+\subsection{\gls*{jdbc} Treiber}
 
-\subsection{\gls*{jdbc} Driver - PostgreSQL}
-Für Quarkus Projekte gibt es eine Extension namens \textit{"\gls{jdbc} Driver - PostgreSQL"}.
-Diese ermöglicht eine Verbindung zu PostgreSQL-Datenbanken. 
-In Java versteht man unter der \gls{jdbc} eine \gls{api} für Java-Anwendungen. 
-Die \gls{jdbc}-Driver sind Implementationen der \gls{api} für den benötigten Fall, wie hier für PostgreSQL \cite{StackOFJDBC}.
+In Java wird für Datenbankverbindungen die \gls{jdbc} \gls{api} verwendet. 
+Genauso benötigen Quarkus-Projekte einen datenbankspezifischen \gls{jdbc}-Treiber für einen Zugriff auf die Datenbank. 
+In diesem Projekt wurde PostgreSQL als Datenbank gewählt, weshalb die Extension \emph{\gls{jdbc} Driver - PostgreSQL} fundamental für die Entwicklung war. 
+\cite{datasourcesAbout}.
 
-
-Um die Extension verwenden zu können und eine Datenbankverbindung aufzubauen, müssen in den \emph{application.properties} einige zusätzlichen Konfigurationen eingefügt werden. 
-Wichtig sind Informationen, wie die Art der Datenbank, der Pfad, um diese zu erreichen, und die Login-Daten eines berechtigten Nutzeres \ref{lst:quarkusDatasource}:
+Um die Extension zu verwenden und eine Datenbankverbindung aufzubauen, müssen in den \emph{application.properties} zusätzliche Konfigurationen eingefügt werden. 
+Wichtig sind Informationen, wie die Art der Datenbank, der Pfad, um diese zu erreichen, und die Login-Daten eines berechtigten Users.
+Dazu wird der \gls{boilercode} aus Codeblock \ref{lst:quarkusDatasource} verwendet, wobei die Klammern durch tatsächliche Werte ersetzt werden. 
+\cite{datasourcesAbout}
 
 \begin{lstlisting}[caption=Beispielkonfigurationen,label=lst:quarkusDatasource]
   quarkus.datasource.db-kind=postgresql 
-  quarkus.datasource.username=meinUser
-  quarkus.datasource.password=meinPassword
+  quarkus.datasource.username=<meinUser>
+  quarkus.datasource.password=<meinPassword>
   quarkus.datasource.jdbc.url=jdbc:postgresql://<URL>:<Port>/<meinName>
 \end{lstlisting}
 
-\subsection{Hibernate ORM mit Panache}
-Hibernate ORM ist der \gls{orm} für Quarkus. 
-Da in Java objekt-orientiert programmiert wird und PostgreSQL eine relationale Datenbank ist, muss eine Möglichkeit gefunden werden, wie die in Java erstellten Objekte in die Datenbank übertragen werden. 
-Da kommt ein \gls{orm} ins Spiel. 
-Dieser "übersetzt" den Java-Code für die Datenbank. 
-Dadurch können Java-Klassen als Objekte persistiert werden und gelöscht werden, ohne dass komplexe Codezeilen konstruiert werden müssen. 
+\subsection{Hibernate ORM mit Panache} 
+Da Java eine objekt-orientiert Programmiersprache ist, und PostgreSQL eine relationale Datenbank, können standardmäßig keine Entitäten aus Java in die Datenbank übertragen werden. 
+Diese Aufgabe übernimmt ein \gls{orm}, der den Java-Code für PostgreSQL umwandelt. 
+Dadurch können Java-Klassen als Objekte persistiert und gelöscht werden, ohne dass komplexer Code konstruiert werden muss. 
+Hibernate ORM ist die dafür zuständige Extension für Quarkus. 
 \cite{ORMAbout}
 
 Panache bietet zusätzliche Klassen mit Funktionen, von denen abgeleitet werden kann. 
 Diese erleichtern das Arbeiten mit angelegten Entitäten, besonders bei \gls{crud}-Operationen.
-Zum Beispiel ist für das Persistieren eines neue Objekts lediglich ein Aufruf der \emph{.persist()}-Methode notwendig.
+Zum Beispiel ist für die Persistenz eines neuen Objekts lediglich ein Aufruf der \emph{.persist()}-Methode notwendig.
 \cite{HibernateORMwithPanache}
 
 \subsection{REST-Easy}
-\gls{rest}-Easy ist eine Erweiterung, die es ermöglicht, im Quarkus Projekt mit Jakarta RESTful Web Servies zu arbeiten. 
+\label{ch::MavenTool}
+\begin{wrapfigure}{r}{0.3\textwidth}
+    \begin{center}
+        \includegraphics[width=0.2\textwidth]{pics/logos/resteasy.png}
+        \caption{REST Easy Logo}
+    \end{center}
+\end{wrapfigure}
+\gls{rest}-Easy ist eine Quarkuserweiterung, die es ermöglicht, mit RESTful Web Servies zu arbeiten. 
+Sie implementiert die Jakarta RESTful Web Services der Eclipse Foundation, sowie die MicroProfile \gls{rest} Client Spezifikation \gls{api}.
+\cite{ResteasyAbout}
+
 %\gls{rest} hat sich als Standard für Mikroservice-Anwendungen festgelegt.\cite{RESTAbout}
-Das heißt, dass durch diese Extension im Projekt \gls{api}s erstellt werden können. 
-Im Code werden diese erstellt durch die zweit Annotationen \emph{@Path} und \emph{@<beliebige HTTP-Methode>}.
+Dies bedeutet, dass durch diese Extension im Projekt \gls{api}s erstellt werden können. 
+Ein Endpoint wird durch Definition zweier Annotationen \emph{@Path} und \emph{@<beliebige HTTP-Methode>} erzeugt.
+\cite{ResteasyExtensionAbout}
 
 Folgende \gls{http}-Methoden werden in dieser Arbeit verwendet:
 \begin{compactitem}
-    \item GET
-    \item POST 
-    \item DELETE
+    \item \textbf{GET}: GET-Requests liefern Daten \cite{httpAbout}
+    \item \textbf{POST}: POST-Requests übermitteln Daten wie Entitäten \cite{httpAbout}
+    \item \textbf{DELETE}: DELETE-Requests löschen Daten \cite{httpAbout}
 \end{compactitem}
 
+Die Beschreibungen der oben angeführten Methoden sind Normen in der Entwicklung mit \gls{http}. 
+Eventuell hätte noch \emph{PUT} verwendet werden können, jedoch wird diese Methode für einzelne Änderungen einer Entität verwendet.
+Dadurch hatte sie keinen spezifischen Nutzen in dieser Arbeit. 
+\cite{httpAbout}
+
 \subsection{Swagger-ui}
-Swagger UI ist ein Tool, welches beim Testen einer \gls{rest}-\gls{api} hilft. 
-Es ist open-source und liefert mehrere Funktionalitäten.
-Für diese Arbeit wurde nur ein Teil des Tools verwendet, nämlich die Visualisierung der Schnittstellen. 
-Diese bietet, je nach definierter Variable, vorgefertigte Requests, welche mit Mausklick ausgeführt werden können, und jederzeit bearbeitbar sind.
-Ebenso zeigt sie die dafür benötigte \gls{http}-Methode. 
+\begin{wrapfigure}{r}{0.3\textwidth}
+    \begin{center}
+        \includegraphics[width=0.2\textwidth]{pics/logos/swagger.png}
+        \caption{Swagger Logo}
+    \end{center}
+\end{wrapfigure}
+Swagger UI ist ein Tool zum Testen von \gls{rest}-\gls{api}s. 
+Es ist Open Source und liefert mehrere Funktionalitäten, wobei in dieser Arbeit hauptsächlich die Visualisierung der Schnittstellen verwendet wurde. 
+Dieser Teil bietet, je nach definierten Parametern, vorgefertigte Requests, welche noch bearbeitet werden können. 
+Ebenso zeigen sie die benötigte \gls{http}-Methode und ermöglichen es, den Endpoint mit Mausklick zu testen. 
+Dies erspart sehr viel Arbeit während der \gls{api}-Entwicklung.
 \cite{SwaggeruiAbout}
 
-\subsection{JUnit}
-JUnit steht für Java Unit und ist ein Test\gls{fw}. 
-Es hat sich als der Standart dieser Programmierspraache festgelegt und ist spezialisiert auf die Überprüfung von Methoden und Klassen.
-Da es open-source ist, besteht eine ausreichliche Dokumentation.
-Durch die Popularität, inspirierte dieses Konzept die Testoptionen für andere Programmiersprachen.
+\subsection{JUnit 5}
+\begin{wrapfigure}{r}{0.3\textwidth}
+    \begin{center}
+        \includegraphics[width=0.2\textwidth]{pics/logos/junit5-logo.png}
+        \caption{JUnit 5 Logo}
+    \end{center}
+\end{wrapfigure}
+JUnit steht für Java Unit und ist ein Open Source \gls{fw} zum Testen. 
+Es hat sich als der Standard dieser Programmiersprache bewiesen und ist spezialisiert auf die Überprüfung von Methoden und Klassen.
+Durch die Popularität besteht eine ausführliche Dokumentation und weites Funktionsspektrum.
+Ebenso inspirierte dieses Konzept die \gls{fw}s anderer Programmiersprachen im Testing-Bereich.
 
-JUnit ist in vielen der gängisten \gls{ide}s inkludiert. 
-Zum Anlegen einer Testklasse wird gewöhnlich der Name der zu testenden Klasse genommen mit \emph{.test} als Suffix. 
-Die benötigten Repositories werden simuliert, sodass diese wie gewohnt verwendet werden können.
+JUnit ist in vielen der gängigsten \gls{ide}s inkludiert. 
+Zum Anlegen einer Testklasse wird gewöhnlich der Name der zu testenden Klasse verwendet mit \emph{.test} als Suffix. 
+Die benötigten Repositories werden simuliert, sodass Methoden aus diesem wie gewohnt verwendet werden können.
 \cite{JUnitAbout}

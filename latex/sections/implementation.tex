@@ -1,49 +1,116 @@
+In diesem Kapitel wird die Umsetzung der Anforderungen näher beschrieben. 
+Neben Erklärungen finden sich ebenso Codeausschnitte und Befehle, um den Lösungsweg zu veranschaulichen.
+Zusätzlich wurden Grafiken eingebettet, um den technischen Aspekt visueller darzustellen.
+
 \section{Design und Planung}
 
+Der Designprozess dieser Arbeit handelt überwiegend von dem Aufbau des Datenmodells. 
+Um dieses zu Visualisieren wurde ein \gls{erd} gewählt.
+
 \subsection{Allgemeine Anforderungen}
-In den Anfangsgesprächen wurden schon einige Anforderungen für die Planung festgelegt. 
-Dabei wurde ein gemeinsamer Workspace in Notion erstellt, sowie ein gemeinsames Github-Repository.
-Dadurch wurden für die Termine, sowie den Coding-Prozess eine \gls{ssot} gewährleistet.
+Die ersten teaminternen Gespräche handelten von den ersten Anforderungen der Planung. 
+Es wurde sich auf eine Erstellung eines Workspaces in Notion geeinigt, sowie ein gemeinsames GitHub-Repository. 
+Dadurch wurde für Termine von Meetings und Deadlines, sowie den Designentscheidungen in beiden Bereichen eine \gls{ssot} gewährleistet.
+Ebenso kamen die ersten Anforderungen der Datenstruktur zustande, welche für das zukünftige \gls{erd} relevant waren.
+Die tatsächliche Entwicklung des Applikationsservers fand in einem separaten Repository statt. 
 
-Ebenso kamen die ersten Anforderungen der Entitäten zustande für das zukünftige \gls{erd}.
-
-Das Hauptanwendungsszenario der Arbeit wurde definiert als \emph{Ein Nutzer kann Exhibitions erstellen und sich die Exhibitions von anderen Nutzern ansehen.} 
+Das Hauptanwendungsszenario des Datenmodells wurde definiert als \emph{Ein User kann Exhibitions erstellen und sich die Exhibitions von anderen Nutzern ansehen.} 
 Alle weiteren Diskussionen über die Umsetzung dieses wurden anschließend in einem \gls{erd} zusammengefasst.
 
-%\subsection{Erstellung eines Workspaces in Notion}
+\subsection{Erstellung eines Workspaces in Notion}
+
+Um auf Notion zuzugreifen und Workspaces zu verwalten, wird ein Account benötigt. 
+Nach erfolgreicher Anmeldung erfolgt die Erstellung eines Workspaces mithilfe des Tutorials auf der Webseite. 
+Einer der ersten Schritte ist, auszuwählen, für welchen Zweck der Workspace genutzt wird. 
+Nachdem die Option für Teams ausgewählt wurde, können die E-Mail-Adressen der gewünschten Mitglieder eingegeben werden. 
+Diese bekommen einen Link zugeschickt, den sie öffnen können und somit auf den Workspace gelangen. 
+Um ein Kollaborator zu werden, muss ebenso bei den eingeladenen Personen ein Notion-Account bestehen.
+
+Der Workspace der Arbeit wird in Abbildung \ref{fig:impl:notion-page} gezeigt.
+Das rosa Rechteck zeigt die Teilnehmer an, wobei ihre genauen Informationen erst mit einem Mousehover ersichtlich werden. 
+
+Notion war nützlich, um Notizen nach Meetings zu teilen und gemeinsame Termine festzuhalten.
+Ebenso wurden wichtige Links abrufbereit gespeichert und erste Dokumentationen der schriftlichen Arbeit erstellt.
+
+\begin{figure} [h t]
+  \centering
+  \includegraphics[scale=0.3]{pics/NotionPage.png}
+  \caption{Notion Workspace der Diplomarbeit}
+  \label{fig:impl:notion-page}
+\end{figure}
+
 \subsection{Erstellung des ERDs}
-Um zu gewährleisten, dass die Systemanforderung getroffen werden, ist es notwendig ein entsprechendes \gls{erd} zu erstellen.
-Innerhalb eines \gls{erd} werden alle Entitäten, Attribute, sowie deren Beziehungen dargestellt.
-Es dient als gemeinsamer Nenner für die Projektentwicklung, da jedes Teammitglied eine eigene Vorstellung der Datenstruktur haben könnte. 
-Ein weiterer Vorteil eines \gls{erd}s ist das Potenzial Fehlerquellen zu identifizieren und dadurch zukünfige Problem zu umgehen. 
+Um zu gewährleisten, dass die Datenanforderungen getroffen werden, ist es notwendig, ein entsprechendes \gls{erd} zu erstellen.
+Innerhalb eines \gls{erd}s werden alle Entitäten, Attribute, sowie deren Beziehungen zueinander dargestellt.
+Es dient als gemeinsamer Nenner für die Projektentwicklung, da jedes Teammitglied eine eigene Vorstellung des genauen Datenaufbaus haben könnte. 
+Ein weiterer Vorteil eines \gls{erd}s ist das Potenzial, Fehlerquellen zu identifizieren und dadurch zukünftige Probleme zu umgehen. 
 
 Nachdem die benötigten Entitäten, sowie deren Attribute festgelegt wurden, müssen nun die Beziehungen zueinander festgelegt werden. 
 Dabei wird gewählt zwischen One-to-One, One-to-Many und Many-to-Many Beziehungen, wobei die Many-to-Many Beziehung innerhalb einer Assoziationstabelle dargestellt wird. 
 
-Innerhalb dieser Arbeit ist die Entität \emph{Exhibitions} das zentrale Objekt, was in der Abbildung \ref{fig:erd:lastversion} gut ersichtlich ist.
+Mittels PlantUML wurde das \gls{erd} erstellt, wobei es nur die Visualisierung bietet. 
+Es hilft nicht zusätzlich bei der Erstellung durch beispielsweise Codecompletion.
+Für PlantUML wird Datei mit unterstützter Endung benötigt, typischerweise mit \emph{.plantuml}. 
+Im File müssen die Annotationen in \emph{@startuml} und \emph{@enduml} enthalten sein.
+Entitäten werden mittels \emph{entity} gekennzeichnet. 
+Beziehungen werden nebeneinander geschrieben, mit einem Strich als Trennung. 
+In der Krähenfußnotation besitzen diese Striche über verschiedenen Endungen, je nach Beziehungstyp. 
+
+\begin{lstlisting}[label=lst:erdplantujml, caption=Ausschnitt der ERD-Datei]
+@startuml DA-Klassendiagramm
+entity Exhibition_Category {
+    exhibition_id : number
+    category_id : number
+}
+
+entity Category{
+    id : number <<generated>>
+    --
+    title: string
+    color: varchar2(6)
+}
+-- ...
+Exhibition_Category ||--o{ Category
+@enduml
+\end{lstlisting}
+
+Innerhalb dieser Arbeit ist die Entität \emph{Exhibitions} das zentrale Objekt, was in der Abbildung \ref{fig:erd:lastversion} ersichtlich ist.
 Die Beziehungen zwischen \emph{Positionen, Exhibits, Rooms und Exhibitions} stellten sich besonders als Herausforderung dar, aufgrund der vielen Abhängigkeiten zueinander. 
-Diese wurden besonders erst in der Implementierung ersichtlich, wodurch das \gls{erd} im Laufe der Entwicklung etwas angepasst wurde. 
+Diese wurden besonders erst in der Implementierung ersichtlich, wodurch das \gls{erd} im Laufe der Entwicklung entsprechend angepasst wurde. 
 Weitere Gründe für die Abänderung, waren Planänderungen bei der Kommunikation zwischen zwei Entitäten, sowie der Aufbau der Hauptentitäten \emph{Exhibition und Exhibit}. 
-Die Unterschiede zwischen der ersten Version und der finalen sind deutlich (siehe Abb. \ref{fig:erd:firstversion} und \ref{fig:erd:lastversion}).
+Die Unterschiede zwischen der ersten und der finalen Version sind deutlich (siehe Abb. \ref{fig:erd:firstversion} und \ref{fig:erd:lastversion}).
 Besonders lassen sich die oben erläuterten Änderungen erkennen. 
  
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.5]{pics/firstversion_erd.png}
-    \caption{Erste Version des ERDs}
-    \label{fig:erd:firstversion}
-\end{figure}
+% \begin{figure}
+%     \centering
+%     \includegraphics[scale=0.5]{pics/firstversion_erd.png}
+%     \caption{Erste Version des ERDs}
+%     \label{fig:erd:firstversion}
+% \end{figure}
+% \begin{figure}
+%     \centering
+%     \includegraphics[scale=0.5]{pics/lastversion_erd.png}
+%     \caption{Finale Version des ERDs}
+%     \label{fig:erd:lastversion}
+% \end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[scale=0.5]{pics/lastversion_erd.png}
-    \caption{Finale Version des ERDs}
-    \label{fig:erd:lastversion}
-\end{figure}
-
+\begin{figure}[h]
+    \begin{minipage}{0.48\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{pics/firstversion_erd.png}
+      \caption{Erste Version des ERDs}
+      \label{fig:erd:firstversion}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.48\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{pics/lastversion_erd.png}
+      \caption{Finale Version des ERDs}
+      \label{fig:erd:lastversion}
+    \end{minipage}
+  \end{figure}
 
 \include{sections/parts/impl_ums.tex}
-
 
 \include{sections/parts/impl_tests}
 

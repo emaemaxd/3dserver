@@ -1,32 +1,38 @@
-%Aufzählungen:
+In diesem Kapitel wird ein weiterer Überblick über das Projekt gegeben, wobei ebenso auf Schwierigkeiten eingegangen wird.
 
+Dieser Teil geht näher auf die verschiedenen Herausforderungen, die im Laufe des Projekts aufkamen, ein. 
+Zusätzlich wird der Lösungsweg beschrieben. 
 
-%\begin{compactitem}
-%    \item Itemize Level 1
-%    \begin{compactitem}
-%        \item Itemize Level 2
-%        \begin{compactitem}
-%            \item Itemize Level 3 (vermeiden)
-%        \end{compactitem}
-%    \end{compactitem}
-%\end{compactitem}
+\section{Herausforderungen in Quarkus}
 
-%\begin{compactenum}
-%    \item Enumerate Level 1
-%    \begin{compactenum}
-%        \item Enumerate Level 2
-%        \begin{compactenum}
-%            \item Enumerate Level 3 (vermeiden)
-%        \end{compactenum}
-%    \end{compactenum}
-%\end{compactenum}
+Schon zu Beginn der Entwicklung des Quarkus-Servers kamen Hindernisse zustande. 
+Das Gerät zur Entwicklung warf bei jedem Kompilierungsversuch Fehlermeldungen, die Schritt für Schritt gelöst werden mussten. 
+Das Problem ließ sich nach einigen Änderungen der installierten Entwicklertools, sowie neuen Installationen von Java und Maven, lösen. 
+Jedoch nahm es viel Zeit in Anspruch, und führte dazu, dass serverseitige Anforderungen nicht zeitgemäß erfüllt wurden. 
 
-%\begin{compactdesc}
-%    \item[Desc] Level 1
-%    \begin{compactdesc}
-%        \item[Desc] Level 2 (vermeiden)
-%        \begin{compactdesc}
-%            \item[Desc] Level 3 (vermeiden)
-%        \end{compactdesc}
-%    \end{compactdesc}
-%\end{compactdesc}
+Die Methode \emph{getExhibitionByCategories} hat sich aufgrund der Many-to-Many-Beziehung als große Herausforderung dargestellt. 
+Quarkus-Extensions bieten keine Möglichkeit die gewünschte Aufgabe ressourcensparsam umzusetzen. 
+Da für die Applikation keine zukünftigen Pläne bestehen, wurde das Problem mittels Java-Listen gelöst. 
+
+Neben der Entwicklung wurde der Code mittels Javadoc dokumentiert. 
+Im Nachhinein lässt sich sagen, dass dies sich als nicht sonderlich nützlich herausgestellt hat, da es zeitaufwendig war.
+Von dem Zeitfaktor abgesehen, gab es keine weitere Person, die von dem erstellten Dokument profitiert hätte. 
+Dadurch lässt sich behaupten, dass normale Kommentare ausgereicht hätten. 
+
+\section{Herausforderungen im Deployment}
+
+Das Deployment der Anwendung stellte sich als eine sehr große Herausforderung dar. 
+Neue Informationen der LeoCloud wurden nicht online geteilt. 
+Dies erschwerte die Nutzung, da Änderungen der Software unvorhersehbare Probleme bereiteten.
+
+Ebenso stellte sich das Deployment verschiedener Services als unübersichtlicher fest als gedacht. 
+Dadurch kam es zu mehreren Caching-Problemen, die nur durch sorgfältige manuelle Löschverfahren behoben werden konnten. 
+
+Beide Probleme konnten durch einen regelmäßigen Kontakt mit Herr Aberger Christian, dem Hauptentwickler der LeoCloud, minimiert werden.
+
+\section{Zielerreichung}
+
+Die zwei Hauptaufgaben wurden erreicht, wobei Meileinsteien nicht rechtzeitig abgeschlossen wurden. 
+
+Das Endergebnis dieser Arbeit bietet dem Frontend eine Datenbank zur Datenverwaltung zusammen mit ersten angelegten Objekten. 
+Zusätzlich ist die Webseite auf der LeoCloud unter dem Link \href{https://student.cloud.htl-leonding.ac.at/e.halilovic/home}{https://student.cloud.htl-leonding.ac.at/e.halilovic/home} erreichbar.

@@ -41,16 +41,22 @@ Quarkus, ,,SUPERSONIC/SUBATOMIC/JAVA,'' WebPage, 2023, letzter Zugriff am
 
 \bibitem{MavenAbout}
 \BIBentryALTinterwordspacing
-T.~A.~S. Foundation, ,,PostgreSQL: about,'' WebPage, 2023, letzter Zugriff am
+T.~A.~S. Foundation, ,,What is Maven?'' WebPage, 2023, letzter Zugriff am
   02.09.2023. Online verfügbar:
   \url{https://maven.apache.org/what-is-maven.html}
 \BIBentrySTDinterwordspacing
 
-\bibitem{StackOFJDBC}
+\bibitem{MavenAbout2gls}
 \BIBentryALTinterwordspacing
-Mureinik, ,,What is the difference between JDBC API and PostgreSQL Driver?''
-  WebPage, 2020, letzter Zugriff am 02.09.2023. Online verfügbar:
-  \url{https://stackoverflow.com/questions/63678556/what-is-the-difference-between-jdbc-api-and-postgresql-driver}
+C.~Team, ,,What Is Maven?'' WebPage, 2023, letzter Zugriff am 23.11.2023.
+  Online verfügbar:
+  \url{https://www.codecademy.com/resources/blog/what-is-maven/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{datasourcesAbout}
+\BIBentryALTinterwordspacing
+Quarkus, ,,CONFIGURE DATA SOURCES IN QUARKUS,'' WebPage, 2023, letzter Zugriff
+  am 24.11.2023. Online verfügbar: \url{https://quarkus.io/guides/datasource}
 \BIBentrySTDinterwordspacing
 
 \bibitem{ORMAbout}
@@ -65,6 +71,25 @@ G.~Chehab, ,,What Is an ORM? How Does It Work? How Should We Use One?''
 Quarkus, ,,SIMPLIFIED HIBERNATE ORM WITH PANACHE,'' WebPage, 2023, letzter
   Zugriff am 07.09.2023. Online verfügbar:
   \url{https://quarkus.io/guides/hibernate-orm-panache}
+\BIBentrySTDinterwordspacing
+
+\bibitem{ResteasyAbout}
+\BIBentryALTinterwordspacing
+YourKit, ,,RESTEasy,'' WebPage, 2023, letzter Zugriff am 24.11.2023. Online
+  verfügbar: \url{https://resteasy.dev}
+\BIBentrySTDinterwordspacing
+
+\bibitem{ResteasyExtensionAbout}
+\BIBentryALTinterwordspacing
+Quarkus, ,,RESTEasy Classic,'' WebPage, 2023, letzter Zugriff am 24.11.2023.
+  Online verfügbar: \url{https://quarkus.io/guides/resteasy}
+\BIBentrySTDinterwordspacing
+
+\bibitem{httpAbout}
+\BIBentryALTinterwordspacing
+M.~Contributers, ,,HTTP request methods,'' WebPage, 2023, letzter Zugriff am
+  24.11.2023. Online verfügbar:
+  \url{https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods}
 \BIBentrySTDinterwordspacing
 
 \bibitem{SwaggeruiAbout}
@@ -83,8 +108,14 @@ J.-D. Kranz, ,,Was ist JUnit? Was sind JUnit Tests?'' WebPage, 2020, letzter
 
 \bibitem{PostgreSQLAbout}
 \BIBentryALTinterwordspacing
-T.~P. G.~D. Grou, ,,What is Maven?'' WebPage, 2023, letzter Zugriff am
+T.~P. G.~D. Group, ,,PostgreSQL: about,'' WebPage, 2023, letzter Zugriff am
   02.09.2023. Online verfügbar: \url{https://www.postgresql.org/about/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{PgAdminAbout}
+\BIBentryALTinterwordspacing
+T.~P. G.~D. Grou, ,,pgAdmin,'' WebPage, 2023, letzter Zugriff am 24.11.2023.
+  Online verfügbar: \url{https://www.pgadmin.org}
 \BIBentrySTDinterwordspacing
 
 \bibitem{IntelliJIDEA}
@@ -93,11 +124,51 @@ JetBrains, ,,Features overview,'' WebPage, 2023, letzter Zugriff am 02.09.2023.
   Online verfügbar: \url{https://www.jetbrains.com/idea/features/}
 \BIBentrySTDinterwordspacing
 
+\bibitem{IntelliJIDEAPricing}
+\BIBentryALTinterwordspacing
+------, ,,Subscription Options and Pricing,'' WebPage, 2023, letzter Zugriff am
+  24.11.2023. Online verfügbar:
+  \url{https://www.jetbrains.com/idea/buy/?section=personal&billing=monthly}
+\BIBentrySTDinterwordspacing
+
+\bibitem{vscodeAbout}
+\BIBentryALTinterwordspacing
+Microsoft, ,,Visual Studio Code - Code Editing. Redefined,'' WebPage, 2023,
+  letzter Zugriff am 24.11.2023. Online verfügbar:
+  \url{https://code.visualstudio.com}
+\BIBentrySTDinterwordspacing
+
+\bibitem{vscodeAboutGs}
+\BIBentryALTinterwordspacing
+------, ,,Getting Started,'' WebPage, 2023, letzter Zugriff am 24.11.2023.
+  Online verfügbar: \url{https://code.visualstudio.com/docs}
+\BIBentrySTDinterwordspacing
+
 \bibitem{LeoCloudAbout}
 \BIBentryALTinterwordspacing
 A.~Christian, ,,LeoCloud User Manual,'' WebPage, 2021, letzter Zugriff am
   03.09.2023. Online verfügbar:
   \url{https://cloud.htl-leonding.ac.at/user-manual.html?#_allgemeines}
+\BIBentrySTDinterwordspacing
+
+\bibitem{k8sAbout}
+\BIBentryALTinterwordspacing
+Kubernetes, ,,Kubernetes,'' WebPage, 2023, letzter Zugriff am 23.11.2023.
+  Online verfügbar: \url{https://kubernetes.io}
+\BIBentrySTDinterwordspacing
+
+\bibitem{k8sAboutExtension}
+\BIBentryALTinterwordspacing
+Microsoft, ,,Visual Studio Code Kubernetes Tools,'' WebPage, 2023, letzter
+  Zugriff am 24.11.2023. Online verfügbar:
+  \url{https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.vscode-kubernetes-tools}
+\BIBentrySTDinterwordspacing
+
+\bibitem{githubAbout}
+\BIBentryALTinterwordspacing
+H.~Staff, ,,What Is GitHub, and What Is It Used For?'' WebPage, 2016, letzter
+  Zugriff am 24.11.2023. Online verfügbar:
+  \url{https://www.howtogeek.com/180167/htg-explains-what-is-github-and-what-do-geeks-use-it-for/}
 \BIBentrySTDinterwordspacing
 
 \bibitem{NotionAbout}
@@ -119,10 +190,22 @@ PlantUML.com, ,,PlantUML – Ein kurzer Überblick,'' WebPage, letzter Zugriff
   am 03.09.2023. Online verfügbar: \url{https://plantuml.com/de/}
 \BIBentrySTDinterwordspacing
 
+\bibitem{PlantumlExtension}
+\BIBentryALTinterwordspacing
+jebbs, ,,PlantUML,'' WebPage, letzter Zugriff am 24.11.2023. Online verfügbar:
+  \url{https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml}
+\BIBentrySTDinterwordspacing
+
 \bibitem{JWTAbout}
 \BIBentryALTinterwordspacing
 Auth0, ,,What is JSON Web Token?'' WebPage, 2023, letzter Zugriff am
   09.09.2023. Online verfügbar: \url{https://jwt.io/introduction}
+\BIBentrySTDinterwordspacing
+
+\bibitem{brewAbout}
+\BIBentryALTinterwordspacing
+M.~Howell, ,,Install Homebrew,'' WebPage, 2016, letzter Zugriff am 25.11.2023.
+  Online verfügbar: \url{https://brew.sh}
 \BIBentrySTDinterwordspacing
 
 \bibitem{QuarkusPlugin}
@@ -132,10 +215,57 @@ J.~s.r.o., ,,Quarkus - IntelliJ IDEs Plugin | Marketplace,'' WebPage, 2023,
   \url{https://plugins.jetbrains.com/plugin/20306-quarkus}
 \BIBentrySTDinterwordspacing
 
+\bibitem{CascadeTypes}
+\BIBentryALTinterwordspacing
+baeldung, ,,Overview of JPA/Hibernate Cascade Types,'' WebPage, 2023, letzter
+  Zugriff am 25.11.2023. Online verfügbar:
+  \url{https://www.baeldung.com/jpa-cascade-types}
+\BIBentrySTDinterwordspacing
+
+\bibitem{TransactionAbout}
+\BIBentryALTinterwordspacing
+Quarkus, ,,Using Transactions in Quarkus,'' WebPage, 2023, letzter Zugriff am
+  25.11.2023. Online verfügbar: \url{https://quarkus.io/guides/transaction}
+\BIBentrySTDinterwordspacing
+
+\bibitem{SchichtenmusterAbout}
+\BIBentryALTinterwordspacing
+R.~Grimm, ,,Patterns in der Softwarearchitektur: Das Schichtenmuster,''
+  WebPage, 2023, letzter Zugriff am 25.11.2023. Online verfügbar:
+  \url{https://www.heise.de/blog/Patterns-in-der-Softwarearchitektur-Das-Schichtenmuster-7941983.html}
+\BIBentrySTDinterwordspacing
+
+\bibitem{beanAbout}
+\BIBentryALTinterwordspacing
+Quarkus, ,,INTRODUCTION TO CONTEXTS AND DEPENDENCY INJECTION (CDI),'' WebPage,
+  2023, letzter Zugriff am 25.11.2023. Online verfügbar:
+  \url{https://quarkus.io/guides/cdi}
+\BIBentrySTDinterwordspacing
+
+\bibitem{jwtAboutQuarkus}
+\BIBentryALTinterwordspacing
+------, ,,Using JWT RBAC,'' WebPage, 2023, letzter Zugriff am 25.11.2023.
+  Online verfügbar: \url{https://quarkus.io/guides/security-jwt}
+\BIBentrySTDinterwordspacing
+
+\bibitem{recordAbout}
+\BIBentryALTinterwordspacing
+J.~Albano, ,,Java 14 Record Keyword,'' WebPage, 2023, letzter Zugriff am
+  25.11.2023. Online verfügbar:
+  \url{https://www.baeldung.com/java-record-keyword}
+\BIBentrySTDinterwordspacing
+
 \bibitem{Lambok}
 \BIBentryALTinterwordspacing
 T.~P.~L. Authors, ,,Project Lombok,'' WebPage, 2023, letzter Zugriff am
   09.09.2023. Online verfügbar: \url{https://projectlombok.org/#}
+\BIBentrySTDinterwordspacing
+
+\bibitem{quarkusMockAbout}
+\BIBentryALTinterwordspacing
+G.~Andrianakis, ,,Mocking CDI beans in Quarkus,'' WebPage, 2020, letzter
+  Zugriff am 26.11.2023. Online verfügbar:
+  \url{https://quarkus.io/blog/mocking/}
 \BIBentrySTDinterwordspacing
 
 \bibitem{cicdabout}
@@ -159,13 +289,6 @@ AWS, ,,Was ist Boilerplate-Code? - Boilerplate-Code erklärt – AWS,''
   \url{https://aws.amazon.com/de/what-is/boilerplate-code/}
 \BIBentrySTDinterwordspacing
 
-\bibitem{CascadeTypes}
-\BIBentryALTinterwordspacing
-baeldung, ,,Overview of JPA/Hibernate Cascade Types,'' WebPage, 2021, letzter
-  Zugriff am 07.09.2023. Online verfügbar:
-  \url{https://www.baeldung.com/jpa-cascade-types}
-\BIBentrySTDinterwordspacing
-
 \bibitem{ERD2023}
 \BIBentryALTinterwordspacing
 V.~Paradigm, ,,What is Entity Relationship Diagram (ERD)?'' WebPage, 2023,
@@ -178,6 +301,20 @@ V.~Paradigm, ,,What is Entity Relationship Diagram (ERD)?'' WebPage, 2023,
 C.~Team, ,,What is a Framework?'' WebPage, 2021, letzter Zugriff am 07.09.2023.
   Online verfügbar:
   \url{https://www.codecademy.com/resources/blog/what-is-a-framework/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{ssotAbout}
+\BIBentryALTinterwordspacing
+Talend, ,,Single Source of Truth - What it is and Why You Want it Yesterday |
+  Talend,'' WebPage, 2023, letzter Zugriff am 23.11.2023. Online verfügbar:
+  \url{https://www.talend.com/resources/single-source-truth/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{ttlAbout}
+\BIBentryALTinterwordspacing
+Kinsta, ,,What Is TTL (And How Do You Choose the Right One)?'' WebPage, 2022,
+  letzter Zugriff am 23.11.2023. Online verfügbar:
+  \url{https://kinsta.com/knowledgebase/what-is-ttl/}
 \BIBentrySTDinterwordspacing
 
 \end{thebibliography}

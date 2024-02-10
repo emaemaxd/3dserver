@@ -26,17 +26,17 @@ parent={},%
 %
 }%
 
-\glsdefs@newdocentry{ssot}%
+\glsdefs@newdocentry{uri}%
 {%
-name={\acronymfont {\glsentryshort {ssot}}},%
-sort={SSOT},%
+name={\acronymfont {\glsentryshort {uri}}},%
+sort={URI},%
 type={main},%
-first={SSOT},%
-firstplural={SSOTs},%
-text={SSOT},%
-plural={SSOTs},%
-description={Single Source of Trutz},%
-descriptionplural={Single Source of Trutz},%
+first={URI},%
+firstplural={URIs},%
+text={URI},%
+plural={URIs},%
+description={Uniform Resource Identifier},%
+descriptionplural={Uniform Resource Identifier},%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -45,10 +45,10 @@ user3={},%
 user4={},%
 user5={},%
 user6={},%
-long={Single Source of Trutz},%
-longplural={Single Source of Trutzs},%
-short={SSOT},%
-shortplural={SSOTs},%
+long={Uniform Resource Identifier},%
+longplural={Uniform Resource Identifiers},%
+short={URI},%
+shortplural={URIs},%
 counter={page},%
 parent={},%
 %
@@ -446,34 +446,6 @@ parent={},%
 %
 }%
 
-\glsdefs@newdocentry{ttl}%
-{%
-name={\acronymfont {\glsentryshort {ttl}}},%
-sort={TTL},%
-type={main},%
-first={TTL},%
-firstplural={TTLs},%
-text={TTL},%
-plural={TTLs},%
-description={Time To Live},%
-descriptionplural={Time To Live},%
-symbol={\relax },%
-symbolplural={\relax },%
-user1={},%
-user2={},%
-user3={},%
-user4={},%
-user5={},%
-user6={},%
-long={Time To Live},%
-longplural={Time To Lives},%
-short={TTL},%
-shortplural={TTLs},%
-counter={page},%
-parent={},%
-%
-}%
-
 \glsdefs@newdocentry{ci}%
 {%
 name={\acronymfont {\glsentryshort {ci}}},%
@@ -530,6 +502,118 @@ parent={},%
 %
 }%
 
+\glsdefs@newdocentry{ghcr}%
+{%
+name={\acronymfont {\glsentryshort {ghcr}}},%
+sort={GHCR},%
+type={main},%
+first={GHCR},%
+firstplural={GHCRs},%
+text={GHCR},%
+plural={GHCRs},%
+description={GitHub Container Registry},%
+descriptionplural={GitHub Container Registry},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={GitHub Container Registry},%
+longplural={GitHub Container Registrys},%
+short={GHCR},%
+shortplural={GHCRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{ssot}%
+{%
+name={SSOT},%
+sort={SSOT},%
+type={main},%
+first={SSOT},%
+firstplural={SSOTs},%
+text={SSOT},%
+plural={SSOTs},%
+description={ Der Begriff steht für \emph {Single Source of Truth}. Er beschreibt ein Konzept, dass jedes Mitglied dieselben Daten besitzt, sodass Lösungsideen immer aktuell sind. \cite {ssotAbout} },%
+descriptionplural={ Der Begriff steht für \emph {Single Source of Truth}. Er beschreibt ein Konzept, dass jedes Mitglied dieselben Daten besitzt, sodass Lösungsideen immer aktuell sind. \cite {ssotAbout} },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{pom}%
+{%
+name={POM},%
+sort={POM},%
+type={main},%
+first={POM},%
+firstplural={POMs},%
+text={POM},%
+plural={POMs},%
+description={ Der Begriff steht für \emph {Project Object Model}. Es ist das Kernstück eines Mavens Projekts, da darin wichtige Informationen stehen. Diese Informationen sind unter anderem Abhängigkeiten, Konfigurationseinstellungen, sowie allgemeine Informationen. \cite {MavenAbout2gls} },%
+descriptionplural={ Der Begriff steht für \emph {Project Object Model}. Es ist das Kernstück eines Mavens Projekts, da darin wichtige Informationen stehen. Diese Informationen sind unter anderem Abhängigkeiten, Konfigurationseinstellungen, sowie allgemeine Informationen. \cite {MavenAbout2gls} },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{ttl}%
+{%
+name={TTL},%
+sort={TTL},%
+type={main},%
+first={TTL},%
+firstplural={TTLs},%
+text={TTL},%
+plural={TTLs},%
+description={ Der Begriff steht für \emph {Time To Live}. Der Wert dessen legt fest, wie lange bestimmte Daten am Server gespeichert werden. \cite {ttlAbout} },%
+descriptionplural={ Der Begriff steht für \emph {Time To Live}. Der Wert dessen legt fest, wie lange bestimmte Daten am Server gespeichert werden. \cite {ttlAbout} },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+
 \glsdefs@newdocentry{api}%
 {%
 name={API},%
@@ -539,8 +623,8 @@ first={API},%
 firstplural={APIs},%
 text={API},%
 plural={APIs},%
-description={ Der Begriff steht für \textit {Application Programming Interface}. Durch APIs können verschieden Applikationen miteinander kommunizieren, ohne die jeweils andere Implementierung wissen zum müssen. \cite {API2022} },%
-descriptionplural={ Der Begriff steht für \textit {Application Programming Interface}. Durch APIs können verschieden Applikationen miteinander kommunizieren, ohne die jeweils andere Implementierung wissen zum müssen. \cite {API2022} },%
+description={ Der Begriff steht für \emph {Application Programming Interface}. Durch APIs können verschieden Applikationen miteinander kommunizieren, ohne die jeweils andere Implementierung wissen zum müssen. \cite {API2022} },%
+descriptionplural={ Der Begriff steht für \emph {Application Programming Interface}. Durch APIs können verschieden Applikationen miteinander kommunizieren, ohne die jeweils andere Implementierung wissen zum müssen. \cite {API2022} },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -623,8 +707,8 @@ first={ERD},%
 firstplural={ERDs},%
 text={ERD},%
 plural={ERDs},%
-description={ Der Begriff steht für \textit {Entity Relationship Diagram}. Diese Diagramme visualisieren, welche Beziehungen verschiedenen \textit {Entitäten} zueinander haben. \cite {ERD2023} },%
-descriptionplural={ Der Begriff steht für \textit {Entity Relationship Diagram}. Diese Diagramme visualisieren, welche Beziehungen verschiedenen \textit {Entitäten} zueinander haben. \cite {ERD2023} },%
+description={ Der Begriff steht für \emph {Entity Relationship Diagram}. Diese Diagramme visualisieren, welche Beziehungen verschiedenen \textit {Entitäten} zueinander haben. \cite {ERD2023} },%
+descriptionplural={ Der Begriff steht für \emph {Entity Relationship Diagram}. Diese Diagramme visualisieren, welche Beziehungen verschiedenen \textit {Entitäten} zueinander haben. \cite {ERD2023} },%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%

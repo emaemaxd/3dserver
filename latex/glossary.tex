@@ -1,6 +1,7 @@
 
 \newacronym{guid}{API}{Application Programming Interface}
-\newacronym{ssot}{SSOT}{Single Source of Trutz}
+\newacronym{uri}{URI}{Uniform Resource Identifier}
+%\newacronym{ssot}{SSOT}{Single Source of Trutz}
 \newacronym{cli}{CLI}{Command Line Interface}
 \newacronym{jvm}{JVM}{Java Virtual Machine}
 \newacronym{jdbc}{JDBC}{Java Database Connectivity}
@@ -15,14 +16,44 @@
 \newacronym{dto}{DTO}{Data Transfer Object}
 \newacronym{json}{JSON}{JavaScript Object Notation}
 \newacronym{jwt}{JWT}{JSON Web Token}
-\newacronym{ttl}{TTL}{Time To Live}
+%\newacronym{ttl}{TTL}{Time To Live}
 \newacronym{ci}{CI}{Continious Integration}
 \newacronym{cd}{CD}{Continious Deployment}
+\newacronym{ghcr}{GHCR}{GitHub Container Registry}
+
+\newglossaryentry{ssot}{
+    name=SSOT,
+    description={
+        Der Begriff steht für \emph{Single Source of Truth}. 
+        Er beschreibt ein Konzept, dass jedes Mitglied dieselben Daten besitzt, sodass Lösungsideen immer aktuell sind.  
+        \cite{ssotAbout}
+    }
+}
+
+\newglossaryentry{pom}{
+    name=POM,
+    description={
+        Der Begriff steht für \emph{Project Object Model}. 
+        Es ist das Kernstück eines Mavens Projekts, da darin wichtige Informationen stehen. 
+        Diese Informationen sind unter anderem Abhängigkeiten, Konfigurationseinstellungen,
+        sowie allgemeine Informationen.
+        \cite{MavenAbout2gls}
+    }
+}
+
+\newglossaryentry{ttl}{
+    name=TTL,
+    description={
+        Der Begriff steht für \emph{Time To Live}. 
+        Der Wert dessen legt fest, wie lange bestimmte Daten am Server gespeichert werden.
+        \cite{ttlAbout}
+    }
+}
 
 \newglossaryentry{api}{
     name=API,
     description={
-        Der Begriff steht für \textit{Application Programming Interface}. 
+        Der Begriff steht für \emph{Application Programming Interface}. 
         Durch APIs können verschieden Applikationen miteinander kommunizieren, ohne die jeweils andere Implementierung wissen zum müssen. 
         \cite{API2022}
     }
@@ -50,7 +81,7 @@
 \newglossaryentry{erd}{
     name=ERD,
     description={
-        Der Begriff steht für \textit{Entity Relationship Diagram}. 
+        Der Begriff steht für \emph{Entity Relationship Diagram}. 
         Diese Diagramme visualisieren, welche Beziehungen verschiedenen \textit{Entitäten} zueinander haben.  
         \cite{ERD2023}
     }

@@ -1,7 +1,9 @@
-Für den serverseitigen Bereich gab es folgende Kriterien, welche von den benutzten Technologien getroffen werden mussten:
+\setauthor{Halilovic Ema}
+Bei der Auswahl der Technologien für den serverseitigen Bereich wurden folgenden Kriterien berücksichtigt:
+Die Auswahl der Technologien für den serverseitigen Bereich berücksichtigt die Erfüllung folgender Kriterien:
 \begin{compactitem}
     \item Sie sollen auf dem neuesten Stand der Technik sein
-    \item Über eine ausreichende Dokumentation mit ständiger Weiterentwicklung verfügen
+    \item Ausreichende Dokumentation mit ständiger Weiterentwicklung verfügen
     \item Eine weite Auswahl an \glspl{fw} und Funktionalitäten unterstützen in den Bereichen:
     \begin{compactitem}
         \item REST
@@ -10,74 +12,197 @@ Für den serverseitigen Bereich gab es folgende Kriterien, welche von den benutz
     \end{compactitem}
     % \item Und schon erste Erfahrungen in der dazugehörigen Programmiersprache
 \end{compactitem} 
-listin gwas die Frameworks machen können in welchem bereich
+% TODO listin gwas die Frameworks machen können in welchem bereich
 
-Innerhalb dieser Arbeit kamen einige Technologien in Frage. 
-Allerdings wurden die endgültigen Technologien aufgrund schon vorhandene Praxiserfahrung getroffen. 
+Neben der Erfüllung der oben genannten Kriterien wurden bei der Entscheidung zur Verwendung der Technologien auch bereits vorhandene Praxiserfahrungen berücksichtigt. 
+Eine Übersicht sowie nähere Beschreibung der für die vorliegende Arbeit verwendeten Technologien sind in den folgenden Unterkapiteln gegeben.
+Allerdings wurden die endgültigen Technologien aufgrund schon vorhandener Praxiserfahrung getroffen. 
 % Dazu finden sich mehrere \glspl{fw}, welche in Fragen kommen.
 
 \include{sections/parts/tech_quarkus}
 
 \section{PostgreSQL}
-\setauthor{Halilovic Ema}
-PostgreSQL ist ein open source Managementsystem für relationale Datenbanken, welches seit 35 Jahren entwickelt wird. 
-Hinter diesem System befindet sich eine große Community, welche weiterhin Features veröffentlicht. 
-
-Die Entscheidung  Eine gute Dokumentation und die vielen verschiedenen Anwendungsfälle 
+\begin{wrapfigure}{r}{0.3\textwidth}
+  \begin{center}
+      \includegraphics[width=0.2\textwidth]{pics/logos/postgres.png}
+      \caption{PostgreSQL Logo}
+  \end{center}
+\end{wrapfigure}
+PostgreSQL ist ein Open Source System für relationale Datenbanken. 
+Es wurde 1986 erstmals an der University of Califorinia at Berkeley entwickelt, wodurch gesagt werden kann, dass die Entwicklung seit 35 Jahren stattfindet. 
+PostgreSQL normalerweise läuft auf den gängigsten Betriebssystemen im Terminal.
+Da die Entwicklung des Systems schon so fortgeschritten ist, gibt es ebenso mehrere User-Interfaces, wie beispielsweise PgAdmin. 
 \cite{PostgreSQLAbout}
 
+PgAdmin ist das am weitesten verbreitete Administrationstool für PostgreSQL. 
+\cite{PgAdminAbout}
+Es erleichtert die Ausführung von \gls{sql}-Befehlen, sowie den Wechsel verschiedener Tabellen.
+
+Eine gute Dokumentation und viele verschiedenen Anwendungsmöglichkeiten haben diese Datenbank hervorgehoben und zur endgültigen Entscheidung geführt. 
+In dieser Arbeit wurde PgAdmin 4 verwendet, um Daten mittels Port-forwarding auf der Cloud zu überprüfen. 
+Durch die Visualisierung der Tabellen war diese Aufgabe einfacher als mit dem Terminal allein. 
 
 \section{IntelliJ IDEA}
+\begin{wrapfigure}{r}{0.3\textwidth}
+  \begin{center}
+      \includegraphics[width=0.2\textwidth]{pics/logos/intellij.png}
+      \caption{IntelliJ Logo}
+  \end{center}
+\end{wrapfigure}
 IntelliJ IDEA ist eine \gls{ide}, welche von JetBrains entwickelt wurde. 
 Diese ist ausgelegt für Java- und Kotlin-Projekte und assistiert bei verschiedensten \gls{jvm}-\glspl{fw}. 
 Durch eingebaute Features erleichtert diese Entwicklungsumgebung das Programmieren für Nutzende. 
-Plug-Ins ermöglichen es, Datenbankverbindungen und weiteres in der IDE zu konfigurieren, sodass dem*der Entwickler*in eine Übersicht von benötigten Informationen gegeben werden kann.
+Plug-Ins ermöglichen es, Datenbankverbindungen und weiteres in der \gls{ide} zu konfigurieren, sodass dem Entwickler oder der Entwicklerin eine Übersicht von benötigten Informationen gegeben werden kann.
 \cite{IntelliJIDEA}
 
+IntelliJ ist nicht Open Source und benötigt ein kostenpflichtiges Abonnement. 
+Für persönlichen Gebrauch kostet die \gls{ide} 16.90€.
+Als Schüler und Schülerin kann nach der Angabe von Schulinformationen eine gratis Lizenz für 6 Monate alle JetBrains Produkte beantragt werden. 
+Die Softwares dürfen mit dieser Lizenz nicht für kommerzielle Nutzung genutzt werden.
+\cite{IntelliJIDEAPricing}
+
+\section{Visual Studio Code}
+\begin{wrapfigure}{r}{0.3\textwidth}
+  \begin{center}
+      \includegraphics[width=0.2\textwidth]{pics/logos/vscode.jpg}
+      \caption{VS Code Logo}
+  \end{center}
+\end{wrapfigure}
+Visual Studio Code ist ein open-soruce Code Editor für verschiedene Zwecke. 
+Sie ist auch unter dem Namen \emph{VS Code} bekannt und wurde von Microsoft lizensiert. 
+Der offen verfügbare Quellcode führt dazu, dass die Community weiterhin Erweiterungen entwickelt.
+\cite{vscodeAbout}
+
+Der Editor läuft auf den Betriebssystemen Windows, macOS and Linux. 
+Bei der Installation wird anfangs nur ein Language Support für JavaScript, TypeScript und Node.js mitgeliefert. 
+Durch die vielen Erweiterungen kann sich VS Code individuell angepasst werden. 
+Ebenso kann es als \gls{ide} genutzt werden, wenn eine Extension für die gewünschte Sprache gefunden werden kann. 
+\cite{vscodeAboutGs}
+
 \section{LeoCloud}
-Die LeoCloud ist ein Projekt der HTL Leonding mit Aberger Christian als Projektleitender. 
+Die LeoCloud ist ein Projekt der HTL Leonding mit Aberger Christian als Projektleiter. 
 Sie ermöglicht es mittels Kubernetes, eine beliebige Anwendung auf einer Cloud laufen zu lassen. 
-Um diese Cloud nutzen zu können ist eine E-Mail-Adresse mit der HTL-Leonding-Schulsignatur notwendig. 
-Da dies ein Schulinternes Projekt ist, war eine Kommunikation mit den Entwicklern gegeben, das heißt, dass potentielle Fragen sofort beantwortet werden konnten. 
+Um diese Cloud nutzen zu können, ist eine E-Mail-Adresse mit der HTL-Leonding-Schulsignatur notwendig. 
+Da dies ein schulinternes Projekt ist, war eine Kommunikation mit den Entwicklern gegeben, das heißt, dass Fragen sofort beantwortet werden konnten. 
 \cite{LeoCloudAbout}
 
+\subsection{Kubernetes}
+\begin{wrapfigure}{r}{0.3\textwidth}
+  \begin{center}
+    \includegraphics[width=0.2\textwidth]{pics/logos/k8s.png}
+   \caption{Kubernetes Logo}
+  \end{center}
+\end{wrapfigure}
+Kubernetes ist eine Anwendung, die für das Containern von Applikationen entwickelt wurde. 
+Sie ist Open Source und weit verbreitet. 
+Ebenso basiert sie auf den Produktionworkloads von Google.
+Alternativ ist Kubernetes unter dem Namen \emph{k8s} bekannt.
+\cite{k8sAbout}
+
+Wie vorhin erwähnt, nutzt die LeoCloud Kubernetes, um Anwendungen auf die Cloud zu laden. 
+Besonders wird dabei das \gls{cli} verwendet. 
+
+Da das Arbeiten am Terminal unübersichtlich werden kann, wurde ebenso die Extension \emph{Kubernetes von Microsoft} in Visual Studio Code genutzt.
+
+\cite{k8sAboutExtension}
+
+\section{GitHub}
+\begin{wrapfigure}{r}{0.3\textwidth}
+  \begin{center}
+      \includegraphics[width=0.2\textwidth]{pics/logos/github.png}
+      \caption{GitHub Logo}
+  \end{center}
+\end{wrapfigure}
+GitHub ist eines der am weitest verbreiteten Entwicklertools auf der Welt. 
+Es ist Open Source verfügbar, wobei die Hauptfunktionalitäten auf einer Webseite ermöglicht werden. 
+Zusätzlich existieren bereits diverse Apps und Extensions, die die Entwicklung mit GitHub auf anderen Plattformen verbreiten.
+\cite{githubAbout}
+
+Durch GitHub Repositories wird das Konzept der \gls{ssot} ermöglicht. 
+Bei der Erstellung von Repositories werden mehrere Funktionen geboten, wie Pull Requests. 
+Wenn ein Teammitglied eine Änderung des Codes veröffentlicht, überschreiben diese nicht den aktuellen Stand, sondern erzeugen Pull Requests.
+Nach einer Überprüfung dank der integrierter Codevorschau können die Requests geschlossen und die neuen Zeilen mit schon vorhandenem Code zusammengeführt werden. 
+Alle Änderungen bleiben in Changelogs gespeichert, sodass immer auf alte Versionen zugegriffen werden kann.
+\cite{githubAbout}
+
 \section{Notion}
-Notion ist eine Art digitales Notizbuch, womit mit der so genannte \emph{Workspaces} erstellt werden können. 
-Diese ist verfügbar im Browser, als App in Windows-, MacOS- oder auf iOS- und Android-Geräten. 
-Es besteht die Möglichkeit eine Seite zu erstellen und mit einem einzigen Befehl Unterseiten anzulegen, welche direkt verlinkt werden.
-Diese Seiten lassen sich mit beliebigem Inhalt füllen und durch einfache \emph{/-Befehle} ist es möglich z. B. ein Kanban Board erstellen. 
-Es ist gut für Neueinsteiger, da alle Funktionalitäten gut beschrieben sind und es benutzerfreundlich gestaltet ist.
-Workspaces lassen sich mit anderen Nutzern teilen, wodurch jeder Nutzer auf eine \emph{single soruce of truth} Version des Workspaces zugreifen kann.
+\begin{wrapfigure}{r}{0.3\textwidth}
+  \begin{center}
+    \includegraphics[width=0.2\textwidth]{pics/logos/notion.png}
+   \caption{Notion Logo}
+  \end{center}
+\end{wrapfigure}
+
+Notion ist eine Art digitales Notizbuch, womit so genannte \emph{Workspaces} erstellt werden können. 
+Es ist im Browser, als App in Windows-, MacOS- oder auf iOS- und Android-Geräten verfügbar. 
+Workspaces aufgebaut durch mehrere Seiten, welche durch Befehle erstellt werden. 
+Diese werden auch direkt miteinander verlinkt.
+Seiten lassen sich mit beliebigem Inhalt füllen und durch einfache \emph{/-Befehle} ist es möglich z. B. ein Kanban Board erstellen. 
+\cite{NotionAbout}
+
+Notion ist gut für Neueinsteiger, da alle Funktionalitäten gut beschrieben sind und es benutzerfreundlich gestaltet ist.
+Workspaces lassen sich mit anderen teilen, wodurch jeder User auf eine \gls{ssot} Version des Workspaces zugreifen kann.
 Für die Bearbeitung in echt-zeit wird Internet benötigt, falls dieses jedoch ausfällt, werden die Änderungen gespeichert und synchronisiert, sobald wieder eine Netzwerkverbindung aufgebaut wurde.
 \cite{NotionAbout}
 
-Das Feature von geteilten Workspaces war für diese Arbeit nützlich, um Notizen nach Meetings und gemeinsame Termine festzuhalten, genauso um wichtige Links zu speichern und diese schnell wieder abrufen zu können.
-Unser Workspace war aufgeteilt in verschiede Bereiche, wobei die wichtigsten Informationen auf der Titelseite gesichert werden. Siehe Abb. \ref{fig:tech:notion-page}  
-
-\begin{figure} [h t]
-  \centering
-  \includegraphics[scale=0.3]{pics/NotionPage.png}
-  \caption{Notion Workspace der Diplomarbeit}
-  \label{fig:tech:notion-page}
-\end{figure}
+Das Feature von geteilten Workspaces wird in dieser Arbeit genutzt, um Termine und Notizen zu teilen. 
+Durch die Verwendung dieses Tools wurde sichergestellt, dass jedes Mitglied eine \gls{ssot}-Version der geteilten Informationen hatte.
 
 \section{PlantUML}
+\begin{wrapfigure}{r}{0.3\textwidth}
+  \begin{center}
+      \includegraphics[width=0.2\textwidth]{pics/logos/plantuml.png}
+      \caption{PlantUML Logo}
+  \end{center}
+\end{wrapfigure}
 PlantUML ist ein Tool, welches die Erstellung von \gls{uml}-Diagrammen vereinfacht. 
 Das Ziel von \gls{uml} ist es, Tools zu liefern, um Systeme zu visualisieren.
 \cite{UMLPaper}
 Dafür gibt es verschiede Arten von \gls{uml}-Diagrammen, wie beispielsweise Objektdiagramme oder Sequenzdiagramme.
 \cite{PlantUML}
 
-Für diese Arbeit wurde ein \gls{erd} mit Krähenfußnotation, auch bekannt als Martin-Notation, verwendet.
+Für diese Arbeit wird die gratis Extension \emph{PlantUML von jebbs} verwendet. 
+Sie bietet eine Preview des Diagramms, sowie Exportmöglichkeiten. 
+\cite{PlantumlExtension}
+Die Visualisierung unserer Datenstruktur geschieht durch die Erstellung eines \gls{erd}s mit den PlantUML Klassendiagrammen. 
+Die Beziehungen zwischen den Entitäten werden hier mittels der Krähenfußnotation dargestellt.
 
 \section{JSON Web Token}
-JSON Web Token, oder \gls{jwt}, sind eine Methode, um Daten sicher zu Übertragen. 
-Sie können über eine digitale Signatur besitzen, wie zum Beispiel eines RSA Schlüsselpaars, oder eines HMAC Algorythmus. 
-In diesem Token ist es möglich Daten zu speichern, sowie eine \gls{ttl} festzulegen. 
-Die Authentifizierung geschieht durch das Mitgeben des Tokens im Header. 
-Jeder Token muss validiert werden, wodurch ihm eine Signatur hinzugefügt wird. 
-Diese wird mittels den vorher gennaten Methoden umgesetzt. 
+\begin{wrapfigure}{r}{0.3\textwidth}
+  \begin{center}
+      \includegraphics[width=0.2\textwidth]{pics/logos/jwt.png}
+      \caption{JWT Logo}
+  \end{center}
+\end{wrapfigure}
+JSON Web Token, oder \gls{jwt}, ist ein, durch RFC 7519 gekennzeichneter, Standard für die sichere Datenübertragung. 
+Die Token übermitteln Daten als digital signierte \gls{json}-Objekte.
+Die Signatur erfolgt durch eine Verschlüsselung mittels Secret oder Schlüsselpaar. 
+Secrets werden mit einem HMAC-Algorithmus erstellt, wobei Schlüsselpaare RSA oder ECDSA verwenden
 \cite{JWTAbout}
+
+In Tokens könne verschiedene Daten gespeichert werden. 
+Typischerweise werden Tokenart und Verschlüsselungsalgorithmus im Header des Tokens gespeichert und die individuell definierten in der \emph{Payload}.
+Der Token wird bei einem erfolgreichem Login Request erhalten und danach bei \gls{http}-Requests im Authorization Header mitgeschickt. 
+Damit der Token nicht unendlich lang genutzt werden kann, ist es wichtig, eine \gls{ttl} festzulegen. 
+Bei Interesse an den gespeicherten Informationen kann jeder JWT auf \href{https://jwt.io}{https://jwt.io} enkodiert werden.
+\cite{JWTAbout}
+
+\section{Homebrew}
+\begin{wrapfigure}{r}{0.3\textwidth}
+  \begin{center}
+      \includegraphics[width=0.1\textwidth]{pics/logos/brew.png}
+      \caption{Homebrew Logo}
+  \end{center}
+\end{wrapfigure}
+Homebrew ist ein Paketmanager für Linux und macOS. 
+Er wurde in Ruby von Max Howell programmiert und vereinfacht Installation und Aktualisierung von Tools und Dependencies. 
+Dazu müssen sie im Homebrew-Repository enthalten sein. 
+Alle Installationen werden im selben Ordner gespeichert, wodurch bei Bedarf des Pfades dieser sofort gefunden wird. 
+Um Homebrew zu verwenden, wird im Terminal Stichwort \emph{brew} genutzt. 
+
+Die meisten der oben angeführten Technologien sind im Homebrew-Repository enthalten. 
+Durch die Entwicklung auf einem macOS-System, war dieser Paketmanager ein sehr hilfreiches Tool. 
+\cite{brewAbout}
 
 %\subsection{Deeper}
 %Nicht mehr im Inhaltsverzeichnis.
