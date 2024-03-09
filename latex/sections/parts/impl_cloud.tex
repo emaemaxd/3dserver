@@ -2,7 +2,7 @@
 
 Bisher zu diesem Zeitpunkt wurde die Applikation immer lokal ausgeführt. 
 Dies führte zu einer Optimierung auf den regelmäßig verwendeten Geräten, jedoch zu Problemen bei neuen, aufgrund der benötigten Installationen und Einrichtung der benutzten Technologien. 
-Ein einfacher Startvorgang des Projektes benötigt Java, Maven, PostgreSQL, Angular und der node package Manager.
+Ein einfacher Startvorgang des Projektes benötigt \emph{Java}, \emph{Maven}, \emph{PostgreSQL}, \emph{Angular} und der \emph{node package Manager}.
 Das erschwert die Nutzung der Applikation. 
 
 Ebenso benötigt jeder Interessierte einen Zugang auf die GitHub Repositories, welche privat gestellt sind. 
@@ -43,7 +43,14 @@ Der wichtigste Teil dieses Fensters ist der Button \emph{Mein Dashboard}.
 
 Nach dessen Betätigung wird ein weiteres Fenster ersichtlich, was ein kurzes Tutorial anzeigt, wie auf das Dashboard zugegriffen werden kann. 
 Das Kontrollzentrum lässt sich nur anzeigen, wenn im Terminal der Befehl aus \ref{lst:kubectlproxy} ausgeführt wurde. 
-Da noch kein Upload Versuch durchgeführt wurde, zeigt das Dashboard anfangs keine relevanten Informationen.
+Das Dashboard listet alle einzelnen Deployment auf, und ermöglicht es, Details anzuzeigen.
+
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.2]{pics/kubernetes_dashboard.png}
+  \caption{Dashboard der LeoCloud}
+  \label{fig:implementation:dashboard_cloud}
+\end{figure}
 
 \begin{lstlisting}[label=lst:kubectlproxy, language=bash, caption=Ausführung des Proxys für Kubernetes]
 kubectl proxy
@@ -206,7 +213,7 @@ Damit der Applikationsserver darauf zugreifen kann, muss es jedoch manuell in de
 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.5]{pics/3dserverpackage.png}
+    \includegraphics[scale=0.4]{pics/3dserverpackage.png}
     \caption{Ansicht des erstellten Packages in GitHub}
     \label{fig:implementation:3dserverpackage}
 \end{figure}

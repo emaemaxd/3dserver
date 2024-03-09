@@ -19,8 +19,6 @@ Eine Übersicht sowie nähere Beschreibung der für die vorliegende Arbeit verwe
 Allerdings wurden die endgültigen Technologien aufgrund schon vorhandener Praxiserfahrung getroffen. 
 % Dazu finden sich mehrere \glspl{fw}, welche in Fragen kommen.
 
-\include{sections/parts/tech_quarkus}
-
 \section{PostgreSQL}
 \begin{wrapfigure}{r}{0.3\textwidth}
   \begin{center}
@@ -28,19 +26,21 @@ Allerdings wurden die endgültigen Technologien aufgrund schon vorhandener Praxi
       \caption{PostgreSQL Logo}
   \end{center}
 \end{wrapfigure}
-PostgreSQL ist ein Open Source System für relationale Datenbanken. 
-Es wurde 1986 erstmals an der University of Califorinia at Berkeley entwickelt, wodurch gesagt werden kann, dass die Entwicklung seit 35 Jahren stattfindet. 
-PostgreSQL normalerweise läuft auf den gängigsten Betriebssystemen im Terminal.
-Da die Entwicklung des Systems schon so fortgeschritten ist, gibt es ebenso mehrere User-Interfaces, wie beispielsweise PgAdmin. 
+\emph{PostgreSQL} ist ein Open Source System für relationale Datenbanken. 
+Es wurde 1986 erstmals an der University of Califorinia at Berkeley entwickelt, was eine Entwicklung seit 35 Jahren bedeutet.  
+\emph{PostgreSQL} läuft auf den gängigsten Betriebssystemen im Terminal.
+Durch die Entwicklung des Systems seit rund 35 Jahren, entstanden ebenso mehrere User-Interfaces, wie beispielsweise PgAdmin. 
 \cite{PostgreSQLAbout}
 
 PgAdmin ist das am weitesten verbreitete Administrationstool für PostgreSQL. 
 \cite{PgAdminAbout}
 Es erleichtert die Ausführung von \gls{sql}-Befehlen, sowie den Wechsel verschiedener Tabellen.
 
-Eine gute Dokumentation und viele verschiedenen Anwendungsmöglichkeiten haben diese Datenbank hervorgehoben und zur endgültigen Entscheidung geführt. 
+Eine gute Dokumentation und schon vorhandene Praxiserfahrung haben diese Datenbank hervorgehoben und zur endgültigen Entscheidung geführt. 
 In dieser Arbeit wurde PgAdmin 4 verwendet, um Daten mittels Port-forwarding auf der Cloud zu überprüfen. 
 Durch die Visualisierung der Tabellen war diese Aufgabe einfacher als mit dem Terminal allein. 
+
+\include{sections/parts/tech_quarkus}
 
 \section{IntelliJ IDEA}
 \begin{wrapfigure}{r}{0.3\textwidth}
@@ -56,28 +56,31 @@ Plug-Ins ermöglichen es, Datenbankverbindungen und weiteres in der \gls{ide} zu
 \cite{IntelliJIDEA}
 
 IntelliJ ist nicht Open Source und benötigt ein kostenpflichtiges Abonnement. 
-Für persönlichen Gebrauch kostet die \gls{ide} 16.90€.
 Als Schüler und Schülerin kann nach der Angabe von Schulinformationen eine gratis Lizenz für 6 Monate alle JetBrains Produkte beantragt werden. 
-Die Softwares dürfen mit dieser Lizenz nicht für kommerzielle Nutzung genutzt werden.
+Wäre der Benefit nicht vorhanden, hätten wir die \gls{ide} nicht gewählt, sondern Visual Studio Code \ref{ch::vsc} für den ganzen Entwicklungsprozess verwendet. 
 \cite{IntelliJIDEAPricing}
 
 \section{Visual Studio Code}
+\label{ch::vsc}
 \begin{wrapfigure}{r}{0.3\textwidth}
   \begin{center}
       \includegraphics[width=0.2\textwidth]{pics/logos/vscode.jpg}
       \caption{VS Code Logo}
   \end{center}
 \end{wrapfigure}
-Visual Studio Code ist ein open-soruce Code Editor für verschiedene Zwecke. 
-Sie ist auch unter dem Namen \emph{VS Code} bekannt und wurde von Microsoft lizensiert. 
+Visual Studio Code ist ein Open Source Code Editor für verschiedene Zwecke. 
+Das Programm ist auch unter dem Namen \emph{VS Code} bekannt und wurde von Microsoft lizensiert. 
 Der offen verfügbare Quellcode führt dazu, dass die Community weiterhin Erweiterungen entwickelt.
 \cite{vscodeAbout}
 
-Der Editor läuft auf den Betriebssystemen Windows, macOS and Linux. 
+Der Editor läuft auf den Betriebssystemen Windows, macOS und Linux. 
 Bei der Installation wird anfangs nur ein Language Support für JavaScript, TypeScript und Node.js mitgeliefert. 
 Durch die vielen Erweiterungen kann sich VS Code individuell angepasst werden. 
 Ebenso kann es als \gls{ide} genutzt werden, wenn eine Extension für die gewünschte Sprache gefunden werden kann. 
 \cite{vscodeAboutGs}
+
+Der Editor wurde für die letzten Schritte der Arbeit genutzt. 
+Dazu zählen die Konfiguration der benötigten Cloud-Dateien, sowie das von Frondend und Backend. 
 
 \section{LeoCloud}
 Die LeoCloud ist ein Projekt der HTL Leonding mit Aberger Christian als Projektleiter. 
@@ -85,6 +88,9 @@ Sie ermöglicht es mittels Kubernetes, eine beliebige Anwendung auf einer Cloud 
 Um diese Cloud nutzen zu können, ist eine E-Mail-Adresse mit der HTL-Leonding-Schulsignatur notwendig. 
 Da dies ein schulinternes Projekt ist, war eine Kommunikation mit den Entwicklern gegeben, das heißt, dass Fragen sofort beantwortet werden konnten. 
 \cite{LeoCloudAbout}
+
+Die Cloud wurde für die Anforderungen genutzt, dass Projekt für alle Geräte zugänglich zu machen. 
+Durch ein Deployment auf die LeoCloud war die Anwendung über den Browser erreichbar und somit ein endgültiges Produkt. 
 
 \subsection{Kubernetes}
 \begin{wrapfigure}{r}{0.3\textwidth}
@@ -103,7 +109,6 @@ Wie vorhin erwähnt, nutzt die LeoCloud Kubernetes, um Anwendungen auf die Cloud
 Besonders wird dabei das \gls{cli} verwendet. 
 
 Da das Arbeiten am Terminal unübersichtlich werden kann, wurde ebenso die Extension \emph{Kubernetes von Microsoft} in Visual Studio Code genutzt.
-
 \cite{k8sAboutExtension}
 
 \section{GitHub}
@@ -114,7 +119,7 @@ Da das Arbeiten am Terminal unübersichtlich werden kann, wurde ebenso die Exten
   \end{center}
 \end{wrapfigure}
 GitHub ist eines der am weitest verbreiteten Entwicklertools auf der Welt. 
-Es ist Open Source verfügbar, wobei die Hauptfunktionalitäten auf einer Webseite ermöglicht werden. 
+Es ist Open Source verfügbar und ermöglicht mit einer Webseite // TODO 
 Zusätzlich existieren bereits diverse Apps und Extensions, die die Entwicklung mit GitHub auf anderen Plattformen verbreiten.
 \cite{githubAbout}
 
@@ -145,8 +150,9 @@ Workspaces lassen sich mit anderen teilen, wodurch jeder User auf eine \gls{ssot
 Für die Bearbeitung in echt-zeit wird Internet benötigt, falls dieses jedoch ausfällt, werden die Änderungen gespeichert und synchronisiert, sobald wieder eine Netzwerkverbindung aufgebaut wurde.
 \cite{NotionAbout}
 
-Das Feature von geteilten Workspaces wird in dieser Arbeit genutzt, um Termine und Notizen zu teilen. 
+Das Feature von geteilten Workspaces wird in dieser Arbeit als Erleichterung der Kommunikation zwischen Teammitgliedern genutzt, um gemeinsame Notizen und Termine festzuhalten. 
 Durch die Verwendung dieses Tools wurde sichergestellt, dass jedes Mitglied eine \gls{ssot}-Version der geteilten Informationen hatte.
+Für die selbstständige Arbeit wurde das Tool ebenso genutzt, um wichtige Webseiten zu speichern, sowie Zwischennotizen zu erstellen. 
 
 \section{PlantUML}
 \begin{wrapfigure}{r}{0.3\textwidth}
@@ -180,7 +186,7 @@ Die Signatur erfolgt durch eine Verschlüsselung mittels Secret oder Schlüsselp
 Secrets werden mit einem HMAC-Algorithmus erstellt, wobei Schlüsselpaare RSA oder ECDSA verwenden
 \cite{JWTAbout}
 
-In Tokens könne verschiedene Daten gespeichert werden. 
+In Tokens kann eine freie Anzahl von wählbare Daten, wie selbst definierte Adjektive, gespeichert werden. 
 Typischerweise werden Tokenart und Verschlüsselungsalgorithmus im Header des Tokens gespeichert und die individuell definierten in der \emph{Payload}.
 Der Token wird bei einem erfolgreichem Login Request erhalten und danach bei \gls{http}-Requests im Authorization Header mitgeschickt. 
 Damit der Token nicht unendlich lang genutzt werden kann, ist es wichtig, eine \gls{ttl} festzulegen. 

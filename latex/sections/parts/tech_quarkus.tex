@@ -5,17 +5,17 @@
      \caption{Quarkus Logo}
     \end{center}
   \end{wrapfigure}
-Das Open Source \gls{fw} Quarkus wird für die Entwicklung von cloud-native Projekten in Java verwendet. 
+Das Open Source \gls{fw} \emph{Quarkus} wird für die Entwicklung von cloud-native Projekten in Java verwendet. 
 Es zeichnet sich unter anderem durch die kurzen Startzeiten, sowie den geringen Arbeitsspeicherverbrauch aus. 
-Ebenso sind Quarkus-Projekte dazu optimiert, in Containerumgebungen, wie beispielsweise Kubernetes, ausgeführt zu werden.
+Ebenso sind Quarkus-Projekte dazu optimiert, in Containerumgebungen, wie beispielsweise \emph{Kubernetes}, ausgeführt zu werden.
 \cite{QuarkusHomepage, QuarkusAbout}
 
-Ein neues Projekt wird entweder durch das Quarkus-\gls{cli} erstellt oder nach individueller Konfiguration auf \href{https://code.quarkus.io}{code.quarkus.io} heruntergeladen. 
+Ein neues Projekt wird entweder durch das Quarkus-\glsfirst{cli} erstellt oder nach individueller Konfiguration auf \href{https://code.quarkus.io}{code.quarkus.io} heruntergeladen. 
 Standardmäßig sind in dem Projektordner \hyperref[ch::MavenTool]{Maven}-Verzeichnis, sowie Quarkus-Dateien enthalten, welche Projekteinstellungen enthalten. 
 Eine dieser Konfigurationsdateien wäre zum Beispiel die \emph{application.properties}-Datei. 
 \cite{QuarkusAbout, QuarkusFirstApplication}
 
-Zusätzlich verfügt Quarkus über eine Vielzahl von Extensions, welche eine Vielzahl der gängigsten Technologien unterstützen.
+Zusätzlich verfügt Quarkus über eine Vielzahl von Extensions, welche die gängigsten Technologien unterstützen, wie zum Beispiel einen JDBC-Treiber (siehe \ref{ch::jdbctreiber}) oder REST-Easy (siehe \ref{ch::resteasy}). 
 Sie werden durch das \gls{cli} oder manuell hinzugefügt. 
 \cite{QuarkusAbout, QuarkusFirstApplication}
 
@@ -27,34 +27,34 @@ Die Möglichkeit das Projekt mit zusätzlichen Erweiterungen auszustatten war
 \begin{wrapfigure}{r}{0.3\textwidth}
     \begin{center}
         \includegraphics[width=0.1\textwidth]{pics/logos/asf.jpg}
-        \caption{Apache feather Logo}
+        \caption{\emph{Apache Maven} feather Logo}
     \end{center}
 \end{wrapfigure}
 
-Maven ist ein Open Source Build-Tool, welches von der Apache Software Foundation lizensiert ist.
+\emph{Maven} ist ein Open Source Build-Tool, welches von der Apache Software Foundation lizensiert ist.
 Es wurde in Java geschrieben und wird meist in Java-Projekten eingesetzt. 
-Durch zentrale Nutzung des \gls{pom} werden projektrelevante Informationen gesichert, wodurch der Kompilierungsprozess vereinfacht wird.
+Durch zentrale Nutzung des \glsentryfirst{pom} werden projektrelevante Informationen gesichert, wodurch der Kompilierungsprozess vereinfacht wird.
 \cite{MavenAbout, MavenAbout2gls}
 
-Maven sorgt dafür, dass unterschiedliche Geräte eine Applikation ausführen können, ohne manuelle Konfiguration. 
-Die einzige Voraussetzung  des Zielgerätes ist, dass Maven installiert und eingerichtet ist. 
+\emph{Maven} sorgt dafür, dass unterschiedliche Geräte eine Applikation ausführen können, ohne manuelle Konfiguration. 
+Die einzige Voraussetzung  des Zielgerätes ist, dass \emph{Maven} installiert und eingerichtet ist. 
 Ebenso können \emph{Maven-Ordner} gedownloadet werden. 
 Diese ermöglichen die Nutzung der Maven Befehle ohne Installation des Tools am Gerät.
 \cite{MavenAbout, MavenAbout2gls}
 
-Quarkus-Projekte verwenden Mavens \emph{pom.xml}-Datei, um unter anderem die verwendete Java Version oder die verwendeten Extensions abzuspeichern.
+Quarkus-Projekte verwenden \emph{Mavens} \emph{pom.xml}-Datei, um unter anderem die verwendete Java Version oder die verwendeten Extensions abzuspeichern.
 Zusätzlich wird ein einheitliches System für Projektkonfigurationen geboten. 
 Dadurch müssen, wie oben erwähnt, Einstellungen bei Gerätewechsel nicht mehr manuell geändert werden. 
 \cite{MavenAbout}
 
-\subsection{\gls*{jdbc} Treiber}
-
+\subsection{\glsfirst{jdbc} Treiber}
+\label{ch::jdbctreiber}
 In Java wird für Datenbankverbindungen die \gls{jdbc} \gls{api} verwendet. 
 Genauso benötigen Quarkus-Projekte einen datenbankspezifischen \gls{jdbc}-Treiber für einen Zugriff auf die Datenbank. 
 In diesem Projekt wurde PostgreSQL als Datenbank gewählt, weshalb die Extension \emph{\gls{jdbc} Driver - PostgreSQL} fundamental für die Entwicklung war. 
 \cite{datasourcesAbout}.
 
-Um die Extension zu verwenden und eine Datenbankverbindung aufzubauen, müssen in den \emph{application.properties} zusätzliche Konfigurationen eingefügt werden. 
+Um die Extension zu verwenden und eine Datenbankverbindung aufzubauen, müssen in den \emph{application.properties} die zusätzliche Konfigurationen aus Codeblock \ref{lst:quarkusDatasource} eingefügt werden. 
 Wichtig sind Informationen, wie die Art der Datenbank, der Pfad, um diese zu erreichen, und die Login-Daten eines berechtigten Users.
 Dazu wird der \gls{boilercode} aus Codeblock \ref{lst:quarkusDatasource} verwendet, wobei die Klammern durch tatsächliche Werte ersetzt werden. 
 \cite{datasourcesAbout}
@@ -75,11 +75,11 @@ Hibernate ORM ist die dafür zuständige Extension für Quarkus.
 
 Panache bietet zusätzliche Klassen mit Funktionen, von denen abgeleitet werden kann. 
 Diese erleichtern das Arbeiten mit angelegten Entitäten, besonders bei \gls{crud}-Operationen.
-Zum Beispiel ist für die Persistenz eines neuen Objekts lediglich ein Aufruf der \emph{.persist()}-Methode notwendig.
+Zum Beispiel ist für die Persistenz eines neuen Objekts lediglich ein Aufruf der \emph{.persist()}-Methode notwendig, wodurch automatisch eine Entität in die Datenbank eingefügt wird. 
 \cite{HibernateORMwithPanache}
 
 \subsection{REST-Easy}
-\label{ch::MavenTool}
+\label{ch::resteasy}
 \begin{wrapfigure}{r}{0.3\textwidth}
     \begin{center}
         \includegraphics[width=0.2\textwidth]{pics/logos/resteasy.png}
@@ -103,8 +103,9 @@ Folgende \gls{http}-Methoden werden in dieser Arbeit verwendet:
 \end{compactitem}
 
 Die Beschreibungen der oben angeführten Methoden sind Normen in der Entwicklung mit \gls{http}. 
-Eventuell hätte noch \emph{PUT} verwendet werden können, jedoch wird diese Methode für einzelne Änderungen einer Entität verwendet.
-Dadurch hatte sie keinen spezifischen Nutzen in dieser Arbeit. 
+Eventuell hätte noch \emph{PUT} verwendet werden können.
+Diese Methode wird ähnlich wie das \emph{POST} verwendet, jedoch ist es ausgelegt für einzelne Änderungen einer Entität. 
+Dadurch hatte sie in dieser Arbeit keinen spezifischen Nutzen.  
 \cite{httpAbout}
 
 \subsection{Swagger-ui}
@@ -115,7 +116,7 @@ Dadurch hatte sie keinen spezifischen Nutzen in dieser Arbeit.
     \end{center}
 \end{wrapfigure}
 Swagger UI ist ein Tool zum Testen von \gls{rest}-\gls{api}s. 
-Es ist Open Source und liefert mehrere Funktionalitäten, wobei in dieser Arbeit hauptsächlich die Visualisierung der Schnittstellen verwendet wurde. 
+Es ist Open Source und in dieser Arbeit hauptsächlich die Visualisierung der Schnittstellen verwendet. 
 Dieser Teil bietet, je nach definierten Parametern, vorgefertigte Requests, welche noch bearbeitet werden können. 
 Ebenso zeigen sie die benötigte \gls{http}-Methode und ermöglichen es, den Endpoint mit Mausklick zu testen. 
 Dies erspart sehr viel Arbeit während der \gls{api}-Entwicklung.
@@ -128,8 +129,8 @@ Dies erspart sehr viel Arbeit während der \gls{api}-Entwicklung.
         \caption{JUnit 5 Logo}
     \end{center}
 \end{wrapfigure}
-JUnit steht für Java Unit und ist ein Open Source \gls{fw} zum Testen. 
-Es hat sich als der Standard dieser Programmiersprache bewiesen und ist spezialisiert auf die Überprüfung von Methoden und Klassen.
+\emph{JUnit} steht für Java Unit und ist ein Open Source \gls{fw}. 
+Es hat sich als der Standard zum Testen von \emph{Java}-Programmen bewiesen und ist spezialisiert auf die Überprüfung von Methoden und Klassen.
 Durch die Popularität besteht eine ausführliche Dokumentation und weites Funktionsspektrum.
 Ebenso inspirierte dieses Konzept die \gls{fw}s anderer Programmiersprachen im Testing-Bereich.
 

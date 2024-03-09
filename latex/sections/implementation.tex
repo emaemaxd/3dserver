@@ -14,8 +14,8 @@ Dadurch wurde für Termine von Meetings und Deadlines, sowie den Designentscheid
 Ebenso kamen die ersten Anforderungen der Datenstruktur zustande, welche für das zukünftige \gls{erd} relevant waren.
 Die tatsächliche Entwicklung des Applikationsservers fand in einem separaten Repository statt. 
 
-Das Hauptanwendungsszenario des Datenmodells wurde definiert als \emph{Ein User kann Exhibitions erstellen und sich die Exhibitions von anderen Nutzern ansehen.} 
-Alle weiteren Diskussionen über die Umsetzung dieses wurden anschließend in einem \gls{erd} zusammengefasst.
+Anforderungen an die Applikationen wurden als User Stories mit Akzeptanzkriterien definiert. 
+Zusätzlich fasste ein \gls{erd} das benötigte Datenmodell zusammen.
 
 \subsection{Erstellung eines Workspaces in Notion}
 
@@ -29,8 +29,9 @@ Um ein Kollaborator zu werden, muss ebenso bei den eingeladenen Personen ein Not
 Der Workspace der Arbeit wird in Abbildung \ref{fig:impl:notion-page} gezeigt.
 Das rosa Rechteck zeigt die Teilnehmer an, wobei ihre genauen Informationen erst mit einem Mousehover ersichtlich werden. 
 
-Notion war nützlich, um Notizen nach Meetings zu teilen und gemeinsame Termine festzuhalten.
+Da \emph{3D Portfolio Gallery – Server} anfangs im Team entwickelt wurde, war es nützlich einen Workspace zu erstellen um Notizen nach Meetings zu teilen und gemeinsame Termine festzuhalten.
 Ebenso wurden wichtige Links abrufbereit gespeichert und erste Dokumentationen der schriftlichen Arbeit erstellt.
+Nach Aufteilung des Teams, wurde der Workspace weiterhin zu selbstständiger Dokumentation genutzt. 
 
 \begin{figure} [h t]
   \centering
@@ -79,8 +80,12 @@ Die Beziehungen zwischen \emph{Positionen, Exhibits, Rooms und Exhibitions} stel
 Diese wurden besonders erst in der Implementierung ersichtlich, wodurch das \gls{erd} im Laufe der Entwicklung entsprechend angepasst wurde. 
 Weitere Gründe für die Abänderung, waren Planänderungen bei der Kommunikation zwischen zwei Entitäten, sowie der Aufbau der Hauptentitäten \emph{Exhibition und Exhibit}. 
 Die Unterschiede zwischen der ersten und der finalen Version sind deutlich (siehe Abb. \ref{fig:erd:firstversion} und \ref{fig:erd:lastversion}).
-Besonders lassen sich die oben erläuterten Änderungen erkennen. 
- 
+Die Tabelle \emph{available\_Exhibits\_in\_Exhibitions} wurde entfernt, während eine neue Mechanik mittels \emph{Themes} hinzugefügt wurde. 
+Statt erster Tabelle wurde eine direkte Verbindung zwischen \emph{Exhibit} und \emph{Position} aufgestellt. 
+Die Attribute des \emph{Exhibits} wurden ausgearbeitet, sowie eine \emph{Eins-zu-Viele}-Beziehung zur Entität \emph{Exhibition} aufgebaut. 
+Ebenso wurde der \emph{User} nicht mehr einzelnen \emph{Exhiibits} zugeteilt, sondern nur keiner oder mehrerer \emph{Exhibitions}. 
+Dieser Schritt war in der Hinsicht wichtig, um Daten bei Löschvorgängen konsistent zu halten. 
+
 % \begin{figure}
 %     \centering
 %     \includegraphics[scale=0.5]{pics/firstversion_erd.png}

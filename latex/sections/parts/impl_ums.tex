@@ -11,10 +11,11 @@ Am Terminal besteht die Optionen mittels Maven oder Quarkus-\gls{cli}-Befehl ein
     \label{fig:intellij:plugin}
 \end{figure}
 
-Für diese Arbeit wurde jedoch das IntelliJ Plug-In \emph{Quarkus} von JetBrains s.r.o. verwendet. 
+Für diese Arbeit wurde jedoch das IntelliJ Plug-In \emph{Quarkus} von \emph{JetBrains s.r.o.} verwendet. 
 Dieses bildet dieselben Möglichkeiten, wie die Webseite, in einem griffbereitem \gls{ide}-Fenster ab (siehe Abb. \ref{fig:intellij:plugin}).
 Dadurch muss kein weiteres Programm, wie ein Browser, gestartet werden nur für die Projekterstellung.
 Zusätzlich werden Tools zur Verfügung gestellt, wie zum Beispiel Code-Assistenz, oder Laufkonfigurationen. \cite{QuarkusPlugin}
+Diese Gründe führten zu seiner persönlichen Präferenz dieser Methode, anstelle der anfangs erwähnten Optionen.
 
 Durch die Verwendung von Maven werden alle Extensions im \emph{pom.xml}-File des Projekts gespeichert. 
 Falls Erweiterungen im Nachhinein noch hinzugefügt werden sollen, kann dies durch Terminal Befehle automatisch geschehen, oder durch manuelles Einfügen in die Datei. 
@@ -41,6 +42,7 @@ quarkus dev
  
 Da mit der Anwendung Tabellen erstellt werden sollen, wird eine Datenbankverbindung benötigt. 
 Dazu wird PostgreSQL am Gerät installiert und gestartet. 
+Als Erleichterung dieses Schritts wurde \emph{Homebrew} genutzt, wodurch durch die unten angeführten Befehle die Installation und Ausführung automatisch geschah. 
 \begin{lstlisting}[label=lst:quarkus:devrun, language=bash, caption=Homebrew Installation und Ausführung PostgreSQL]
 brew install postgres
 brew services start postgres
@@ -98,10 +100,10 @@ public class Exhibition extends PanacheEntity {
 
 Nachdem die Klassen komplett sind, muss die Anwendung neu gestartet werden. 
 In den \emph{application.properties} wurde durch \emph{drop-and-create} konfiguriert, dass alle Tabellen bei Neustart gelöscht und neu aufgesetzt werden. 
-Diese Einstellung sorgt dafür, dass die Änderungen tatsächlich übernommen werden. 
+Diese Einstellung sorgt dafür, dass jede vorgenommene Änderungen tatsächlich übernommen werden. 
 
 Ebenso wird bei jedem Start eine \emph{import.sql}-Datei aufgerufen, die vordefinierten Daten bei jedem Start automatisch in die Datenbank lädt.  
-Für die Entitäten Theme, Positionen und Rooms hat sich das Team dazu entschieden, diese vorzugeben. 
+Für die Entitäten \emph{Theme}, \emph{Positionen} und \emph{Rooms} hat sich das Team dazu entschieden, diese vorzugeben. 
 Andere Entitäten werden als Testdaten in das File eingefügt und besitzen negative Ids. 
 Die negativen Werte stellen sicher, dass keine Objekte in die Datenbank geladen werden, mit demselben Primärschlüssel.
 
@@ -115,8 +117,8 @@ Die Entität eines Nutzenden, wird User genannt, wobei für den Tabellennamen in
 Grund dafür ist, dass der Name \emph{User} in PostgreSQL reserviert ist. 
 Deshalb ist in Codeausschnitt \ref{lst:userentity} die Zeile 2 erforderlich.
 
-Ein neuer User muss nur ein Nutzername und ein Passwort besitzen.
-Eine Id wird, wie vorhin erwähnt, automatisch generiert. 
+Jeder neuer Benutzer muss einen Nutzernamen und ein Passwort besitzen. 
+Die Id wird automatisch generiert. 
 Mittels der Attribute der \emph{@Column} Annotation, lassen sich obligatorische Felder definieren.
 Ebenso können Feldlänge, Spaltenname und vieles mehr auf diese Art konfiguriert werden.
 
@@ -151,7 +153,7 @@ Eventuell hätten die Arbeit noch den Typ \emph{PERSIST} einbauen können, da di
 \cite{CascadeTypes}
 
 
-\subsection{Allgemeines}
+\section{Allgemeines}
 
 Damit das Frontend auf Daten zugreifen kann, werden Schnittstellen benötigt, die typischerweise in passenden Resource-Klassen erstellt werden. 
 Solch eine Klasse hat die \emph{@Path}-Annotation oberhalb der Klassendefinition. 
@@ -176,7 +178,8 @@ Jede Methode, die eine Schnittstelle darstellt, muss über eine Annotation, mit 
 Optional eine weitere \emph{@Path}-Annotation erstellt werden. 
 Zusätzlich müssen die \gls{http}-Methoden \emph{POST} und \emph{DELETE} als \emph{@Transactional} gekennzeichnet werden. 
 Das bewirkt, dass die Methode als Transaktion ausgeführt. 
-Dies bedeutet, dass bei einem Fehlschlag, der die Datenbank auf den Stand vor Aufruf der Methode zurückgesetzt wird.
+Eine Transaktion ist ein Block von Anweisungen, der entweder zur Gänze, oder bei einem Fehlschlag gar nicht ausgeführt wird. 
+Bei zweiterem Fall wird die Datenbank auf den letzten Stand vor Aufruf der Methode zurückgesetzt. 
 \cite{TransactionAbout}
 
 \begin{lstlisting}[label=lst:resourceClass, language=Java, caption=Anfang einer Resource Datei]
@@ -208,10 +211,10 @@ Zusätzlich muss der Parametername bei der Annotation \emph{@Path} in geschwunge
 
 Anders als beim Anlegen der Tabellen, muss bei der Erstellung und Ausarbeitung der \gls{api} das die Anwendung nicht neugestartet werden. 
 Zur Testung dieser, wurde die Extension \emph{Swagger UI} verwendet. 
-Diese vereinfacht die Überprüfung des Codes durch eine Visualisierung der Endpoints mit vorgefertigten Abfragen. 
+Diese visualisiert die Endpoints und automatisiert die Erstellung von Abfragen, was Zeit spart.
 Das Verfahren des \gls{fw}s wird jedoch in Abschnitt \ref{chapter:implementation:tests} näher bearbeitet. 
 
-\subsubsection{Repositories} 
+\subsection{Repositories} 
 
 Durch eine Java-Entwicklung beeinflusst durch die Schichtenarchitektur, geschieht in Resource-Klassen, kein Datenbankzugriff. 
 Dafür sind Repositories zuständig, die anschließend injiziert werden. 
@@ -244,7 +247,7 @@ public class ExhibitionRepo implements PanacheRepository<Exhibition> {
 Die Repositories ermöglichen ebenso das Definieren von eigenen \gls{jpql}- und \gls{sql}-Befehlen. 
 \gls{jpql} ermöglicht, neben der Nutzung der gewohnten \gls{sql}-Keywords, das Definieren von Parametern in Queries, sowie die Verwendung von eigenen Records und \gls{dto}s.
 
-\subsection{Einrichtung der JWT}
+\section{Einrichtung der JWT}
 \label{chap:jwt}
 Für die Sicherheit der \gls{api} wird ein Tokensystem verwendet. 
 Dazu wird ein Schlüsselpaar benötigt und die Erweiterungen \emph{smallrye-jwt und smallrye-jwt-build}.
@@ -262,7 +265,13 @@ smallrye.jwt.sign.key.location=jwt/privateKey.pem
 \end{lstlisting}
 
 Um den Token tatsächlich zu erstellen wird ein Token-Service benötigt. 
-Die Methode \emph{generateJwt()} wird beim Login eines Users aufgerufen um einen Token zu generieren.
+Die Methode \emph{generateJwt()} wird beim Login eines Users aufgerufen um einen Token zu generieren. 
+Das \emph{claim()} sichert gewünschte Attribute, wobei diese optional sind. 
+In diesem Fall wird die Nutzerid gesichert. 
+\emph{Groups()} fügt den Token zu der Rolle \emph{user} hinzu. 
+Durch ein Rollensystem wird der Zugriff auf die Endpoints eingeschränkt, da jeder Rolle die Berechtigungen spezifisch durch \emph{@RolesAllowed} in Quarkus erteilt werden müssen. 
+Zuletzt wird explizit mittels \emph{expiresAt()} ein Verfallsdatum für jeden Token festgelegt. 
+\cite{jwtAboutQuarkus}
 \begin{lstlisting}[label=lst:jwtSign, caption=Methode zum signen von Tokens in JWT-Service]
 public String generateJwt(Long id){
     return Jwt.issuer("user-jwt")
@@ -277,7 +286,7 @@ Die generierten Token mit der obigen Methode können nur auf Endpoints der \gls{
 Ohne \gls{jwt} kann auf alle Requests zugegriffen werden gekennzeichnet mit \emph{@PermitAll}. 
 Auch wenn die Tokens mit eigenem Schlüsselpaar verschlüsselt sind, können sie auf der offiziellen \href{https://jwt.io}{www.jwt.io} Seite entschlüsselt werden. \cite{JWTAbout}
 
-\subsection{Verwaltung der User}
+\section{Verwaltung der User}
 Für die Verwaltung der Nutzenden wurden folgende Methoden implementiert:
 \begin{compactitem}
     \item \textbf{GET} getUser(Long id)
@@ -320,7 +329,7 @@ private String hashPassword(String string){
 }
 \end{lstlisting}
 
-\subsection{Verwaltung der Exhibitions}
+\section{Verwaltung der Exhibitions}
 Folgende Methoden wurden für die Verwaltung der Exhibition implementiert. 
 \begin{compactitem}
     \item \textbf{GET} getExhibitionById(Long id)
@@ -430,13 +439,13 @@ public List<ExhibitionWithUserDTO> getByCategoryIds(List<Long> ids) {
 }
 \end{lstlisting}
 
-\subsubsection{Records und DTOs}
+\subsection{Records und DTOs}
 Records wurden mit JDK 14 hinzugefügt. 
 Sie sind Klassen, dessen Werte gesetzt, aber nicht mehr verändert werden können. 
 Für die Definition solch einer Klasse wird nur das Stichwort \emph{record} benötigt, zusammen mit Datentyp und Namen der gewünschten Felder. \cite{recordAbout}
 
 Für diese Arbeit wurde anfangs der Record in Codeblock \ref{lst:exhibitionRecord} verwendet, um Daten zurückzuwerfen. 
-Durch Komplikationen mit der Java-Version im Laufe des Cloud-Deployments, wurde die Quarkus-Applikation umgeschrieben, um mit Java 11 kompatibel zu sein, wodurch Records nicht mehr zugelassen waren. 
+Durch nicht ausreichender Java-Version in der Cloud-Umgebung, wurde die die Quarkus-Applikation im Nachinein für eine Kompabilität mit Java 11 verändert, was Records nicht mehr zuließ. 
 
 \begin{lstlisting}[label=lst:exhibitionRecord, language=Java, caption=Verworfener Exhibition Record]
 public record ExhibitionWithUserRecord(Exhibition exhibition, String user_name, String user_icon_url) {

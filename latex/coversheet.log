@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.12.1)  23 NOV 2023 20:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.12.1)  11 FEB 2024 12:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**titlepage/coversheet.tex
+**./titlepage/coversheet.tex
 (./titlepage/coversheet.tex
 LaTeX2e <2022-11-01>
 L3 programming layer <2022-11-02>
@@ -299,7 +299,7 @@ File: l3backend-pdftex.def 2022-10-26 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count271
 \l__pdf_internal_box=\box51
 )
-No file coversheet.aux.
+(./coversheet.aux)
 \openout1 = `coversheet.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
@@ -320,6 +320,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 13.
 LaTeX Font Info:    ... okay on input line 13.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 13.
 LaTeX Font Info:    ... okay on input line 13.
+
 (/usr/local/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count272
@@ -343,61 +344,40 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 Package hyperref Info: Link coloring OFF on input line 13.
+
+(./coversheet.out) (./coversheet.out)
 \@outlinefile=\write4
 \openout4 = `coversheet.out'.
 
+<./titlepage/htlleondinglogo.png, id=6, 654.5253pt x 156.585pt>
+File: ./titlepage/htlleondinglogo.png Graphic file (type png)
+<use ./titlepage/htlleondinglogo.png>
+Package pdftex.def Info: ./titlepage/htlleondinglogo.png  used on input line 60
+.
+(pdftex.def)             Requested size: 170.71652pt x 40.84015pt.
+ [1
 
-
-LaTeX Warning: File `htlleondinglogo.png' not found on input line 60.
-
-
-! Package pdftex.def Error: File `htlleondinglogo.png' not found: using draft s
-etting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.60 ...egraphics[width=6cm]{htlleondinglogo.png}}
-                                                  
-? hH
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-? h
-Sorry, I already gave what help I could...
-Maybe you should try asking a human?
-An error might have occurred before I noticed any problems.
-``If all else fails, read the instructions.''
-
-? 
-[1
-
-] (./coversheet.aux)
-
-Package rerunfilecheck Warning: File `coversheet.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `coversheet.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+ <./titlepage/htlleondinglogo.png>]
+(./coversheet.aux)
+Package rerunfilecheck Info: File `coversheet.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 12387 strings out of 474971
- 191045 string characters out of 5776123
- 511307 words of memory out of 5000000
- 33724 multiletter control sequences out of 15000+600000
- 471551 words of font info for 36 fonts, out of 8000000 for 9000
+ 12356 strings out of 474971
+ 190419 string characters out of 5776123
+ 511425 words of memory out of 5000000
+ 33700 multiletter control sequences out of 15000+600000
+ 471382 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 89i,5n,93p,534b,2379s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 89i,6n,93p,536b,2379s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb
 ></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb>
 </usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb><
 /usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb>
-</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on coversheet.pdf (1 page, 61505 bytes).
+
+Output written on coversheet.pdf (1 page, 162467 bytes).
 PDF statistics:
- 39 PDF objects out of 1000 (max. 8388607)
+ 37 PDF objects out of 1000 (max. 8388607)
  2 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 18 words of extra memory for PDF output out of 10000 (max. 10000000)
 

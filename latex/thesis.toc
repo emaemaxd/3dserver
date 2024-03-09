@@ -2,57 +2,57 @@
 \contentsline {chapter}{\numberline {1}Einleitung}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Zielsetzung}{1}{section.1.1}%
 \contentsline {chapter}{\numberline {2}Technologien}{2}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Quarkus}{3}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Maven}{3}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}\gls *{jdbc} Treiber}{4}{subsection.2.1.2}%
-\contentsline {subsection}{\numberline {2.1.3}Hibernate ORM mit Panache}{4}{subsection.2.1.3}%
-\contentsline {subsection}{\numberline {2.1.4}REST-Easy}{4}{subsection.2.1.4}%
-\contentsline {subsection}{\numberline {2.1.5}Swagger-ui}{5}{subsection.2.1.5}%
-\contentsline {subsection}{\numberline {2.1.6}JUnit 5}{5}{subsection.2.1.6}%
-\contentsline {section}{\numberline {2.2}PostgreSQL}{7}{section.2.2}%
-\contentsline {section}{\numberline {2.3}IntelliJ IDEA}{7}{section.2.3}%
+\contentsline {section}{\numberline {2.1}PostgreSQL}{2}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Quarkus}{4}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Maven}{4}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}\glsfirst {jdbc} Treiber}{5}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Hibernate ORM mit Panache}{5}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}REST-Easy}{6}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}Swagger-ui}{6}{subsection.2.2.5}%
+\contentsline {subsection}{\numberline {2.2.6}JUnit 5}{6}{subsection.2.2.6}%
+\contentsline {section}{\numberline {2.3}IntelliJ IDEA}{8}{section.2.3}%
 \contentsline {section}{\numberline {2.4}Visual Studio Code}{8}{section.2.4}%
-\contentsline {section}{\numberline {2.5}LeoCloud}{8}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Kubernetes}{8}{subsection.2.5.1}%
+\contentsline {section}{\numberline {2.5}LeoCloud}{9}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Kubernetes}{9}{subsection.2.5.1}%
 \contentsline {section}{\numberline {2.6}GitHub}{9}{section.2.6}%
-\contentsline {section}{\numberline {2.7}Notion}{9}{section.2.7}%
+\contentsline {section}{\numberline {2.7}Notion}{10}{section.2.7}%
 \contentsline {section}{\numberline {2.8}PlantUML}{10}{section.2.8}%
-\contentsline {section}{\numberline {2.9}JSON Web Token}{10}{section.2.9}%
+\contentsline {section}{\numberline {2.9}JSON Web Token}{11}{section.2.9}%
 \contentsline {section}{\numberline {2.10}Homebrew}{11}{section.2.10}%
-\contentsline {chapter}{\numberline {3}Umsetzung}{12}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Design und Planung}{12}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Allgemeine Anforderungen}{12}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Erstellung eines Workspaces in Notion}{12}{subsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.1.3}Erstellung des ERDs}{13}{subsection.3.1.3}%
-\contentsline {section}{\numberline {3.2}Aufsetzen der Datenbank und des Servers}{16}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Umsetzung des ERDs in Quarkus}{18}{subsection.3.2.1}%
-\contentsline {subsubsection}{\nonumberline User}{19}{subsubsection*.24}%
-\contentsline {subsubsection}{\nonumberline Cascade Types}{19}{subsubsection*.26}%
-\contentsline {subsection}{\numberline {3.2.2}Allgemeines}{20}{subsection.3.2.2}%
-\contentsline {subsubsection}{\nonumberline Repositories}{21}{subsubsection*.28}%
-\contentsline {subsection}{\numberline {3.2.3}Einrichtung der JWT}{22}{subsection.3.2.3}%
-\contentsline {subsection}{\numberline {3.2.4}Verwaltung der User}{22}{subsection.3.2.4}%
-\contentsline {subsection}{\numberline {3.2.5}Verwaltung der Exhibitions}{23}{subsection.3.2.5}%
-\contentsline {subsubsection}{\nonumberline Records und DTOs}{26}{subsubsection*.30}%
-\contentsline {subsection}{\numberline {3.2.6}Verwaltung restlicher Entitäten}{26}{subsection.3.2.6}%
-\contentsline {subsection}{\numberline {3.2.7}Dateiverwaltung}{27}{subsection.3.2.7}%
-\contentsline {section}{\numberline {3.3}Tests}{29}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Während der Entwicklung}{29}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Nach der Entwicklung}{30}{subsection.3.3.2}%
-\contentsline {section}{\numberline {3.4}Hosten auf einer Cloud}{32}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Vorbereitung}{32}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Umsetzung}{34}{subsection.3.4.2}%
-\contentsline {section}{\numberline {3.5}Continious Integration und Deployment}{39}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}Continious Integration}{39}{subsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.5.2}Continious Delivery}{40}{subsection.3.5.2}%
-\contentsline {chapter}{\numberline {4}Zusammenfassung}{41}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Herausforderungen in Quarkus}{41}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Herausforderungen im Deployment}{41}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Zielerreichung}{42}{section.4.3}%
-\contentsline {chapter}{Glossar}{V}{section*.38}%
-\contentsline {chapter}{\nonumberline Literaturverzeichnis}{VII}{chapter*.40}%
-\contentsline {chapter}{\nonumberline Abbildungsverzeichnis}{X}{chapter*.41}%
-\contentsline {chapter}{\nonumberline Tabellenverzeichnis}{XI}{chapter*.42}%
-\contentsline {chapter}{\nonumberline Quellcodeverzeichnis}{XII}{chapter*.43}%
-\contentsline {chapter}{\nonumberline Anhang}{XIII}{chapter*.44}%
+\contentsline {chapter}{\numberline {3}Umsetzung}{13}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Design und Planung}{13}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Allgemeine Anforderungen}{13}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Erstellung eines Workspaces in Notion}{13}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}Erstellung des ERDs}{14}{subsection.3.1.3}%
+\contentsline {section}{\numberline {3.2}Aufsetzen der Datenbank und des Servers}{17}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Umsetzung des ERDs in Quarkus}{19}{subsection.3.2.1}%
+\contentsline {subsubsection}{\nonumberline User}{20}{subsubsection*.24}%
+\contentsline {subsubsection}{\nonumberline Cascade Types}{20}{subsubsection*.26}%
+\contentsline {section}{\numberline {3.3}Allgemeines}{21}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Repositories}{22}{subsection.3.3.1}%
+\contentsline {section}{\numberline {3.4}Einrichtung der JWT}{23}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Verwaltung der User}{24}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Verwaltung der Exhibitions}{25}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Records und DTOs}{27}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Verwaltung restlicher Entitäten}{28}{subsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.6.3}Dateiverwaltung}{28}{subsection.3.6.3}%
+\contentsline {section}{\numberline {3.7}Tests}{30}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}Während der Entwicklung}{30}{subsection.3.7.1}%
+\contentsline {subsection}{\numberline {3.7.2}Nach der Entwicklung}{30}{subsection.3.7.2}%
+\contentsline {section}{\numberline {3.8}Hosten auf einer Cloud}{33}{section.3.8}%
+\contentsline {subsection}{\numberline {3.8.1}Vorbereitung}{33}{subsection.3.8.1}%
+\contentsline {subsection}{\numberline {3.8.2}Umsetzung}{35}{subsection.3.8.2}%
+\contentsline {section}{\numberline {3.9}Continious Integration und Deployment}{40}{section.3.9}%
+\contentsline {subsection}{\numberline {3.9.1}Continious Integration}{40}{subsection.3.9.1}%
+\contentsline {subsection}{\numberline {3.9.2}Continious Delivery}{41}{subsection.3.9.2}%
+\contentsline {chapter}{\numberline {4}Zusammenfassung}{42}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Herausforderungen in Quarkus}{42}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Herausforderungen im Deployment}{42}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Zielerreichung}{43}{section.4.3}%
+\contentsline {chapter}{Glossar}{V}{section*.35}%
+\contentsline {chapter}{\nonumberline Literaturverzeichnis}{VII}{chapter*.37}%
+\contentsline {chapter}{\nonumberline Abbildungsverzeichnis}{X}{chapter*.38}%
+\contentsline {chapter}{\nonumberline Tabellenverzeichnis}{XI}{chapter*.39}%
+\contentsline {chapter}{\nonumberline Quellcodeverzeichnis}{XII}{chapter*.40}%
+\contentsline {chapter}{\nonumberline Anhang}{XIII}{chapter*.41}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

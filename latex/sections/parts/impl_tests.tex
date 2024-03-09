@@ -3,6 +3,9 @@ In diesem Kapitel werden die verschiedenen Testverfahren aufgezählt und etwas e
 
 \subsection{Während der Entwicklung}
 \label{chapter:implementation:tests}
+Tests sind eine gute Möglichkeit, zu gewährleisten, dass die Applikation fehlerfrei ihre Aufgaben erledigt. 
+Diese sollten eine breite Auswahl von möglichen Situationen abdecken.
+
 Für das Testen während der Entwicklung wurde die Extension \emph{swagger-ui} verwendet. 
 Erreichbar ist die Testresource unter \emph{http://localhost:8080/q/swagger-ui/}. 
 In dem lila Rechteck lässt sich der Pfad erkennen, während sich in dem roten Rechteck der Button zum Ausprobieren befindet. 
@@ -42,11 +45,10 @@ Ansonsten werden neue Objekt womöglich nicht gespeichert.
 \end{figure}
 
 \subsection{Nach der Entwicklung}
-Tests sind eine gute Möglichkeit, zu gewährleisten, dass die Applikation fehlerfrei ihre Aufgaben erledigt. 
-Diese müssen eine breite Auswahl von möglichen Situationen abdecken.
 
 In dieser Arbeit wird mit JUnit 5 und Mockito gearbeitet. 
 Mockito ermöglicht es, die Repositories zu rekonstruieren. 
+Diese Rekonstruktion werden \emph{Mocks} genannt.
 \cite{quarkusMockAbout}
 \begin{lstlisting}[label=JUnit 5 Abhängigkeit in pom.xml, language=xml]
 <dependency>
